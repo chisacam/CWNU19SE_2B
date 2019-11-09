@@ -1,6 +1,6 @@
-<mxfile host="www.draw.io" modified="2019-11-09T06:10:28.238Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0" etag="740j3ryvdFGr9qKNkXGg" version="12.2.3" type="github" pages="1">
+<mxfile host="www.draw.io" modified="2019-11-09T06:19:58.701Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:70.0) Gecko/20100101 Firefox/70.0" etag="zLYxbxxjoaL5YUzSQBZJ" version="12.2.3" type="github" pages="1">
   <diagram id="FN55JzjhB0qvYEhzUZrB" name="Page-1">
-    <mxGraphModel dx="1855" dy="681" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2226" dy="817" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0"/>
         <mxCell id="1" parent="0"/>
@@ -39,7 +39,7 @@
         <mxCell id="dORa9sEvweq1nX9QKOWU-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="dORa9sEvweq1nX9QKOWU-1" vertex="1">
           <mxGeometry y="120" width="250" height="8" as="geometry"/>
         </mxCell>
-        <mxCell id="dORa9sEvweq1nX9QKOWU-4" value="+ selectPlaceName(string[]): string&#xa;+ checkAvailableTime(): string&#xa;+ searchPlace(string): string[]&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="dORa9sEvweq1nX9QKOWU-1" vertex="1">
+        <mxCell id="dORa9sEvweq1nX9QKOWU-4" value="+ selectPlaceName(string[]): string&#xa;+ searchPlace(string): string[]&#xa;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="dORa9sEvweq1nX9QKOWU-1" vertex="1">
           <mxGeometry y="128" width="250" height="62" as="geometry"/>
         </mxCell>
         <mxCell id="dORa9sEvweq1nX9QKOWU-6" value="RecentSearchPlace" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
@@ -117,7 +117,7 @@
           <mxGeometry y="80" width="180" height="20" as="geometry"/>
         </mxCell>
         <mxCell id="UYJ70HYdaBodhslfu7VE-68" value="Map" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
-          <mxGeometry x="30" y="650" width="240" height="210" as="geometry"/>
+          <mxGeometry x="30" y="650" width="240" height="220" as="geometry"/>
         </mxCell>
         <mxCell id="UYJ70HYdaBodhslfu7VE-69" value="- places:float[]&#xa;- bus: Bus[]&#xa;- search: Search[]&#xa;- nubija: Nubija[]&#xa;- busLine: BusLine[]&#xa;- weather: Weather" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="UYJ70HYdaBodhslfu7VE-68" vertex="1">
           <mxGeometry y="26" width="240" height="94" as="geometry"/>
@@ -125,8 +125,8 @@
         <mxCell id="UYJ70HYdaBodhslfu7VE-70" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;" parent="UYJ70HYdaBodhslfu7VE-68" vertex="1">
           <mxGeometry y="120" width="240" height="20" as="geometry"/>
         </mxCell>
-        <mxCell id="UYJ70HYdaBodhslfu7VE-71" value="+findNearNubijaTerminal(search): Nubija&#xa;+findNearBusTerminal(search): Bus&#xa;+findRoute(float, float, float, float): string[]&#xa;+loadMap(int[]):string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="UYJ70HYdaBodhslfu7VE-68" vertex="1">
-          <mxGeometry y="140" width="240" height="70" as="geometry"/>
+        <mxCell id="UYJ70HYdaBodhslfu7VE-71" value="+findNearNubijaTerminal(search): Nubija&#xa;+findNearBusTerminal(search): Bus&#xa;+findRoute(float, float, float, float): string[]&#xa;+loadMap(int[]):string&#xa;+ checkAvailableTime(): string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="UYJ70HYdaBodhslfu7VE-68" vertex="1">
+          <mxGeometry y="140" width="240" height="80" as="geometry"/>
         </mxCell>
         <mxCell id="UYJ70HYdaBodhslfu7VE-103" value="" style="endArrow=diamondThin;endFill=1;endSize=24;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="YfqLZiuq-RBrFdygV_fY-1" edge="1">
           <mxGeometry width="160" relative="1" as="geometry">
