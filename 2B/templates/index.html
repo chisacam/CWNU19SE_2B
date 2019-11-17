@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='mainpagecss.css')}}">
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=766c51f119f8a0c2e82527a8d5f309d4"></script>
+        <script src="{{ url_for('static', filename='mainpage.js') }}"></script>
+        <title>2B</title>
+    </head>
+    <body>
+        <div  id="search" ; class="search">
+            <div id="departure" class ="search">
+                <input type="search" style="width: 90%;">
+                <button type="submit">검색</button>
+            </div>
+            <div id="destination" class ="search">
+                <input type="search" style="width: 90%;">
+                <button type="submit">검색</button>
+            </div>
+        
+        </div>
+
+        <div id="asdf">
+            <div id="maps" style=" position: static; width: 1080px ; height: 1200px ; z-index: 1">
+                <script>
+                    var mapContainer = document.getElementById('maps'), mapOption = {
+                        center : new kakao.maps.LatLng(35.228002, 128.681816),
+                        level : 3
+                    };
+
+                    var map = new kakao.maps.Map(mapContainer, mapOption);
+
+                </script>
+            </div>
+            <div id = "weather" style="position: relative;top: -500px ;left: 400px;z-index: 2">
+                    <img src={{ url_for('static', filename='photo_2019-11-17_22-18-21.jpg') }}>
+            </div>
+
+        </div>
+
+
+
+        
+    </body>
+</html>
