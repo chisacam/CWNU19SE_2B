@@ -8,14 +8,33 @@
     </head>
     <body>
         <div  id="search" ; class="search" >
-            <div id="departure" class ="search">
-                <input type="search" style="width: 90%;">
-                <button type="submit">검색</button>
-            </div>
-            <div id="destination" class ="search">
-                <input type="search" style="width: 90%;">
-                <button type="submit">검색</button>
-            </div>
+            <table>
+            <tr>
+                <td rowspan="2">
+                    <button onclick=""><img src="#"></button>
+                </td>
+                <td>
+                    <button onclick="location.href='#'" ><img src="{{ url_for('static', filename='') }}"></button>
+                </td>
+                <td>
+                    <img src="#">
+                </td>
+                <td>
+                    <button type="submit" onclick="">검색</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button onclick="location.href='#'" ><img src="{{ url_for('static', filename='') }}"></button>
+                </td>
+                <td>
+                    <img src="#">
+                </td>
+                <td>
+                    <button type="submit" onclick="">검색</button>
+                </td>
+            </tr>
+        </table>
         
         </div>
 
@@ -32,7 +51,7 @@
                 </script>
             </div>
             <div id = "weather" style="position: relative;top: -350px ;left: 700px;z-index: 2">
-                    <img width="300px" height="300px" src={{ url_for('static', filename='photo_2019-11-17_22-18-21.jpg') }}>
+                <button onclick="location.href='weather.html'"><img width="300px" height="300px" src={{ url_for('static', filename='photo_2019-11-17_22-18-21.jpg') }}></button>
             </div>
 
         </div>
