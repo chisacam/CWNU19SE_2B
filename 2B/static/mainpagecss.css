@@ -1,4 +1,21 @@
 #search {
     background: blue;
-    height: 25%;
+    height: 20%;
+}
+
+html, body, #contents {
+    height: 100%;
+}
+
+#maps {
+    width: 100%; 
+    height : 80%;
+    z-index: 1;
+}
+
+#weather {
+    position: relative;
+    top: -350px;
+    left: 700px;
+    z-index: 2;
 }
