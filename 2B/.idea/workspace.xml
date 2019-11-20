@@ -2,12 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fb67cb94-a5e7-4d86-b975-378bde9cd609" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/2B.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/2B.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/mainpagecss.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/mainpagecss.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/weather.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/weather.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +80,7 @@
       <workItem from="1574235430264" duration="207000" />
       <workItem from="1574235661512" duration="491000" />
       <workItem from="1574236222286" duration="1940000" />
-      <workItem from="1574239745471" duration="214000" />
+      <workItem from="1574239745471" duration="454000" />
     </task>
     <servers />
   </component>
