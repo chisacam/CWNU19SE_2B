@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id = "searchbar">
+        <table>
+            <td>
+                <input id="gps" value="gps버튼" type="button">
+            </td>
+
+            <td>
+                <input id="searchbar" type="text">
+            </td>
+            <td>
+                <input id="searchbutton" value="검색버튼" type="button" onclick="location.href='searchText'">
+            </td>
+        </table>
+    </div>
+    <div id = "output">
+        <div id = "log">
+            <table>
+                <td>
+                    <input type="button" id = "recentbutton" value="최근기록"  disabled>
+                </td>
+                <td>
+                    <input type="button" id = "bookmarkbutton" value="북마크" onclick="location.href='searchBookmark'">
+                </td>
+            </table>
+            <div class="recentlist">
+                <table id = "recenttable">
+                    <tr class="recentSample">
+                        <td class = "bookmarkstar"><input id="bookmark button" type="button" value="북마크"></td>
+                        <td><input class="place" type="button"  value="위치1"></td>
+                        <input class="coordinateX" type="hidden" value="">
+                        <input type="hidden" class="coordinateY" value="">
+                        <td class="deleteicon"><input id="deletebtn" value="삭제" type="button"></td>
+                    </tr>
+
+
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
