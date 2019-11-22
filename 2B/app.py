@@ -9,6 +9,11 @@ def main_page():
     return render_template("index.html")
 
 
+@app.route('/main')
+def main_page_():
+    return render_template("index.html")
+
+
 @app.route('/weather')
 def weather_page():
     return render_template("weather.html")
@@ -24,9 +29,28 @@ def recent_bookmark():
     return render_template("search_bookmark.html")
 
 
+@app.route('/busterminalSelect')
+def busTerminalSelect():
+    return render_template('bus_terminal_select.html')
+
+
+@app.route('/nubijaSelect')
+def nubijaselect():
+    return render_template('Nubija_terminal_select.html')
+
+
 @app.route('/searchText')
 def search_text():
     return render_template("search_text.html")
+
+
+@app.route('/naviNubija')
+def navi_nibija():
+    return render_template("navigation_nubija.html")
+
+@app.route('/naviBus')
+def navi_bus():
+    return render_template('navigation_bus.html')
 
 
 if __name__ == '__main__':

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div  id="search" class="search" >
+            <table>
+            <tr>
+                <td rowspan="2">
+                    <button id="swap" onclick=""><img src="/static/arrow.svg"></button>
+                </td>
+                <td id="blank">
+                    <input id="departure" type="button" onclick="location.href = 'searchRecent'" value="출발지">
+                </td>
+                <td>
+                    <img id="departureGpsIcon" src="/static/gps.svg">
+                </td>
+            </tr>
+            <tr>
+                <td id="blank">
+                    <input id="destination" type="button" onclick="location.href = 'searchRecent'" value="도착지">
+                </td>
+                <td>
+                    <img id="destinationGpsIcon" src="/static/gps.svg">
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div id="terminalType">
+        <table>
+                <td>
+                    <input type="button" id = "recentbutton" value="누비자btn"  disabled>
+                </td>
+                <td>
+                    <input type="button" id = "bookmarkbutton" value="터미널btn" onclick="location.href='naviBus'">
+                </td>
+            </table>
+    </div>
+    <div id="navi">
+        <table id="navilist">
+            <tr class="naviSample">
+                <td class = "naviicon"><img src=""></td>
+                <td>경로샘플</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
