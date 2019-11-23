@@ -1,12 +1,17 @@
 from flask import Flask
 from flask import render_template
+import json
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def main_page():
-    return render_template("index.html")
+    geoInfo = open('static/terminalInfo.json', 'r')
+    nameInfo = open('static/terminalName.json', 'r')
+    geoInfo = json.loads(geoInfo.read())
+    nameInfo = json.loads(nameInfo.read())
+    return render_template("index.html", geodata = geoInfo, namedata=nameInfo)
 
 
 @app.route('/main')
@@ -54,4 +59,4 @@ def navi_bus():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)
