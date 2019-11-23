@@ -1,23 +1,25 @@
 from flask import Flask
 from flask import render_template
+from flask import jsonify
 import json
 
 app = Flask(__name__)
 
 
 @app.route('/')
-def main_page():
-    geoInfo = open('static/terminalInfo.json', 'r')
-    nameInfo = open('static/terminalName.json', 'r')
-    geoInfo = json.loads(geoInfo.read())
-    nameInfo = json.loads(nameInfo.read())
-    return render_template("index.html", geodata = geoInfo, namedata=nameInfo)
-
-
 @app.route('/main')
-def main_page_():
+def main_page():
     return render_template("index.html")
 
+@app.route('/js')
+def jse():
+    geoInfo = open('static/terminalInfo.json', 'r')
+    nameInfo = open('static/terminalName.json', 'r')
+    nameInfo = json.loads(nameInfo.read())
+    nameInfo = json.dumps(nameInfo, ensure_ascii=False)
+    geoInfo = json.loads(geoInfo.read())
+    geoInfo = json.dumps(geoInfo, ensure_ascii=False)
+    return jsonify(namedata=nameInfo)
 
 @app.route('/weather')
 def weather_page():
@@ -59,4 +61,4 @@ def navi_bus():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug = True)

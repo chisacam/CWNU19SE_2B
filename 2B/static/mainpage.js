@@ -17,6 +17,7 @@ window.onload = () => {
                 alert('GPS를 사용할 수 없습니다.')
            }
         });
+        
 
     // Default: 창원시청
     if (gpsFlag === false) {
@@ -29,7 +30,6 @@ window.onload = () => {
         center : new kakao.maps.LatLng(myLat, myLong),
         level : 3
     };
-
     var map = new kakao.maps.Map(mapContainer, mapOption);
 
     var imageSize = new kakao.maps.Size(24, 35);
@@ -84,7 +84,6 @@ gps.addEventListener('click', function(){
 ];
 
 */
-
 var positions = [
 
 ];

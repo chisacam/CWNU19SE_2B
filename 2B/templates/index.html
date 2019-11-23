@@ -2,15 +2,22 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="/static/css/mainpagecss.css">
+        <script type="text/javascript" src="/static/temp.js"></script>
         <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=766c51f119f8a0c2e82527a8d5f309d4"></script>
+        
         <title>2B</title>
     </head>
     <body>
         <div  id="search" class="search" >
             <table>
+                <tr>
+                    <td><button onclick="jsts()">ccccc</button></td>
+                    <td><input type="text" id="aadf" value="시바아아알" /></td>
+                    <td></td>
+                </tr>
             <tr>
                 <td rowspan="2">
-                    <button id="swap" onclick=""><img src="/static/icon/arrow.svg"></button>
+                    <button id="swap" onclick="location.href=''"><img src="/static/icon/arrow.svg"></button>
                 </td>
                 <td id="blank">
                     <input id="departure" type="button" onclick="location.href = 'searchRecent'" value="출발지">
@@ -28,16 +35,21 @@
                 </td>
             </tr>
         </table>
-        
+
+
         </div>
 
         <div id="contents">
             <div id="maps"></div>
-            <div id="mapGps"><button id="mapGpsButton" onclick="" ><img src="/static/photo_2019-11-17_22-18-21.jpg"></button></div>
+            <div id="mapGps">
+                <button id="mapGpsButton" onclick="" >
+                    <img src="/static/photo_2019-11-17_22-18-21.jpg">
+                </button>
+            </div>
             <div id = "weather">
                 <button id="weatherbtn" onclick="location.href='weather'"><img id="weatherIcon" src="/static/icon/cloudy.svg"></button>
             </div>
-        </div>    
+        </div>
         <script type="text/javascript" src="/static/mainpage.js"></script>
     </body>
 </html>
