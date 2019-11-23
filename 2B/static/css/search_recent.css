@@ -24,7 +24,7 @@ table{
 }
 
 #gps{
-    background: url("gps.svg");
+    background: url("/static/icon/gps.svg");
     background-repeat:no-repeat;
     background-position: center;
     background-size: contain;
@@ -47,7 +47,7 @@ table{
 }
 
 #searchbutton{
-    background:url("search.svg");
+    background:url("/static/icon/search.svg");
     background-position:center;
     background-repeat:no-repeat;
     background-size:contain;
@@ -88,7 +88,6 @@ table{
 
 #recentlist{
     width:100%;
-    height:contain;
 }
 
 #recenttable{
@@ -98,7 +97,7 @@ table{
 }
 
 #starbutton{
-    background: url("/static/star_empty.svg");
+    background: url("/static/icon/star_empty.svg");
     background-repeat:no-repeat;
     background-position: center;
     background-size: contain;
@@ -108,7 +107,7 @@ table{
 }
 
 #deletebtn{
-    background: url("/static/x.svg");
+    background: url("/static/icon/x.svg");
     background-repeat:no-repeat;
     background-position: center;
     background-size: contain;
