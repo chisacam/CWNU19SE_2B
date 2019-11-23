@@ -1,14 +1,8 @@
-#searchbar {
-    background: black;
-    height: 10%;
-    width: 100%;
-}
-
 html{
     height:100%;
 }
 
-body, #log, #output{
+body{
     height:100%;
     width:100%;
 }
@@ -23,6 +17,7 @@ table{
     text-align:center;
 }
 
+
 #gps{
     background: url("/static/icon/gps.svg");
     background-repeat:no-repeat;
@@ -32,6 +27,13 @@ table{
     height:50%;
     border: 0;
 }
+
+#searchbar {
+    background: black;
+    height: 10%;
+    width: 100%;
+}
+
 
 #searchtextbar{
     height: 65%;
@@ -56,80 +58,52 @@ table{
     height:50%;
 }
 
-#recentbutton{
+#terminalType{
+    margin-top:1.5%;
     width: 100%;
+    height: 6%;
+}
+
+#tabt_nub{
     height:100%;
     border-top-left-radius: 5px;
     border-top-right-radius: 20px;
     border: 0px;
-    background:#D0D0D0;
-}
-
-#bookmarkbutton{
-    width:100%;
-    height:100%;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 5px;
-    border: 0px;
-    padding:0;
     background:white;
-}
-
-#placeframe{
-    width:100%;
-    height:10%;
-    background: white;
-}
-
-#placeIconStyle{
-    width:20%;
-    height: 100%;
-    padding:0;
-    margin:0;
-}
-
-#placenamet{
-    padding:0;
-}
-
-#placename{
-    width:70%;
-    height:100%;
-    padding-left:0;
-    padding-right:0;
-    text-align: left;
-    background: transparent;
-    border:0;
-    padding:0;
-}
-
-#bookmarktable{
-    width:100%;
-    height:80px;
-    background:white;
-}
-
-#bookmarklist{
-    width:100%;
-}
-
-#tab{
-    margin-top:1.5%;
-    width: 100%;
-    height: 5%;
-}
-
-#tabt{
     width:50%;
     padding: 0px;
 }
 
-#starbutton{
-    background: url("/static/icon/star_gold.svg");
+#tabt_bus{
+    height:100%;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 5px;
+    border: 0px;
+    background: #D0D0D0;
+    width:50%;
+    padding: 0px;
+}
+
+#nubijabutton{
+    background: url("/static/icon/bicycle.svg");
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: contain;
+    height:80%;
+    width:80%;
+    border: 0;
+}
+
+#busbutton{
+    background: url("/static/icon/bus.svg");
     background-repeat:no-repeat;
     background-position: center;
     background-size: contain;
     width:80%;
     height:80%;
     border: 0;
+}
+
+#map{
+    height:100%;
 }

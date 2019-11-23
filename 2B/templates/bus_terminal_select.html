@@ -2,30 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/bus_terminal_select.css">
     <title>Title</title>
 </head>
 <body>
-<div id="searchSection">
+<div id="searchbar">
         <table>
             <td>
-                <input id="gps" value="gps버튼" type="button">
+                <input id="gps" type="button">
             </td>
 
-            <td>
-                <input id="searchbar" type="text">
+            <td id="searcht">
+                <input id="searchtextbar" type="text">
             </td>
             <td>
-                <input id="searchbutton" value="검색버튼" type="button" onclick="location.href='searchText'">
+                <input id="searchbutton" type="button" onclick="location.href='searchText'">
             </td>
         </table>
     </div>
     <div id="terminalType">
         <table>
-                <td>
-                    <input type="button" id = "recentbutton" value="누비자btn"  onclick="location.href='nubijaSelect'">
+                <td id="tabt_nub">
+                    <input type="button" id = "nubijabutton" onclick="location.href='nubijaSelect'">
                 </td>
-                <td>
-                    <input type="button" id = "bookmarkbutton" value="버스btn" disabled onclick="">
+                <td id="tabt_bus">
+                    <input type="button" id = "busbutton" disabled onclick="">
                 </td>
             </table>
     </div>
