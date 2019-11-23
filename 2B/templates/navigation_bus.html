@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/navigation_bus.css">
     <title>Title</title>
 </head>
 <body>
@@ -9,13 +10,13 @@
             <table>
             <tr>
                 <td rowspan="2">
-                    <button id="swap" onclick=""><img src="/static/arrow.svg"></button>
+                    <button id="swap" onclick=""><img src="/static/icon/arrow.svg"></button>
                 </td>
                 <td id="blank">
                     <input id="departure" type="button" onclick="location.href = 'searchRecent'" value="출발지">
                 </td>
                 <td>
-                    <img id="departureGpsIcon" src="/static/gps.svg">
+                    <img id="departureGpsIcon" src="/static/icon/gps.svg">
                 </td>
             </tr>
             <tr>
@@ -23,7 +24,7 @@
                     <input id="destination" type="button" onclick="location.href = 'searchRecent'" value="도착지">
                 </td>
                 <td>
-                    <img id="destinationGpsIcon" src="/static/gps.svg">
+                    <img id="destinationGpsIcon" src="/static/icon/gps.svg">
                 </td>
             </tr>
         </table>
@@ -31,19 +32,19 @@
     </div>
     <div id="terminalType">
         <table>
-                <td>
-                    <input type="button" id = "nubijabutton" value="누비자btn" onclick="location.href='naviNubija'" >
+                <td id="tabt_nub">
+                    <input type="button" id = "nubijabutton" onclick="location.href='naviNubija'" >
                 </td>
-                <td>
-                    <input type="button" id = "busbutton" value="터미널btn" disabled>
+                <td id="tabt_bus">
+                    <input type="button" id = "busbutton" disabled>
                 </td>
             </table>
     </div>
     <div id="navi">
         <table id="navilist">
-            <tr class="naviSample">
-                <td class = "naviicon"><img src=""></td>
-                <td>경로샘플</td>
+            <tr class="naviSample" id="navisample">
+                <td class = "naviicon" id="iconc"><img id="icon" src="/static/icon/bus.svg"></td>
+                <td id="navitxt">노선샘플</td>
             </tr>
         </table>
     </div>
