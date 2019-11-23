@@ -2,20 +2,21 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/search_text.css">
     <title>Title</title>
 </head>
 <body>
     <div id = "searchbar">
         <table>
             <td>
-                <input id="gps" value="gps버튼" type="button">
+                <input id="gps" type="button">
             </td>
 
-            <td>
-                <input id="searchbar" type="text">
+            <td id="searcht">
+                <input id="searchtextbar" type="text">
             </td>
             <td>
-                <input id="searchbutton" value="검색버튼" type="button">
+                <input id="searchbutton" type="button" onclick="location.href='searchText'">
             </td>
         </table>
     </div>
@@ -23,13 +24,12 @@
         <div id = "log">
             <div class="bookmarklist">
                 <table id = "bookmarktable">
-                    <tr class="bookmarkSample">
-                        <td class = "bookmarkstar"><input id="bookmark button" type="button" value="북마크"></td>
-                        <td><input class="place" type="button"  value="위치1"></td>
+                    <tr class="bookmarkSample" id="placeframe">
+                        <td class = "bookmarkstar"  id="placeIconStyle"><input id="starbutton" type="button"></td>
+                        <td id="placenamet"><input class="place" type="button" id="placename" value="위치1"></td>
                         <input class="coordinateX" type="hidden" value="">
                         <input type="hidden" class="coordinateY" value="">
                     </tr>
-
                 </table>
             </div>
         </div>
