@@ -2,44 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/search_recent.css">
     <title>Title</title>
 </head>
 <body>
     <div id = "searchbar">
         <table>
             <td>
-                <input id="gps" value="gps버튼" type="button">
+                <input id="gps" type="button">
             </td>
 
-            <td>
-                <input id="searchbar" type="text">
+            <td id="searcht">
+                <input id="searchtextbar" type="text">
             </td>
             <td>
-                <input id="searchbutton" value="검색버튼" type="button" onclick="location.href='searchText'">
+                <input id="searchbutton" type="button" onclick="location.href='searchText'">
             </td>
         </table>
     </div>
     <div id = "output">
         <div id = "log">
-            <table>
-                <td>
+            <table id="tab">
+                <td id="tabt">
                     <input type="button" id = "recentbutton" value="최근기록"  disabled>
                 </td>
-                <td>
+                <td id="tabt">
                     <input type="button" id = "bookmarkbutton" value="북마크" onclick="location.href='searchBookmark'">
                 </td>
             </table>
             <div class="recentlist">
                 <table id = "recenttable">
-                    <tr class="recentSample">
-                        <td class = "bookmarkstar"><input id="bookmark button" type="button" value="북마크"></td>
-                        <td><input class="place" type="button"  value="위치1"></td>
+                    <tr class="recentSample" id="placeframe">
+                        <td class = "bookmarkstar" id="placeIconStyle"><input id="starbutton" type="button"></td>
+                        <td id="placenamet"><input class="place" type="button" id="placename" value="위치1"></td>
                         <input class="coordinateX" type="hidden" value="">
                         <input type="hidden" class="coordinateY" value="">
-                        <td class="deleteicon"><input id="deletebtn" value="삭제" type="button"></td>
+                        <td class="deleteicon" id="placeIconStyle"><input id="deletebtn" type="button"></td>
                     </tr>
-
-
                 </table>
             </div>
         </div>
