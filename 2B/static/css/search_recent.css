@@ -78,7 +78,7 @@ table{
 #tab{
     margin-top:1.5%;
     width: 100%;
-    height: 5%;
+    height: 6%;
 }
 
 #tabt{
@@ -119,8 +119,6 @@ table{
 #placename{
     width:70%;
     height:100%;
-    padding-left:0;
-    padding-right:0;
     text-align: left;
     background: transparent;
     border:0;
