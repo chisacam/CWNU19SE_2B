@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/navigation_nubija.css">
     <title>Title</title>
 </head>
 <body>
@@ -31,19 +32,20 @@
     </div>
     <div id="terminalType">
         <table>
-                <td>
-                    <input type="button" id = "recentbutton" value="누비자btn"  disabled>
+                <td id="tabt_nub">
+                    <input type="button" id = "nubijabutton" disabled>
                 </td>
-                <td>
-                    <input type="button" id = "bookmarkbutton" value="터미널btn" onclick="location.href='naviBus'">
+                <td id="tabt_bus">
+                    <input type="button" id = "busbutton" onclick="location.href='naviBus'">
                 </td>
-            </table>
+        </table>
+    </div>
     </div>
     <div id="navi">
         <table id="navilist">
-            <tr class="naviSample">
-                <td class = "naviicon"><img src=""></td>
-                <td>경로샘플</td>
+            <tr class="naviSample" id="navisample">
+                <td class = "naviicon" id="iconc"><img src="/static/icon/turnleft.svg"></td>
+                <td id="navitxt">경로샘플</td>
             </tr>
         </table>
     </div>
