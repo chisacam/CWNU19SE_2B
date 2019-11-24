@@ -32,12 +32,10 @@ def Weather_page():
     result = json.loads(base_info)
     weather = result["weather"][0]["main"]
     temp = result["main"]["temp"] - 273
-    icon = "http://openweathermap.org/img/w/" + result["weather"][0]["icon"] + ".png"
-    """print(round(temp), weather)"""
-    weather= weather.lower()
+    weather = weather.lower()
     weather = '/static/icon/weather/{}.svg'.format(weather)
     print(weather)
-    return render_template("weather.html", weather=weather, temp=round(temp), icon=icon)
+    return render_template("weather.html", weather=weather, temp=round(temp))
 
 
 @app.route('/searchRecent', methods=['POST'])
@@ -49,7 +47,7 @@ def recent_search():
 
 @app.route('/searchBookmark')
 def recent_bookmark():
-    booklist = eval(request.cookies.get('bookmark'))
+    #booklist = eval(request.cookies.get('bookmark'))
     return render_template("search_bookmark.html")
 
 
