@@ -6,26 +6,7 @@ from flask import request
 from flask import make_response
 import requests
 
-app = Flask(__name__)
-
-
-@app.route('/')
-@app.route('/main')
-def main_Page():
-    return render_template("index.html")
-
-@app.route('/js')
-def jse():
-    geoInfo = open('static/terminalInfo.json', 'r')
-    nameInfo = open('static/terminalName.json', 'r')
-    nameInfo = json.loads(nameInfo.read())
-    nameInfo = json.dumps(nameInfo, ensure_ascii=False)
-    geoInfo = json.loads(geoInfo.read())
-    geoInfo = json.dumps(geoInfo, ensure_ascii=False)
-    return jsonify(namedata=nameInfo, geodata=geoInfo)
-
-@app.route('/weather')
-def Weather_page():
+def weatherinfo():
     base_address = "https://api.openweathermap.org/data/2.5/weather?id=1846326&appid=7a60cf8ebe413584303acc4e2bf4cffe"
     req_weather = requests.get(base_address)
     base_info = req_weather.text
@@ -38,8 +19,39 @@ def Weather_page():
     else:
         weather = weather.lower()
         weather = '/static/icon/weather/{}.svg'.format(weather)
+    weatherdict = {
+        "weather": weather,
+        "temp": round(temp)
+    }
+    return weatherdict
+
+
+app = Flask(__name__)
+
+
+@app.route('/')
+@app.route('/main')
+def main_Page():
+    main_weather = weatherinfo()
+    return render_template("index.html", weather=main_weather["weather"])
+
+
+@app.route('/js')
+def jse():
+    geoInfo = open('static/terminalInfo.json', 'r')
+    nameInfo = open('static/terminalName.json', 'r')
+    nameInfo = json.loads(nameInfo.read())
+    nameInfo = json.dumps(nameInfo, ensure_ascii=False)
+    geoInfo = json.loads(geoInfo.read())
+    geoInfo = json.dumps(geoInfo, ensure_ascii=False)
+    return jsonify(namedata=nameInfo, geodata=geoInfo)
+
+
+@app.route('/weather')
+def Weather_page():
+    weather = weatherinfo()
     #print(weather)
-    return render_template("weather.html", weather=weather, temp=round(temp))
+    return render_template("weather.html", weather=weather["weather"], temp=weather["temp"])
 
 
 @app.route('/searchRecent', methods=['POST'])
