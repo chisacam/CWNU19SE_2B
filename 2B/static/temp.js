@@ -1,5 +1,7 @@
 var i, j, namedataJson, geodataJson;
 
+
+
 function jsts() {
 
   var mapContainer = document.getElementById('maps'), mapOption = {
@@ -19,7 +21,6 @@ function jsts() {
 
   var control = new kakao.maps.ZoomControl();
   map.addControl(control, kakao.maps.ControlPosition.TOPRIGHT);
-
 
 
 // 여기까지 무조건 옴
@@ -67,3 +68,27 @@ function jsts() {
   xmlHttp.open("GET", "/js", true);
   xmlHttp.send();
 }
+
+function departclick() {
+
+  document.getElementById("sel").value = "depart";
+
+};
+
+function destclick() {
+  document.getElementById("sel").value="dest";
+};
+
+function swaps() {
+  var tempName = document.getElementById("departures").value;
+  var tempLat = document.getElementById("departLat").value;
+  var tempLong = document.getElementById("departLong").value;
+  document.getElementById("departures").value = document.getElementById("destinations").value;
+  document.getElementById("departLat").value = document.getElementById("destLat").value;
+  document.getElementById("departLong").value = document.getElementById("destLong").value;
+  document.getElementById("destinations").value = tempName;
+  document.getElementById("destLat").value = tempLat;
+  document.getElementById("destLong").value = tempLong;
+  
+
+};
