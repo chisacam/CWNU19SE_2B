@@ -34,6 +34,9 @@ def Weather_page():
     temp = result["main"]["temp"] - 273
     icon = "http://openweathermap.org/img/w/" + result["weather"][0]["icon"] + ".png"
     """print(round(temp), weather)"""
+    weather= weather.lower()
+    weather = '/static/icon/weather/{}.svg'.format(weather)
+    print(weather)
     return render_template("weather.html", weather=weather, temp=round(temp), icon=icon)
 
 
