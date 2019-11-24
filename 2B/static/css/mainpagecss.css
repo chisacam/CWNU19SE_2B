@@ -22,6 +22,30 @@ td{
     text-align:center;
 }
 
+#swapsector{
+    position:absolute;
+    width:15%;
+    height:20%;
+    left:0;
+    top:0;
+}
+
+#formsector{
+    position:absolute;
+    width:70%;
+    height:20%;
+    left:15%;
+    top:0;
+}
+
+#gpstable{
+    position:absolute;
+    width:15%;
+    height:20%;
+    right:0;
+    top:0;
+}
+
 #swap{
     background: transparent;
     border: 0;
