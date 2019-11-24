@@ -1,7 +1,5 @@
 var i, j, namedataJson, geodataJson;
 
-
-
 function jsts() {
 
   var mapContainer = document.getElementById('maps'), mapOption = {
@@ -23,7 +21,7 @@ function jsts() {
   map.addControl(control, kakao.maps.ControlPosition.TOPRIGHT);
 
 
-// 여기까지 무조건 옴
+
   var xmlHttp = new XMLHttpRequest();       // XMLHttpRequest 객체를 생성함.
   xmlHttp.onreadystatechange = function () { // onreadystatechange 이벤트 핸들러를 작성함.
     // 서버상에 문서가 존재하고 요청한 데이터의 처리가 완료되어 응답할 준비가 완료되었을 때
@@ -33,36 +31,39 @@ function jsts() {
       j = JSON.parse(i);
       namedataJson = JSON.parse(j['namedata']);
       geodataJson = JSON.parse(j['geodata']);
-      //alert(geodataJson[0]);
-      //alert(namedataJson[0]);
+      //alert(namedataJson[0]); // 창원역
+      //alert(geodataJson[0]); // 위도경도
 
       var positions = new Array();
       var title_latlng = new Object();
-      
-    
-      //alert(1);
-      for (var k = 0; k < 277; k++) {
-        title_latlng["title"] = namedataJson[k];
-        title_latlng["latlng"] = new kakao.maps.LatLng(geodataJson[k]);
-        positions.push(title_latlng);
-        document.write(title_latlng["latlng"]);
-      }
-      //alert(2);
-      //alert(positions[0].title);
-      //alert(positions[0].latlng);
-      //alert(positions.length);
-      //// OK 
 
-      for (var i = 0; i < positions.length; i++) {
-        var imageSize = new kakao.maps.Size(24, 35);
-        var marker = new kakao.maps.Marker({
-          map: map,
-          position: positions[positions.length-i-1].latlng,
-          title: positions[positions.length-i-1].title
-        });
+      for (var k = 0; k < 277; k++) {
+        title_latlng.title = namedataJson[k];
+        title_latlng.latlng = geodataJson[k];
+        positions.push(JSON.stringify(title_latlng)); // 인덱스 역순으로 push
       }
-      marker.setMap(map);
-      alert(3);
+
+      // alert(positions); // 많고많은 데이터
+      // alert(JSON.parse(positions[0]).latlng); // 숫자 쌍
+      // alert(JSON.parse(positions[0]).latlng[0]); // 숫자 분리
+      var markers = [];
+      for (var i = 0; i < positions.length; i++) {
+        var mPos = new kakao.maps.LatLng(JSON.parse(positions[i]).latlng[0], JSON.parse(positions[i]).latlng[1]);
+        var marker = new kakao.maps.Marker({
+          position: mPos
+        });
+        markers.push(marker);
+      }
+
+      showAll(markers, map);
+
+      function showAll(markers, map) {
+        for (var q = 0; q < 277; q++) {
+          markers[q].setMap(map);
+        }
+      }
+
+      alert('Loop done.')
     }
   }
   xmlHttp.open("GET", "/js", true);
@@ -70,13 +71,11 @@ function jsts() {
 }
 
 function departclick() {
-
   document.getElementById("sel").value = "depart";
-
 };
 
 function destclick() {
-  document.getElementById("sel").value="dest";
+    document.getElementById("sel").value="dest";
 };
 
 function swaps() {
@@ -89,6 +88,4 @@ function swaps() {
   document.getElementById("destinations").value = tempName;
   document.getElementById("destLat").value = tempLat;
   document.getElementById("destLong").value = tempLong;
-  
-
 };
