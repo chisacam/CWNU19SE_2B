@@ -1,5 +1,7 @@
 <!DOCTYPE html>
     <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="/static/css/mainpagecss.css">
         <script type="text/javascript" src="/static/temp.js"></script>
@@ -9,6 +11,8 @@
     </head>
     <body>
         <div  id="search" class="search" >
+                <form action="">
+
             <table>
                 <tr>
                     <td><button onclick="jsts()">ccccc</button></td>
@@ -20,7 +24,10 @@
                     <button id="swap" onclick="location.href=''"><img src="/static/icon/arrow.svg"></button>
                 </td>
                 <td id="blank">
-                    <input id="departure" type="button" onclick="location.href = 'searchRecent'" value="출발지">
+                            <input id="departure" type="button" onclick="location.href = 'searchRecent'" value="출발지">
+                            <input type="hidden" id="departureLat" value="">
+                            <input type="hidden" id = "departureLong">
+
                 </td>
                 <td>
                     <button id="departureGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></button>
@@ -35,6 +42,7 @@
                 </td>
             </tr>
         </table>
+    </form>
 
 
         </div>

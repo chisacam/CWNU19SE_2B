@@ -10,6 +10,7 @@ app = Flask(__name__)
 
 
 @app.route('/')
+@app.route('/main')
 def main_Page():
     return render_template("index.html")
 
@@ -21,8 +22,7 @@ def jse():
     nameInfo = json.dumps(nameInfo, ensure_ascii=False)
     geoInfo = json.loads(geoInfo.read())
     geoInfo = json.dumps(geoInfo, ensure_ascii=False)
-    return jsonify(namedata=nameInfo)
-
+    return jsonify(namedata=nameInfo, geodata=geoInfo)
 
 @app.route('/weather')
 def Weather_page():
