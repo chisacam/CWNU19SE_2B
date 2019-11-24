@@ -120,8 +120,15 @@ def navi_nibija():
     base_search_addr = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving"
     res = requests.get(base_search_addr, params=params, headers=headers)
     code = res.status_code
-    print(res.json()["route"]["traoptimal"][0]["guide"])
-    return render_template("navigation_nubija.html")
+    if code == 200:
+        tem = []
+        js = res.json()["route"]["traoptimal"][0]["guide"]
+        for i in js:
+            tem.append(i["instructions"])
+        # print(tem)
+        return render_template("navigation_nubija.html", tem=tem)
+    else:
+        print(code)
 
 
 @app.route('/naviBus')
