@@ -3,7 +3,7 @@
     height: 20%;
 }
 
-html, body, #contents {
+form, html, body, #contents {
     width:100%;
     height: 100%;
 }
@@ -67,7 +67,7 @@ td{
     border-radius: 50%;
 }
 
-#mapGpsButton {
+#mapGpsButton, #departureGpsIcon, #destinationGpsIcon {
     background: transparent;
     height: 100%;
     width: 100%;
