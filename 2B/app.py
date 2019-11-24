@@ -37,9 +37,10 @@ def Weather_page():
     return render_template("weather.html", weather=weather, temp=round(temp), icon=icon)
 
 
-@app.route('/searchRecent')
+@app.route('/searchRecent', methods=['POST'])
 def recent_search():
-    recentlist = eval(request.cookies.get('recent'))
+    print(request.form['selector'])
+    #recentlist = eval(request.cookies.get('recent'))
     return render_template("search_recent.html")
 
 
@@ -75,4 +76,4 @@ def navi_bus():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    app.run(host='0.0.0.0', debug=True)

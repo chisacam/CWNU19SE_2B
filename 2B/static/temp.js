@@ -1,5 +1,13 @@
 
+function departclick() {
 
+    document.getElementById("sel").value = "depart";
+
+};
+
+function destclick() {
+    document.getElementById("sel").value="dest";
+};
 function jsts() {
     alert('asfdds');
     var xmlHttp = new XMLHttpRequest();       // XMLHttpRequest 객체를 생성함.

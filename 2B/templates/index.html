@@ -11,22 +11,18 @@
     </head>
     <body>
         <div  id="search" class="search" >
-                <form action="">
+                <form action="searchRecent", method="POST" >
+                        <input type="hidden" id = "sel" name = "selector" value="aa">
 
             <table>
-                <tr>
-                    <td><button onclick="jsts()">ccccc</button></td>
-                    <td><input type="text" id="aadf" value="시바아아알" /></td>
-                    <td></td>
-                </tr>
             <tr>
                 <td rowspan="2">
                     <button id="swap" onclick="location.href=''"><img src="/static/icon/arrow.svg"></button>
                 </td>
                 <td id="blank">
-                            <input id="departure" type="button" onclick="location.href = 'searchRecent'" value="출발지">
-                            <input type="hidden" id="departureLat" value="">
-                            <input type="hidden" id = "departureLong">
+                            <input name="departure" type="submit" onclick="departclick()" value="출발지">
+                            <input type="hidden" name="departureLat" value="">
+                            <input type="hidden" name = "departureLong" value="">
 
                 </td>
                 <td>
@@ -35,7 +31,9 @@
             </tr>
             <tr>
                 <td id="blank">
-                    <input id="destination" type="button" onclick="location.href = 'searchRecent'" value="도착지">
+                    <input name="destination" type="submit" onclick="destclick()" value="도착지">
+                    <input type="hidden" name="destureLat" value="">
+                            <input type="hidden" name = "destLong" value="">
                 </td>
                 <td>
                     <button id="destinationGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></button>

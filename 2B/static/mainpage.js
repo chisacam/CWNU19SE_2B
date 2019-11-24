@@ -3,6 +3,8 @@ var myLat;
 var myLong;
 var gpsFlag = false;
 
+
+
 // 위를 참고해 창이 켜지면 맵과 현재 위치를 로드
 // 별모양 마커, 일반은 marker에서 image를 제거
 var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
