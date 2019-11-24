@@ -32,9 +32,13 @@ def Weather_page():
     result = json.loads(base_info)
     weather = result["weather"][0]["main"]
     temp = result["main"]["temp"] - 273
-    weather = weather.lower()
-    weather = '/static/icon/weather/{}.svg'.format(weather)
-    print(weather)
+    icon = result["weather"][0]["icon"]
+    if icon in "50d":
+        weather = '/static/icon/weather/mist.svg'
+    else:
+        weather = weather.lower()
+        weather = '/static/icon/weather/{}.svg'.format(weather)
+    #print(weather)
     return render_template("weather.html", weather=weather, temp=round(temp))
 
 
