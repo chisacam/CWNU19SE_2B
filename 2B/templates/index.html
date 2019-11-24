@@ -11,37 +11,52 @@
     </head>
     <body>
         <div  id="search" class="search" >
-                <form action="searchRecent", method="POST" >
-                        <input type="hidden" id = "sel" name = "selector" value="aa">
-
+            <div id = 'swapsector'>
             <table>
-            <tr>
-                <td rowspan="2">
-                    <button id="swap" onclick="location.href=''"><img src="/static/icon/arrow.svg"></button>
-                </td>
-                <td id="blank">
-                            <input name="departure" type="submit" onclick="departclick()" id="departure" value="출발지">
-                            <input type="hidden" name="departureLat" value="">
-                            <input type="hidden" name = "departureLong" value="">
+                <tr>
+                        <td rowspan="2">
+                                <button id="swap" onclick="location.href=''"><img src="/static/icon/arrow.svg"></button>
+                            </td>
+                </tr>
+            </table>
+        </div>
+        <div id = 'formsector'>
+            <form action="searchRecent", method="POST" >
+                    <input type="hidden" id = "sel" name = "selector" value="aa">
+            <table>
+                <tr>
+                        <td id="blank">
+                                <input name="departure" type="submit" onclick="departclick()" id="departure" value="출발지">
+                                <input type="hidden" name="departureLat" value="">
+                                <input type="hidden" name = "departureLong" value="">
+    
+                    </td>
+                </tr>
+                <tr>
+                        <td id="blank">
+                                <input name="destination" type="submit" onclick="destclick()" id="destination" value="도착지">
+                                <input type="hidden" name="destureLat" value="">
+                                        <input type="hidden" name = "destLong" value="">
+                            </td>
+                </tr>
 
-                </td>
-                <td>
-                    <button id="departureGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></button>
-                </td>
-            </tr>
-            <tr>
-                <td id="blank">
-                    <input name="destination" type="submit" onclick="destclick()" id="destination" value="도착지">
-                    <input type="hidden" name="destureLat" value="">
-                            <input type="hidden" name = "destLong" value="">
-                </td>
-                <td>
-                    <button id="destinationGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></button>
-                </td>
-            </tr>
-        </table>
-    </form>
-
+            </table>
+</form>
+        </div>
+        <div id='gps table'>
+            <table>
+                <tr>
+                        <td>
+                                <button id="departureGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></button>
+                            </td>
+                </tr>
+                <tr>
+                        <td>
+                                <button id="destinationGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></button>
+                            </td>
+                </tr>
+            </table>
+</div>
 
         </div>
 
