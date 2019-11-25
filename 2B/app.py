@@ -56,29 +56,30 @@ def main_Page():
                 # 위와 동일
             ]
         }
+        """
         defaultRoute = {
             "depart": {
-                """
+
                 "창원시청":{
                     "X":"123.123",
                     "Y":"345.345"
                 }
-                """
+
             },
             "dest": {
-                """
+
                 "창원대학교":{
                     "X": "342.423",
                     "Y": "123.523"
                 }
-                """
+
             }
         }
+        """
         defaultJson = json.dumps(defaultCookie)
         resp = make_response(render_template("index.html", weather=main_weather["weather"]))
         resp.set_cookie('recentlist', defaultJson)
         resp.set_cookie('booklist', defaultJson)
-        resp.set_cookie('routeinfo', defaultRoute)
         return resp
     else:
         return render_template("index.html", weather=main_weather["weather"])
@@ -144,7 +145,7 @@ def nubijaTerminalSelect():
 
 @app.route('/searchText')
 def search_text():
-    name = "누비자"  # request.form['name']
+    name = "창원시청"  # request.form['name']
     x = str(128.6818020)  # request.form['x']
     y = str(35.2279269)  # request.form['y']
     params = {'query': name, "coordinate": x + "," + y}
