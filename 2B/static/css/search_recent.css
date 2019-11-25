@@ -43,7 +43,8 @@ table{
 }
 
 #searcht{
-    width: 75%;
+    width: 70%;
+    height:100%;
 }
 
 #searchbutton{
@@ -81,7 +82,7 @@ table{
     height: 6%;
 }
 
-#tabt{
+#RecentTab, #BookmarkTab{
     width:50%;
     padding: 0px;
 }
@@ -140,4 +141,19 @@ table{
 
 #placenamet{
     padding:0;
+}
+
+form{
+    height:100%;
+    width:100%;
+}
+
+#gpst{
+    width:15%;
+    height:10%;
+}
+
+#searchBt{
+    width:15%;
+    height:100%;
 }
