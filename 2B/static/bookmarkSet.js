@@ -7,7 +7,9 @@ function bmStateSet(event) {
 
 function setLocationAsBM(event) {
     var temp = document.getElementsByClassName(event.className);
-    alert(temp[0].value);
-    alert(temp[1].value);
+        document.getElementById('selname').value = temp[0];
+        document.getElementById('selX').value = temp[1];
+        document.getElementById('selY').value = temp[2];
+
 }
 

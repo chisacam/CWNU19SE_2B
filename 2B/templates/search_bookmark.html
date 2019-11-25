@@ -45,7 +45,11 @@
             </table>
             <form action="/main" method="POST">
                 <input type="hidden" id="chch" name = 'checkchange' value="false">
-                <input type="hidden" id = 'selected'>
+                <input type="hidden" name = 'selname' id = 'selectedName'>
+                <input type="hidden" name = 'selX' id = 'selectedX'>
+                <input type="hidden" name = 'selY' id="selectedY">
+                <input type="hidden" name = "sel" value='{{ sel }}'>
+
             <div class="bookmarklist">
 
                 <table id = "bookmarktable">
