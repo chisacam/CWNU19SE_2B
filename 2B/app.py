@@ -39,22 +39,26 @@ def main_Page():
     main_weather = weatherInfo()
     recentList = request.cookies.get('recentlist')
     if recentList is None:
+        """
+    [
+        "창원시청":{
+            "X":"123.123",
+            "Y":"345.345",
+            "isBook":"True"
+        }, # 최근기록 리스트
+        
+        "창원대학교":{
+            "X":"342.423",
+            "Y":"123.523"
+        } # 북마크 리스트
+    ]
+        """
         defaultCookie = {
             "depart": [
-                """
-                "창원시청":{
-                    "X":"123.123",
-                    "Y":"345.345",
-                    "isBook":"true"
-                }, # 최근기록 리스트
-                "창원대학교":{
-                    "X":"342.423",
-                    "Y":"123.523"
-                } # 북마크 리스트
-                """
+
             ],
             "dest": [
-                # 위와 동일
+
             ]
         }
         """
@@ -73,12 +77,24 @@ def main_Page():
             }
         }
         """
-        defaultJson = json.dumps(defaultCookie)
+        defaultRoute = {
+            "depart": {
+
+            },
+            "dest": {
+
+            }
+        }
+        defaultJson = json.dumps(defaultCookie, ensure_ascii=False)
+        startend = json.dumps(defaultRoute, ensure_ascii=False)
         resp = make_response(render_template("index.html", weather=main_weather["weather"]))
         resp.set_cookie('recentlist', defaultJson)
         resp.set_cookie('booklist', defaultJson)
+        resp.set_cookie('routeinfo',startend)
         return resp
     else:
+        print(recentList)
+        print(request.cookies.get('routeinfo'))
         return render_template("index.html", weather=main_weather["weather"])
 
 
@@ -175,7 +191,7 @@ def nubijaTerminalSelect():
 @app.route('/searchText', methods=['POST'])
 def search_text():
     sel = request.form['sel']
-    name = "창원시청"  # request.form['name']
+    name = request.form['seartext']
     x = str(128.6818020)  # request.form['x']
     y = str(35.2279269)  # request.form['y']
     params = {'query': name, "coordinate": x + "," + y}
