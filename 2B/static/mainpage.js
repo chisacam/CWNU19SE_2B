@@ -1,100 +1,149 @@
 // 사용자가 지도 중앙으로 오도록 위치 설정
 var myLat;
 var myLong;
-var gpsFlag = false;
-
-
-
+/*
+var latlng = {
+  "lat": 35.228002,
+  "lng": 128.681816
+};
+*/
 // 위를 참고해 창이 켜지면 맵과 현재 위치를 로드
-// 별모양 마커, 일반은 marker에서 image를 제거
-var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
 
 window.onload = () => {
-    navigator.geolocation.getCurrentPosition(function(position) {
-        if(navigator.geolocation){
-             myLat = position.coords.latitude;
-             myLong = position.coords.latitude;
-             gpsFlag = true;
-         } else {
-                alert('GPS를 사용할 수 없습니다.')
-           }
-        });
-        
+  // Load as default
+  myLat = 35.228002;
+  myLong = 128.681816;
 
-    // Default: 창원시청
-    if (gpsFlag === false) {
-        myLat = 35.228002;
-        myLong = 128.681816;
-        alert('GPS를 이용하지 않아 기본값을 사용합니다.')
-    }
+  var mapContainer = document.getElementById('maps'), mapOption = {
+    center: new kakao.maps.LatLng(myLat, myLong),
+    level: 3
+  };
 
-    var mapContainer = document.getElementById('maps'), mapOption = {
-        center : new kakao.maps.LatLng(myLat, myLong),
-        level : 3
-    };
-    var map = new kakao.maps.Map(mapContainer, mapOption);
+  var map = new kakao.maps.Map(mapContainer, mapOption);
+  var imageSrc = "http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+  var imageSize = new kakao.maps.Size(30, 40);
+  var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+  // default marker
+  var cenMarker = new kakao.maps.Marker({
+    map: map,
+    position: new kakao.maps.LatLng(myLat, myLong),
+    image: markerImage,
+    clickable: true
+  });
 
-    var imageSize = new kakao.maps.Size(24, 35);
-    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+  var control = new kakao.maps.ZoomControl();
+  map.addControl(control, kakao.maps.ControlPosition.TOPRIGHT);
 
-    var marker = new kakao.maps.Marker({
+  // navigator.geolocation.getCurrentPosition(successGps, errorGps, opt);
+  hi();
+  function hi() {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      // erase default
+      cenMarker.setMap(null);
+
+      myLat = position.coords.latitude;
+      myLong = position.coords.longitude;
+      // new center marker
+      var newCenMarker = new kakao.maps.Marker({
         map: map,
         position: new kakao.maps.LatLng(myLat, myLong),
-        image: markerImage
-    });
-}
-
-////
-// Get GPS location
-////
-
-/* GPS검색을 이용할 때 사용해야함
-
-var gps = document.getElementById('gps');
-
-gps.addEventListener('click', function(){
-    navigator.geolocation.getCurrentPosition(function(position) {
-        if(navigator.geolocation){
-            myLat = position.coords.latitude;
-            myLong = position.coords.latitude;
-        } else {
-            alert('GPS를 사용할 수 없습니다.')
-        }
+        image: markerImage,
+        clickable: true
       });
-});
-*/
-
-
-////
-// Set all terminal markers
-////
-
-/* position 형식은 다음을 따름
-[
-    {
-        title: '카카오',
-        latlng: new kakao.maps.LatLng(33.450705, 126.570677)
-    },
-    {
-        title: '네오호수',
-        latlng: new kakao.maps.LatLng(33.450936, 126.569477)
-    },
-    {
-        title: '우리집',
-        latlng: new kakao.maps.LatLng(33.450879, 126.569940)
-    }
-];
-
-*/
-var positions = [
-
-];
-
-for (var i = 0; i < positions.length; i ++) {
-    var imageSize = new kakao.maps.Size(24, 35);
-    var marker = new kakao.maps.Marker({
-        map: map,
-        position: positions[i].latlng,
-        title : positions[i].title,
+      var moveCen = new kakao.maps.LatLng(myLat, myLong);
+      map.setCenter(moveCen);
     });
+  }
+  var gps = document.getElementById('mapGpsButton');
+  gps.addEventListener('click', hi());
+  // All Markers
+
+  var xmlHttp = new XMLHttpRequest();       // XMLHttpRequest 객체를 생성함.
+  xmlHttp.onreadystatechange = function () { // onreadystatechange 이벤트 핸들러를 작성함.
+    // 서버상에 문서가 존재하고 요청한 데이터의 처리가 완료되어 응답할 준비가 완료되었을 때
+    if (this.status == 200 && this.readyState == this.DONE) {
+      // 요청한 데이터를 문자열로 반환함.
+      i = xmlHttp.responseText;
+      j = JSON.parse(i);
+      namedataJson = JSON.parse(j['namedata']);
+      geodataJson = JSON.parse(j['geodata']);
+      //alert(namedataJson[0]); // 창원역
+      //alert(geodataJson[0]); // 위도경도
+
+      var positions = new Array();
+      var title_latlng = new Object();
+
+      for (var k = 0; k < 277; k++) {
+        title_latlng.title = namedataJson[k];
+        title_latlng.latlng = geodataJson[k];
+        positions.push(JSON.stringify(title_latlng)); // 인덱스 역순으로 push
+      }
+
+      // alert(positions); // 많고많은 데이터
+      // alert(JSON.parse(positions[0]).latlng); // 숫자 쌍
+      // alert(JSON.parse(positions[0]).latlng[0]); // 숫자 분리
+      var markers = [];
+      for (var i = 0; i < positions.length; i++) {
+        var mPos = new kakao.maps.LatLng(JSON.parse(positions[i]).latlng[0], JSON.parse(positions[i]).latlng[1]);
+        var marker = new kakao.maps.Marker({
+          position: mPos,
+          clickable: true
+        });
+        markers.push(marker);
+      }
+
+      showAll(markers, map);
+
+      function showAll(markers, map) {
+        for (var q = 0; q < 277; q++) {
+          markers[q].setMap(map);
+        }
+      }
+    }
+  }
+  xmlHttp.open("GET", "/js", true);
+  xmlHttp.send();
 }
+
+function successGps(pos) {
+  var crd = pos.coords;
+
+  myLat = crd.latitude;
+  myLong = crd.longitude;
+}
+
+function errorGps(err) {
+  alert('Error occured.' + err.code);
+}
+
+var opt = {
+  enableHighAccuracy: true,
+  timeout: 5000,
+  maximumAge: 0
+}
+
+function getGps() {
+  navigator.geolocation.getCurrentPosition(successGps, errorGps, opt);
+}
+
+
+
+function departclick() {
+  document.getElementById("sel").value = "depart";
+};
+
+function destclick() {
+  document.getElementById("sel").value = "dest";
+};
+
+function swaps() {
+  var tempName = document.getElementById("departures").value;
+  var tempLat = document.getElementById("departLat").value;
+  var tempLong = document.getElementById("departLong").value;
+  document.getElementById("departures").value = document.getElementById("destinations").value;
+  document.getElementById("departLat").value = document.getElementById("destLat").value;
+  document.getElementById("departLong").value = document.getElementById("destLong").value;
+  document.getElementById("destinations").value = tempName;
+  document.getElementById("destLat").value = tempLat;
+  document.getElementById("destLong").value = tempLong;
+};
