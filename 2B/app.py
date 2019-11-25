@@ -59,20 +59,16 @@ def main_Page():
         """
         defaultRoute = {
             "depart": {
-
                 "창원시청":{
                     "X":"123.123",
                     "Y":"345.345"
                 }
-
             },
             "dest": {
-
                 "창원대학교":{
                     "X": "342.423",
                     "Y": "123.523"
                 }
-
             }
         }
         """
@@ -87,13 +83,14 @@ def main_Page():
 
 @app.route('/main')
 def result_Page():
-    return render_template("index.html")
+    main_weather = weatherInfo()
+    return render_template("index.html", weather=main_weather["weather"])
 
 
 @app.route('/js')
 def jse():
-    geoInfo = open('static/terminalInfo.json', 'r')
-    nameInfo = open('static/terminalName.json', 'r')
+    geoInfo = open('static/terminalInfo.json', 'r', encoding='UTF8')
+    nameInfo = open('static/terminalName.json', 'r', encoding='UTF8')
     nameInfo = json.loads(nameInfo.read())
     nameInfo = json.dumps(nameInfo, ensure_ascii=False)
     geoInfo = json.loads(geoInfo.read())
@@ -140,6 +137,10 @@ def busTerminalSelect():
 
 @app.route('/nubijaSelect')
 def nubijaTerminalSelect():
+    name = "창원시청"
+    x = 128.6818020  # request.form['x']
+    y = 35.2279269  # request.form['y']
+
     return render_template('Nubija_terminal_select.html')
 
 
