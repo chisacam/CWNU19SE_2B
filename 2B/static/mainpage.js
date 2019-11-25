@@ -1,12 +1,7 @@
 // 사용자가 지도 중앙으로 오도록 위치 설정
 var myLat;
 var myLong;
-/*
-var latlng = {
-  "lat": 35.228002,
-  "lng": 128.681816
-};
-*/
+
 // 위를 참고해 창이 켜지면 맵과 현재 위치를 로드
 
 window.onload = () => {
@@ -44,7 +39,7 @@ window.onload = () => {
       myLat = position.coords.latitude;
       myLong = position.coords.longitude;
       // new center marker
-      var newCenMarker = new kakao.maps.Marker({
+      cenMarker = new kakao.maps.Marker({
         map: map,
         position: new kakao.maps.LatLng(myLat, myLong),
         image: markerImage,
@@ -54,10 +49,19 @@ window.onload = () => {
       map.setCenter(moveCen);
     });
   }
-  var gps = document.getElementById('mapGpsButton');
-  gps.addEventListener('click', userLoc());
-  // All Markers
+  // Go Center as GPS
+  var gpsButton = document.getElementById('mapGpsButton');
+  gpsButton.addEventListener('click', () => {
+    if(navigator.geolocation){
+      var moveCen = new kakao.maps.LatLng(myLat, myLong);
+      map.setCenter(moveCen);
+    }
+    else{
+      alert('GPS의 사용여부를 확인해주세요!')
+    }
+  });
 
+  // All Markers
   var xmlHttp = new XMLHttpRequest();       // XMLHttpRequest 객체를 생성함.
   xmlHttp.onreadystatechange = function () { // onreadystatechange 이벤트 핸들러를 작성함.
     // 서버상에 문서가 존재하고 요청한 데이터의 처리가 완료되어 응답할 준비가 완료되었을 때
@@ -67,8 +71,6 @@ window.onload = () => {
       j = JSON.parse(i);
       namedataJson = JSON.parse(j['namedata']);
       geodataJson = JSON.parse(j['geodata']);
-      //alert(namedataJson[0]); // 창원역
-      //alert(geodataJson[0]); // 위도경도
 
       var positions = new Array();
       var title_latlng = new Object();
@@ -79,9 +81,6 @@ window.onload = () => {
         positions.push(JSON.stringify(title_latlng)); // 인덱스 역순으로 push
       }
 
-      // alert(positions); // 많고많은 데이터
-      // alert(JSON.parse(positions[0]).latlng); // 숫자 쌍
-      // alert(JSON.parse(positions[0]).latlng[0]); // 숫자 분리
       var markers = [];
       for (var i = 0; i < positions.length; i++) {
         var mPos = new kakao.maps.LatLng(JSON.parse(positions[i]).latlng[0], JSON.parse(positions[i]).latlng[1]);
@@ -104,29 +103,6 @@ window.onload = () => {
   xmlHttp.open("GET", "/js", true);
   xmlHttp.send();
 }
-
-function successGps(pos) {
-  var crd = pos.coords;
-
-  myLat = crd.latitude;
-  myLong = crd.longitude;
-}
-
-function errorGps(err) {
-  alert('Error occured.' + err.code);
-}
-
-var opt = {
-  enableHighAccuracy: true,
-  timeout: 5000,
-  maximumAge: 0
-}
-
-function getGps() {
-  navigator.geolocation.getCurrentPosition(successGps, errorGps, opt);
-}
-
-
 
 function departclick() {
   document.getElementById("sel").value = "depart";
