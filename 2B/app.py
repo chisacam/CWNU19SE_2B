@@ -1,3 +1,5 @@
+import math
+from bs4 import BeautifulSoup
 from flask import Flask
 from flask import render_template
 from flask import jsonify
@@ -5,8 +7,7 @@ import json
 from flask import request
 from flask import make_response
 import requests
-import urllib3.request
-
+import re
 
 def weatherInfo():
     base_address = "https://api.openweathermap.org/data/2.5/weather?id=1846326&appid=7a60cf8ebe413584303acc4e2bf4cffe"
@@ -81,7 +82,7 @@ def main_Page():
         return render_template("index.html", weather=main_weather["weather"])
 
 
-@app.route('/main')
+@app.route('/main', methods=['POST'])
 def result_Page():
     main_weather = weatherInfo()
     return render_template("index.html", weather=main_weather["weather"])
@@ -119,7 +120,6 @@ def recent_search():
 
 @app.route('/searchBookmark', methods=['POST'])
 def recent_bookmark():
-    # bookmark 페이지 넘어갈때도 sel 변수 전달 필요
     sel = request.form['sel']
     print(sel)
     bookList = eval(request.cookies.get('booklist'))
@@ -130,22 +130,51 @@ def recent_bookmark():
         return render_template("search_bookmark.html", recentDesList=bookList["dest"], sel=sel)
 
 
-@app.route('/busterminalSelect')
+@app.route('/busterminalSelect', methods=['POST'])
 def busTerminalSelect():
     return render_template('bus_terminal_select.html')
 
 
-@app.route('/nubijaSelect')
+@app.route('/nubijaSelect')#, methods=['POST'])
 def nubijaTerminalSelect():
-    name = "창원시청"
+    name = "창원시청"  # request.form['name']
     x = 128.6818020  # request.form['x']
     y = 35.2279269  # request.form['y']
+    distList = dict()
+    req = requests.get('https://www.nubija.com/terminal/terminalState.do')
+    html = req.text
+    terminalInfo = []
+    soup = BeautifulSoup(html, 'html.parser')
+    stic = soup.find_all("a", {"href": re.compile("javascript:showMapInfoWindow.")})
+
+    for k in stic:
+        k = k.get("href").replace("javascript:showMapInfoWindow(", "").replace(");", "").replace("\'", "").split(", ")
+        terminalInfo.append([k[1], k[2]])
+
+    with open('static/terminalinfo.json') as json_nubiloc:
+        json_locdata = json.load(json_nubiloc)
+
+        for i in json_locdata:
+            dist = math.pow((y - json_locdata[i][0]), 2) + math.pow((x - json_locdata[i][1]), 2)
+            distList[i] = math.sqrt(dist)
+
+        rankTemp = sorted(distList.items(), key=lambda t: t[1])
+        print(rankTemp)
+
+        with open('static/terminalName.json') as json_nubiname:
+            json_nubidata = json.load(json_nubiname)
+
+            for j in range(0, 3):
+                print(json_nubidata[rankTemp[int(j)][0]])
+                print(json_locdata[rankTemp[int(j)][0]])
+                print(terminalInfo[j])
 
     return render_template('Nubija_terminal_select.html')
 
 
-@app.route('/searchText')
+@app.route('/searchText', methods=['POST'])
 def search_text():
+    sel = request.form['sel']
     name = "창원시청"  # request.form['name']
     x = str(128.6818020)  # request.form['x']
     y = str(35.2279269)  # request.form['y']
@@ -158,20 +187,17 @@ def search_text():
     if code == 200:
         result = res.json()["places"]
         print(result)
-        """
         if sel in 'depart':  # 출발지
             return render_template("search_text.html", result=result, sel=sel)
 
         if sel in 'dest':  # 목적지
             return render_template("search_text.html", result=result, sel=sel)
-        """
-        return render_template("search_text.html", result=result)
 
     else:
         print(code)
 
 
-@app.route('/naviNubija')
+@app.route('/naviNubija', methods=['POST'])
 def navi_nibija():
     x1 = str(127.1)
     y1 = str(37.3)
@@ -193,7 +219,7 @@ def navi_nibija():
         print(code)
 
 
-@app.route('/naviBus')
+@app.route('/naviBus', methods=['POST'])
 def navi_bus():
     return render_template('navigation_bus.html')
 
