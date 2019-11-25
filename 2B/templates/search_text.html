@@ -13,13 +13,15 @@
             <td>
                 <input id="gps" type="button">
             </td>
-
+            <form action="searchText", method="POST">
+                <input type="hidden" name = "sel" value='{{ sel }}'>
             <td id="searcht">
-                <input id="searchtextbar" type="text">
+                <input id="searchtextbar" name="seartext" type="text">
             </td>
             <td>
-                <input id="searchbutton" type="button" onclick="location.href='searchText'">
+                <input id="searchbutton" type="submit">
             </td>
+            </form>
         </table>
     </div>
 <div id = "output">

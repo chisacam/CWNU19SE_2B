@@ -13,13 +13,15 @@
             <td>
                 <input id="gps" type="button">
             </td>
-
+            <form action="searchText" method="POST">
             <td id="searcht">
-                <input id="searchtextbar" type="text">
+                <input type="hidden" name = "sel" value='{{ sel }}'>
+                <input id="searchtextbar" name="seartext" type="text">
             </td>
             <td>
-                <input id="searchbutton" type="button" onclick="location.href='searchText'">
+                <input id="searchbutton" type="submit">
             </td>
+            </form>
         </table>
     </div>
     <div id = "output">
@@ -29,7 +31,10 @@
                     <input type="button" id = "recentbutton" value="최근기록"  disabled>
                 </td>
                 <td class="tabt">
-                    <input type="button" id = "bookmarkbutton" value="북마크" onclick="location.href='searchBookmark'">
+                    <form action="searchBookmark", method="POST">
+                        <input type="hidden" name = "sel" value="{{ sel }}">
+                        <input type="submit" id = "bookmarkbutton" value="북마크">
+                    </form>
                 </td>
             </table>
             <div class="recentlist">
