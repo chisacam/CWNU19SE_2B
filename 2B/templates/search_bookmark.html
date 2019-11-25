@@ -43,17 +43,20 @@
                     <input type="button" id = "bookmarkbutton" value="북마크" disabled>
                 </td>
             </table>
-            <form action="">
+            <form action="/main" method="POST">
                 <input type="hidden" id="chch" name = 'checkchange' value="false">
+                <input type="hidden" id = 'selected'>
             <div class="bookmarklist">
+
                 <table id = "bookmarktable">
                     <tr class="bookmarkSample" id="placeframe">
                         <td class = "bookmarkstar"  id="placeIconStyle">
                             <img id="starbutton" onclick="bmStateSet(this)" src="/static/icon/star_gold.svg">
                         </td>
                         <td id="placenamet">
-                            <input class="place" type="button" id="placename" value="위치1">
-                            <input type="hidden" id="ch" value="" >
+                            <input class="samplace" type="submit" id="placename" onclick="setLocationAsBM(this)" value="위치1">
+                            <input type="hidden" class="samplace" value="b">
+                            <input type="hidden" class="samplace" value="c">
                         </td>
                         <input class="coordinateX" type="hidden" value="">
                         <input type="hidden" class="coordinateY" value="">
