@@ -35,8 +35,8 @@ window.onload = () => {
   map.addControl(control, kakao.maps.ControlPosition.TOPRIGHT);
 
   // navigator.geolocation.getCurrentPosition(successGps, errorGps, opt);
-  hi();
-  function hi() {
+  userLoc();
+  function userLoc() {
     navigator.geolocation.getCurrentPosition(function (position) {
       // erase default
       cenMarker.setMap(null);
@@ -55,7 +55,7 @@ window.onload = () => {
     });
   }
   var gps = document.getElementById('mapGpsButton');
-  gps.addEventListener('click', hi());
+  gps.addEventListener('click', userLoc());
   // All Markers
 
   var xmlHttp = new XMLHttpRequest();       // XMLHttpRequest 객체를 생성함.
