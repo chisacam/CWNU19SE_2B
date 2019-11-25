@@ -51,7 +51,7 @@ td{
     border: 0;
 }
 
-#destination, #departure{
+#destinations, #departures{
     width: 100%;
     height: 80%;
     background: #FFFFFF;
@@ -59,7 +59,7 @@ td{
     text-align: left;
 }
 
-#blank{
+#desBlank, #depBlank{
     width:75%;
 }
 
