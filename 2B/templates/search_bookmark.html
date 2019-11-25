@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/css/search_bookmark.css">
+    <script type="text/javascript" src="/static/bookmarkSet.js"></script>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -29,6 +30,7 @@
     </div>
     <div id = "output">
         <div id = "log">
+
             <table id="tab">
                 <td class="tabt" id="RecentTab">
                     <form action="searchRecent" method="POST">
@@ -41,16 +43,25 @@
                     <input type="button" id = "bookmarkbutton" value="북마크" disabled>
                 </td>
             </table>
+            <form action="">
+                <input type="hidden" id="chch" name = 'checkchange' value="false">
             <div class="bookmarklist">
                 <table id = "bookmarktable">
                     <tr class="bookmarkSample" id="placeframe">
-                        <td class = "bookmarkstar"  id="placeIconStyle"><input id="starbutton" type="button"></td>
-                        <td id="placenamet"><input class="place" type="button" id="placename" value="위치1"></td>
+                        <td class = "bookmarkstar"  id="placeIconStyle">
+                            <img id="starbutton" onclick="bmStateSet(this)" src="/static/icon/star_gold.svg">
+                        </td>
+                        <td id="placenamet">
+                            <input class="place" type="button" id="placename" value="위치1">
+                            <input type="hidden" id="ch" value="" >
+                        </td>
                         <input class="coordinateX" type="hidden" value="">
                         <input type="hidden" class="coordinateY" value="">
                     </tr>
                 </table>
+
             </div>
+                </form>
         </div>
     </div>
 </body>
