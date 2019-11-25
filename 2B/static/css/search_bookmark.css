@@ -63,7 +63,7 @@ table{
     border-top-left-radius: 5px;
     border-top-right-radius: 20px;
     border: 0px;
-    background:white;
+    background:#D0D0D0;
 }
 
 #bookmarkbutton{
@@ -73,48 +73,22 @@ table{
     border-top-right-radius: 5px;
     border: 0px;
     padding:0;
-    background:#D0D0D0;
-}
-
-#tab{
-    margin-top:1.5%;
-    width: 100%;
-    height: 6%;
-}
-
-#RecentTab, #BookmarkTab{
-    width:50%;
-    padding: 0px;
-}
-
-#recentlist{
-    width:100%;
-}
-
-#recenttable{
-    width:100%;
-    height:80px;
     background:white;
 }
 
-#starbutton{
-    background: url("/static/icon/star_empty.svg");
-    background-repeat:no-repeat;
-    background-position: center;
-    background-size: contain;
-    width:80%;
-    height:80%;
-    border: 0;
+#placeframe{
+    width:100%;
 }
 
-#deletebtn{
-    background: url("/static/icon/x.svg");
-    background-repeat:no-repeat;
-    background-position: center;
-    background-size: contain;
-    width:80%;
-    height:60%;
-    border: 0;
+#placeIconStyle{
+    width:20%;
+    height: 100%;
+    padding:0;
+    margin:0;
+}
+
+#placenamet{
+    padding:0;
 }
 
 #placename{
@@ -126,26 +100,37 @@ table{
     padding:0;
 }
 
-#placeIconStyle{
-    width:20%;
-    height: 100%;
-    padding:0;
-    margin:0;
+#bookmarktable{
+    width:100%;
+    height:80px;
+    background:white;
 }
 
-#placeframe{
+#bookmarklist{
     width:100%;
     height:10%;
     background: white;
 }
 
-#placenamet{
-    padding:0;
+#tab{
+    margin-top:1.5%;
+    width: 100%;
+    height: 6%;
 }
 
 form{
     height:100%;
     width:100%;
+}
+
+#starbutton {
+    background: url("/static/icon/star_gold.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    width: 80%;
+    height: 80%;
+    border: 0;
 }
 
 #gpst{
@@ -156,4 +141,9 @@ form{
 #searchBt{
     width:15%;
     height:100%;
+}
+
+#RecentTab, #BookmarkTab{
+    width:50%;
+    padding:0;
 }
