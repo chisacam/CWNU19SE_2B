@@ -10,7 +10,7 @@
 <body>
 <div id = "searchbar">
         <table>
-            <td>
+            <td id="gpst">
                 <input id="gps" type="button">
             </td>
                 <form action="searchText", method="POST">
@@ -20,7 +20,7 @@
 
                 <input id="searchtextbar" name = 'seartext' type="text">
             </td>
-            <td>
+            <td id="searchBt">
                 <input id="searchbutton" type="submit">
             </form>
 
@@ -30,13 +30,13 @@
     <div id = "output">
         <div id = "log">
             <table id="tab">
-                <td class="tabt">
+                <td class="tabt" id="RecentTab">
                     <form action="searchRecent" method="POST">
                         <input type="hidden" name = "sel" value='{{ sel }}'>
                     <input type="submit" id = "recentbutton" value="최근기록">
                     </form>
                 </td>
-                <td class="tabt">
+                <td class="tabt" id="BookmarkTab">
 
                     <input type="button" id = "bookmarkbutton" value="북마크" disabled>
                 </td>
