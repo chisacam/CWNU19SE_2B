@@ -5,12 +5,9 @@ function bmStateSet(event) {
     event.src = "/static/icon/star_empty.svg"
 }
 
-/*
-function setLocationAsBM() {
-  // 북마크를 위치로 설정
+function setLocationAsBM(event) {
+    var temp = document.getElementsByClassName(event.className);
+    alert(temp[0].value);
+    alert(temp[1].value);
 }
 
-function setBM() {
-  // bmStateSet 이후 별이 있는 데이터만 날려서 쿠키에 저장
-}
-*/
