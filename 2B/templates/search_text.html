@@ -13,7 +13,7 @@
             <td id="gpst">
                 <input id="gps" type="button">
             </td>
-            <form action="searchText", method="POST">
+            <form action="/searchText" method="POST">
                 <input type="hidden" name = "sel" value='{{ sel }}'>
             <td id="searcht">
                 <input id="searchtextbar" name="seartext" type="text">
@@ -27,8 +27,13 @@
 <div id = "output">
         <div id = "log">
 
+            <form action="/nubijaSelect" method="POST">
 
             <div class="bookmarklist">
+                <input type="hidden" name = 'selname' id = 'selectedName'>
+                <input type="hidden" name = 'selX' id = 'selectedX'>
+                <input type="hidden" name = 'selY' id="selectedY">
+                <input type="hidden" name = "sel" value='{{ sel }}'>
                 <table class = "bookmarktable">
                                                 {% for i in result %}
                         <tr class="placeframe">
@@ -43,6 +48,7 @@
 
 
             </div>
+                </form>
 
 
         </div>
