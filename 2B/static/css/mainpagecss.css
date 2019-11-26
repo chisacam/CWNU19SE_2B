@@ -57,12 +57,13 @@ td{
     background: #FFFFFF;
     border-radius: 10px;
     text-align: left;
-    font-size: 90%;
+    font-size: 200%;
     font-family: "nanumgothic";
 }
 
 #desBlank, #depBlank{
     width:75%;
+    height: 20%;
 }
 
 #maps {
