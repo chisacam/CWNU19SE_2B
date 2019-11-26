@@ -26,16 +26,25 @@
     </div>
 <div id = "output">
         <div id = "log">
+
+
             <div class="bookmarklist">
-                <table id = "bookmarktable">
-                    <tr class="bookmarkSample" id="placeframe">
-                        <td class = "bookmarkstar"  id="placeIconStyle"><input id="starbutton" type="button"></td>
-                        <td id="placenamet"><input class="place" type="button" id="placename" value="위치1"></td>
-                        <input class="coordinateX" type="hidden" value="">
-                        <input type="hidden" class="coordinateY" value="">
-                    </tr>
+                <table class = "bookmarktable">
+                                                {% for i in result %}
+                        <tr class="placeframe">
+                    <td class="placenamet">
+                            <input class="cl{{ loop.index }}" type="submit" id="placename" onclick="setLocationAsBM(this)" value="{{ i['name'] }}">
+                            <input type="hidden" class="cl{{loop.index }}" value="{{ i['x'] }}">
+                            <input type="hidden" class="cl{{loop.index }}" value="{{ i['y'] }}">
+                    </td>
+                        </tr>
+                                                                                        {% endfor %}
                 </table>
+
+
             </div>
+
+
         </div>
     </div>
 </body>
