@@ -1,6 +1,5 @@
 function bmStateSet(event) {
   // 별, 안 별
-    alert('asdf');
     document.getElementById('chch').value = "true";
     event.src = "/static/icon/star_empty.svg"
 }
