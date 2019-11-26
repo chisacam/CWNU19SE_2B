@@ -39,6 +39,8 @@ table{
     background: white;
     border-radius: 10px;
     border:0;
+    font-family: "nanumgothic";
+    font-size: 18pt;
     text-align: left;
 }
 
@@ -91,7 +93,7 @@ table{
     width:100%;
 }
 
-#recenttable{
+.recenttable{
     width:100%;
     height:80px;
     background:white;
@@ -118,10 +120,12 @@ table{
 }
 
 #placename{
-    width:70%;
+    width:60px;
     height:100%;
     text-align: left;
     background: transparent;
+    font-size: 18pt;
+    font-family: "nanumgothic";
     border:0;
     padding:0;
 }
@@ -139,7 +143,7 @@ table{
     background: white;
 }
 
-#placenamet{
+.placenamet{
     padding:0;
 }
 
