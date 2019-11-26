@@ -55,12 +55,30 @@ def main_Page():
     ]
         """
         defaultCookie = {
-            "depart": [
+            "depart": {
+                "창원시청": {
+                    "X": "123.123",
+                    "Y": "345.345",
+                    "isBook": "True"
+                },  # 최근기록 리스트
 
-            ],
-            "dest": [
+                "창원대학교": {
+                    "X": "342.423",
+                    "Y": "123.523"
+                }  # 북마크 리스트
+            },
+            "dest": {
+                "창원시청": {
+                    "X": "123.123",
+                    "Y": "345.345",
+                    "isBook": "True"
+                },  # 최근기록 리스트
 
-            ]
+                "창원대학교": {
+                    "X": "342.423",
+                    "Y": "123.523"
+                }  # 북마크 리스트
+            }
         }
         """
         defaultRoute = {
@@ -132,6 +150,7 @@ def recent_search():
     sel = request.form['sel']
     print(sel)
     recentList = eval(request.cookies.get('recentlist'))
+    print(recentList["depart"])
     if sel in 'depart':  # 출발지
         return render_template("search_recent.html", recentDepList=recentList["depart"], sel=sel)
 

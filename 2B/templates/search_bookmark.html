@@ -59,16 +59,18 @@
             <div class="bookmarklist">
 
                 <table id = "bookmarktable">
-                    <tr class="bookmarkSample" id="placeframe">
-                        <td class = "bookmarkstar"  id="placeIconStyle">
+                                        {% for i in recentDepList %}
+                        <tr id="id{{ loop.index }}" class="placeframe cl{{loop.index }}">
+                        <td class = "bookmarkstar">
                             <img id="starbutton" onclick="bmStateSet(this)" src="/static/icon/star_gold.svg">
                         </td>
                         <td id="placenamet">
-                            <input class="samplace" type="submit" id="placename" onclick="setLocationAsBM(this)" value="위치1">
-                            <input type="hidden" class="samplace" value="b">
-                            <input type="hidden" class="samplace" value="c">
+                            <input class="samplace" type="submit" id="placename" onclick="setLocationAsBM(this)" value="{{ i }}">
+                            <input type="hidden" class="cl{{loop.index }}" value="{{ i['X'] }}">
+                            <input type="hidden" class="cl{{loop.index }}" value="{{ i['Y'] }}">
                         </td>
-                    </tr>
+                        </tr>
+                    {% endfor %}
                 </table>
 
             </div>

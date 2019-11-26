@@ -12,3 +12,11 @@ function setLocationAsBM(event) {
 
 }
 
+
+function setLocationAsR(event) {
+    var temp = document.getElementsByClassName(event.className);
+        document.getElementById('selname').value = temp[2];
+        document.getElementById('selX').value = temp[3];
+        document.getElementById('selY').value = temp[4];
+
+}

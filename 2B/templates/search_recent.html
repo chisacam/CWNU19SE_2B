@@ -37,17 +37,34 @@
                     </form>
                 </td>
             </table>
+                                        <form action="/nubijaSelect" method="POST">
+
             <div class="recentlist">
+                <input type="hidden" name = 'selname' id = 'selectedName'>
+                <input type="hidden" name = 'selX' id = 'selectedX'>
+                <input type="hidden" name = 'selY' id="selectedY">
+                <input type="hidden" name = "sel" value='{{ sel }}'>
                 <table id = "recenttable">
-                    <tr class="recentSample" id="placeframe">
-                        <td class = "bookmarkstar" id="placeIconStyle"><input id="starbutton" type="button"></td>
-                        <td id="placenamet"><input class="place" type="button" id="placename" value="위치1"></td>
-                        <input class="coordinateX" type="hidden" value="">
-                        <input type="hidden" class="coordinateY" value="">
-                        <td class="deleteicon" id="placeIconStyle"><input id="deletebtn" type="button"></td>
-                    </tr>
+                    {% for i in recentDepList %}
+                        <tr id="id{{ loop.index }}" class="placeframe cl{{loop.index }}">
+                            <td class = "placeIconStyle">
+                                <img class="starbutton cl{{loop.index}}" src="/static/icon/star_empty.svg" onclick="">
+                            </td>
+                            <td class="placenamet">
+                                <input class="cl{{ loop.index }}" type="submit" onclick="setLocationAsR(this)" value="{{ i }}">
+                            </td>
+                                <input type="hidden" class="cl{{loop.index }}" value="{{ i['X'] }}">
+                                <input type="hidden" class="cl{{loop.index }}" value="{{ i['Y'] }}">
+                            <td class="deleteicon">
+                                <img class="deletebtn" onclick="document.getElementById('id{{ loop.index }}').style.display= 'none'">
+                            </td>
+                        </tr>
+                    {% endfor %}
+
                 </table>
             </div>
+                                                                        </form>
+
         </div>
     </div>
 </body>
