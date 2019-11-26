@@ -10,15 +10,10 @@
 <body>
     <div id = "searchbar">
         <table>
-            <form action="main" method="POST">
-                <td>
-                <input id="gps" type="submit" onclick="">
-                                    <input type="hidden" name = "sel" value='{{ sel }}'>
-
-                </td>
-            </form>
-
-            <form action="searchText" method="POST">
+            <td>
+                <input id="gps" type="button">
+            </td>
+            <form action="searchText", method="POST">
                 <input type="hidden" name = "sel" value='{{ sel }}'>
             <td id="searcht">
                 <input id="searchtextbar" name="seartext" type="text">

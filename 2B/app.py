@@ -9,6 +9,7 @@ from flask import make_response
 import requests
 import re
 
+
 def weatherInfo():
     base_address = "https://api.openweathermap.org/data/2.5/weather?id=1846326&appid=7a60cf8ebe413584303acc4e2bf4cffe"
     req_weather = requests.get(base_address)
@@ -98,10 +99,14 @@ def main_Page():
         return render_template("index.html", weather=main_weather["weather"])
 
 
-@app.route('/main', methods=['POST'])
+@app.route('/main', methods=['POST', 'GET'])
 def result_Page():
-    main_weather = weatherInfo()
-    return render_template("index.html", weather=main_weather["weather"])
+    if request.method == 'POST':
+        main_weather = weatherInfo()
+        return render_template("index.html", weather=main_weather["weather"])
+    else:
+        main_weather = weatherInfo()
+        return render_template("index.html", weather=main_weather["weather"])
 
 
 @app.route('/js')
@@ -144,11 +149,6 @@ def recent_bookmark():
 
     if sel in 'dest':  # 목적지
         return render_template("search_bookmark.html", recentDesList=bookList["dest"], sel=sel)
-
-
-@app.route('/busterminalSelect', methods=['POST'])
-def busTerminalSelect():
-    return render_template('bus_terminal_select.html')
 
 
 @app.route('/nubijaSelect')#, methods=['POST'])
@@ -233,11 +233,6 @@ def navi_nibija():
         return render_template("navigation_nubija.html", tem=tem)
     else:
         print(code)
-
-
-@app.route('/naviBus', methods=['POST'])
-def navi_bus():
-    return render_template('navigation_bus.html')
 
 
 if __name__ == '__main__':
