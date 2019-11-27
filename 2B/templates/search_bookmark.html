@@ -57,10 +57,10 @@
                 <input type="hidden" name = "sel" value='{{ sel }}'>
 
             <div class="bookmarklist">
-
+                {% if bool(recentDepList)  %}
                 <table id = "bookmarktable">
-                {% if recentDepList  %}
-                                        {% for i in recentDepList %}
+
+                    {% for i in recentDepList %}
                         <tr id="id{{ loop.index }}" class="placeframe cl{{loop.index }}">
                         <td class = "bookmarkstar">
                             <img id="starbutton" onclick="bmStateSet(this)" src="/static/icon/star_gold.svg">
@@ -72,7 +72,12 @@
                         </td>
                         </tr>
                     {% endfor %}
+
                 </table>
+                {% else %}
+                    <img src="" id="emptylist">
+                    <h1 id="emtpytext">값이 존재하지 않습니다.</h1>
+                {% endif %}
 
             </div>
                 </form>
