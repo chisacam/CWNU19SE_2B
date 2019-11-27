@@ -391,7 +391,7 @@ def navi_nubija():
                 name1: {
                     "x": x1,
                     "y": y1,
-                    "isbook": "Nope"
+                    "isBook": "Nope"
                 }
             })
         if destLen == 0:
@@ -399,7 +399,7 @@ def navi_nubija():
                 name2: {
                     "x": x2,
                     "y": y2,
-                    "isbook": "Nope"
+                    "isBook": "Nope"
                 }
             })
         if destLen != 0 and departLen != 0:
@@ -424,7 +424,7 @@ def navi_nubija():
                         name1: {
                             "x": x1,
                             "y": y1,
-                            "isbook": "Nope"
+                            "isBook": "Nope"
                         }
                     })
                 else:
@@ -432,41 +432,41 @@ def navi_nubija():
                         name1: {
                             "x": x1,
                             "y": y1,
-                            "isbook": "Nope"
+                            "isBook": "Nope"
                         }
                     })
 
             for check in range(0, destLen):
                 if name2 in recentList['dest'][check]:
                     if name2 in recentList['dest'][check]:
-                        if check != departLen - 1:
+                        if check != destLen - 1:
                             temp = recentList['dest'][check]
-                            for move in range(check, departLen - 1):
+                            for move in range(check, destLen - 1):
                                 recentList['dest'][move] = recentList['dest'][move + 1]
-                            del recentList['dest'][departLen - 1]
+                            del recentList['dest'][destLen - 1]
                             recentList['dest'].append(temp)
                             isInDest = True
                         else:
                             isInDest = True
 
-                if isInDest is False:
-                    if departLen >= 5:
-                        del recentList['dest'][0]
-                        recentList['dest'].append({
-                            name1: {
-                                "x": x1,
-                                "y": y1,
-                                "isbook": "Nope"
-                            }
-                        })
-                    else:
-                        recentList['dest'].append({
-                            name1: {
-                                "x": x1,
-                                "y": y1,
-                                "isbook": "Nope"
-                            }
-                        })
+            if isInDest is False:
+                if departLen >= 5:
+                    del recentList['dest'][0]
+                    recentList['dest'].append({
+                        name2: {
+                            "x": x2,
+                            "y": y2,
+                            "isBook": "Nope"
+                        }
+                    })
+                else:
+                    recentList['dest'].append({
+                        name2: {
+                            "x": x2,
+                            "y": y2,
+                            "isBook": "Nope"
+                        }
+                    })
         temp = json.dumps(recentList, ensure_ascii=False)
         temp2 = json.dumps(defaultRoute, ensure_ascii=False)
         resp = make_response(render_template("navigation_nubija.html", tem=tem, icons=icons))
