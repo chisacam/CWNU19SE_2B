@@ -283,7 +283,7 @@ def nubijaTerminalSelect():
         k = k.get("href").replace("javascript:showMapInfoWindow(", "").replace(");", "").replace("\'", "").split(", ")
         terminalInfo.append([k[1], k[2]])
 
-    with open('static/terminalInfo.json') as json_nubiloc:
+    with open('static/terminalInfo.json', 'r', encoding='UTF8') as json_nubiloc:
         json_locdata = json.load(json_nubiloc)
 
         for i in json_locdata:
@@ -292,7 +292,7 @@ def nubijaTerminalSelect():
 
         rankTemp = sorted(distList.items(), key=lambda t: t[1])
 
-        with open('static/terminalName.json') as json_nubiname:
+        with open('static/terminalName.json', 'r', encoding='UTF8') as json_nubiname:
             json_nubidata = json.load(json_nubiname)
             check = 0
             for j in range(0, 278):
@@ -337,6 +337,7 @@ def search_text():
 @app.route('/naviNubija', methods=['GET'])
 def navi_nubija():
     route = eval(request.cookies.get('routeinfo'))
+    print(route)
     for key, value in route["depart"].items():
         name1 = key
         x1 = value["x"]
@@ -362,6 +363,7 @@ def navi_nubija():
         tem = []
         icons = []
         js = res.json()
+        print(js)
         if js['code'] == 0:
             guide = js["route"]["traoptimal"][0]["guide"]
             # print(js)
