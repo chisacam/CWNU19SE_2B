@@ -105,11 +105,12 @@ def main_Page():
 def result_Page():
     main_weather = weatherInfo()
     if request.method == "POST":
-        sel = request.form["sel"]
-        name = request.form["selname"]
-        x = request.form["selX"]
-        y = request.form["selY"]
-        chch = request.form["checkchange"]
+
+        sel = "depart"# request.form["sel"]
+        name = "test" # request.form["selname"]
+        x = "111.111" # request.form["selX"]
+        y = "123.123" # request.form["selY"]
+        chch = "test" # request.form["checkchange"]
 
         startEndCheck = eval(request.cookies.get('routeinfo'))
 
@@ -127,7 +128,7 @@ def result_Page():
                     "y": y
                 }
             }
-
+        print(startEndCheck)
         if startEndCheck["depart"]:
             if startEndCheck["dest"]:
                 saveRoute = json.dumps(startEndCheck, ensure_ascii=False)
@@ -214,13 +215,15 @@ def recent_search():
     else:
         isServiceTime = True
     sel = request.form['sel']
+    hiddenuserLat = request.form['hiddenuserLat']
+    hiddenuserLong = request.form['hiddenuserLong']
     recentList = eval(request.cookies.get('recentlist'))
     bookList = eval(request.cookies.get('booklist'))
     recentDepartLen = len(recentList["depart"])
     recentDestLen = len(recentList["dest"])
     bookDepartLen = len(bookList["depart"])
     bookDestLen = len(bookList["dest"])
-    print(recentDepartLen)
+    """    
     if recentDepartLen != 0 and recentDestLen != 0:
         for checkRecent in range(0, recentDepartLen):
             key, value = recentList["depart"][checkRecent].items()
@@ -237,25 +240,30 @@ def recent_search():
                     recentList["dest"][checkRecent][key]["isBook"] = "Yes"
                 else:
                     recentList["dest"][checkRecent][key]["isBook"] = "Nope"
+    """
 
     if sel in 'depart':  # 출발지
         return render_template("search_recent.html", recentDepList=recentList["depart"], sel=sel,
-                               isServiceTime=isServiceTime)
+                               isServiceTime=isServiceTime, hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
     if sel in 'dest':  # 목적지
         return render_template("search_recent.html", recentDesList=recentList["dest"], sel=sel,
-                               isServiceTime=isServiceTime)
+                               isServiceTime=isServiceTime, hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
 
 @app.route('/searchBookmark', methods=['POST'])
 def recent_bookmark():
     sel = request.form['sel']
+    hiddenuserLat = request.form['hiddenuserLat']
+    hiddenuserLong = request.form['hiddenuserLong']
     bookList = eval(request.cookies.get('booklist'))
     if sel in 'depart':  # 출발지
-        return render_template("search_bookmark.html", recentDepList=bookList["depart"], sel=sel)
+        return render_template("search_bookmark.html", recentDepList=bookList["depart"], sel=sel,
+                               hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
     if sel in 'dest':  # 목적지
-        return render_template("search_bookmark.html", recentDesList=bookList["dest"], sel=sel)
+        return render_template("search_bookmark.html", recentDesList=bookList["dest"], sel=sel,
+                               hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
 
 @app.route('/nubijaSelect', methods=['POST'])
@@ -305,8 +313,8 @@ def nubijaTerminalSelect():
 def search_text():
     sel = request.form['sel']
     name = request.form['seartext']
-    x = request.form['x']
-    y = request.form['y']
+    x = request.form['selX']
+    y = request.form['selY']
     params = {'query': name, "coordinate": x + "," + y}
     headers = {"X-NCP-APIGW-API-KEY-ID": IDkey, "X-NCP-APIGW-API-KEY": SecretKey}
     base_search_addr = "https://naveropenapi.apigw.ntruss.com/map-place/v1/search"
