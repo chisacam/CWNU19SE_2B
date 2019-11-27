@@ -43,7 +43,6 @@ td{
     width:15%;
     height:20%;
     right:0;
-    top:0;
 }
 
 #swap{
@@ -94,11 +93,21 @@ td{
     border-radius: 50%;
 }
 
-#mapGpsButton, #departureGpsIcon, #destinationGpsIcon {
+#mapGpsButton {
     background: transparent;
     height: 100%;
     width: 100%;
     border: 0;
+}
+
+#departureGpsIcon, #destinationGpsIcon{
+    background: url("/static/icon/gps.svg");
+    background-repeat:no-repeat;
+    background-position: center;
+    background-size: contain;
+    width:60%;
+    height:100%;
+    border:0;
 }
 
 #weatherbtn {
