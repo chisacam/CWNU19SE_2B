@@ -125,7 +125,6 @@ def result_Page():
         y = request.form["selX"]
         chch = "test" # request.form["checkchange"]
 
-        print(name, x, y)
         startEndCheck = eval(request.cookies.get('routeinfo'))
 
         if sel in 'depart':
@@ -142,7 +141,7 @@ def result_Page():
                     "y": y
                 }
             }
-        print(startEndCheck)
+
         if startEndCheck["depart"]:
             if startEndCheck["dest"]:
                 saveRoute = json.dumps(startEndCheck, ensure_ascii=False)
