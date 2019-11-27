@@ -71,13 +71,6 @@ table{
     background: white;
 }
 
-#placeIconStyle{
-    width:20%;
-    height: 100%;
-    padding:0;
-    margin:0;
-}
-
 .placenamet{
     width:100%;
     height:80px;
@@ -95,17 +88,6 @@ table{
 .bookmarklist{
     width:100%;
     height:80px;
-}
-
-
-#starbutton{
-    background: url("/static/icon/star_empty.svg");
-    background-repeat:no-repeat;
-    background-position: center;
-    background-size: contain;
-    width:80%;
-    height:80%;
-    border: 0;
 }
 
 input{
