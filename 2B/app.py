@@ -106,10 +106,10 @@ def result_Page():
     main_weather = weatherInfo()
     if request.method == "POST":
 
-        sel = "depart"# request.form["sel"]
-        name = "test" # request.form["selname"]
-        x = "111.111" # request.form["selX"]
-        y = "123.123" # request.form["selY"]
+        sel =  request.form["sel"]
+        name =request.form["selname"]
+        x =  request.form["selX"]
+        y = request.form["selY"]
         chch = "test" # request.form["checkchange"]
 
         startEndCheck = eval(request.cookies.get('routeinfo'))
