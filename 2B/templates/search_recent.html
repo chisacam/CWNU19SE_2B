@@ -51,12 +51,12 @@
                                 <img class="starbutton cl{{loop.index}}" src="/static/icon/star_empty.svg" onclick="">
                             </td>
                             <td class="placenamet">
-                                <input class="cl{{ loop.index }}" type="submit" onclick="setLocationAsR(this)" value="{{ i }}">
+                                <input class="cl{{ loop.index }}" type="submit" onclick="setLocationAsR(this)" id="placename" value="{{ i }}">
                             </td>
                                 <input type="hidden" class="cl{{loop.index }}" value="{{ i['X'] }}">
                                 <input type="hidden" class="cl{{loop.index }}" value="{{ i['Y'] }}">
                             <td class="deleteicon">
-                                <img class="deletebtn" onclick="document.getElementById('id{{ loop.index }}').style.display= 'none'">
+                                <img class="deletebtn" src="/static/icon/x.svg" onclick="document.getElementById('id{{ loop.index }}').style.display= 'none'">
                             </td>
                         </tr>
                     {% endfor %}
