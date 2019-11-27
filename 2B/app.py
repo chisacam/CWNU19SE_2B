@@ -254,16 +254,16 @@ def recent_search():
 @app.route('/searchBookmark', methods=['POST'])
 def recent_bookmark():
     sel = request.form['sel']
-    hiddenuserLat = request.form['hiddenuserLat']
-    hiddenuserLong = request.form['hiddenuserLong']
+    """hiddenuserLat = request.form['hiddenuserLat']
+    hiddenuserLong = request.form['hiddenuserLong']"""
     bookList = eval(request.cookies.get('booklist'))
     if sel in 'depart':  # 출발지
-        return render_template("search_bookmark.html", recentDepList=bookList["depart"], sel=sel,
-                               hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
+        return render_template("search_bookmark.html", recentDepList=bookList["depart"], sel=sel)#,
+                               #hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
     if sel in 'dest':  # 목적지
-        return render_template("search_bookmark.html", recentDesList=bookList["dest"], sel=sel,
-                               hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
+        return render_template("search_bookmark.html", recentDesList=bookList["dest"], sel=sel)#,
+                               #hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
 
 @app.route('/nubijaSelect', methods=['POST'])
