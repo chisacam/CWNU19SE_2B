@@ -106,10 +106,16 @@ window.onload = () => {
 
 function departclick() {
   document.getElementById("sel").value = "depart";
+
+  document.getElementById('hiddenuserLat').value = myLat;
+  document.getElementById('hiddenuserLong').value = myLong;
 };
 
 function destclick() {
   document.getElementById("sel").value = "dest";
+  
+  document.getElementById('hiddenuserLat').value = myLat;
+  document.getElementById('hiddenuserLong').value = myLong;
 };
 
 function swaps() {
