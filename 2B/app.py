@@ -129,7 +129,7 @@ def result_Page():
                     "y": y
                 }
             }
-
+        print(startEndCheck)
         if startEndCheck["depart"]:
             if startEndCheck["dest"]:
                 saveRoute = json.dumps(startEndCheck, ensure_ascii=False)
@@ -283,7 +283,7 @@ def nubijaTerminalSelect():
         k = k.get("href").replace("javascript:showMapInfoWindow(", "").replace(");", "").replace("\'", "").split(", ")
         terminalInfo.append([k[1], k[2]])
 
-    with open('static/terminalinfo.json') as json_nubiloc:
+    with open('static/terminalInfo.json') as json_nubiloc:
         json_locdata = json.load(json_nubiloc)
 
         for i in json_locdata:
