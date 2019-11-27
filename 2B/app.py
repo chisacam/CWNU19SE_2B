@@ -106,10 +106,12 @@ def main_Page():
 @app.route('/main', methods=['POST', 'GET'])
 def result_Page():
     main_weather = weatherInfo()
-    sel = "depart"  # request.form["sel"]
-    name = "창원시청"  # request.form["name"]
-    x = str(127.1054328)  # request.form["x"]
-    y = str(35.2279269)  # request.form["y"]
+    sel = request.form["sel"]
+    name = request.form["selname"]
+    x = request.form["selX"]
+    y = request.form["selY"]
+    chch = request.form["checkchange"]
+
     startEndCheck = eval(request.cookies.get('routeinfo'))
 
     if sel in 'depart':
@@ -134,6 +136,52 @@ def result_Page():
             resp.set_cookie('routeinfo', saveRoute)
             return resp
 
+    if chch is not None:
+        isInDepart = False
+        isInDest = False
+        bookmarkCheck = eval(request.cookies.get('booklist'))
+        departLen = len(bookmarkCheck["depart"])
+        destLen = len(bookmarkCheck["dest"])
+        if chch is True and sel in 'depart':
+            if departLen == 0:
+                bookmarkCheck["depart"].append({
+                    name: {
+                        "x": x,
+                        "y": y
+                    }
+                })
+            else:
+                for check in range(0, departLen):
+                    if name in bookmarkCheck["depart"][check]:
+                        del bookmarkCheck["depart"][check]
+                        isInDepart = True
+                if isInDepart is False:
+                    bookmarkCheck["depart"].append({
+                        name: {
+                            "x": x,
+                            "y": y
+                        }
+                    })
+        if chch is True and sel in 'dest':
+            if destLen == 0:
+                bookmarkCheck["dest"].append({
+                    name: {
+                        "x": x,
+                        "y": y
+                    }
+                })
+            else:
+                for check in range(0, destLen):
+                    if name in bookmarkCheck["dest"][check]:
+                        del bookmarkCheck["dest"][check]
+                        isInDest = True
+                if isInDest is False:
+                    bookmarkCheck["dest"].append({
+                        name: {
+                            "x": x,
+                            "y": y
+                        }
+                    })
     saveRoute = json.dumps(startEndCheck, ensure_ascii=False)
     resp = make_response(render_template("index.html", weather=main_weather["weather"]))
     resp.set_cookie('routeinfo', saveRoute)
@@ -166,7 +214,6 @@ def recent_search():
         isServiceTime = True
     sel = request.form['sel']
     recentList = eval(request.cookies.get('recentlist'))
-    print(recentList["depart"])
     if sel in 'depart':  # 출발지
         return render_template("search_recent.html", recentDepList=recentList["depart"], sel=sel,
                                isServiceTime=isServiceTime)
@@ -187,11 +234,11 @@ def recent_bookmark():
         return render_template("search_bookmark.html", recentDesList=bookList["dest"], sel=sel)
 
 
-@app.route('/nubijaSelect')  # , methods=['POST'])
+@app.route('/nubijaSelect', methods=['POST'])
 def nubijaTerminalSelect():
-    name = "창원시청"  # request.form['name']
-    x = 128.6818020  # request.form['x']
-    y = 35.2279269  # request.form['y']
+    name = request.form['selname']
+    x = float(request.form['selX'])
+    y = float(request.form['selY'])
     distList = dict()
     req = requests.get('https://www.nubija.com/terminal/terminalState.do')
     html = req.text
@@ -226,7 +273,7 @@ def nubijaTerminalSelect():
                     })
                     if check is 3:
                         break
-            # print(selectResult)
+            print(selectResult)
     return render_template('Nubija_terminal_select.html', selectResult=selectResult)
 
 
@@ -244,7 +291,6 @@ def search_text():
 
     if code == 200:
         textResult = res.json()["places"]
-        print(textResult)
         if sel in 'depart':  # 출발지
             return render_template("search_text.html", result=textResult, sel=sel)
 
