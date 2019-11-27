@@ -313,8 +313,8 @@ def nubijaTerminalSelect():
 def search_text():
     sel = request.form['sel']
     name = request.form['seartext']
-    x = request.form['selX']
-    y = request.form['selY']
+    x = str(128) # request.form['selX']
+    y = str(35) # request.form['selY']
     params = {'query': name, "coordinate": x + "," + y}
     headers = {"X-NCP-APIGW-API-KEY-ID": IDkey, "X-NCP-APIGW-API-KEY": SecretKey}
     base_search_addr = "https://naveropenapi.apigw.ntruss.com/map-place/v1/search"
