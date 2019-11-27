@@ -170,3 +170,14 @@ form{
     height:80%;
     border:0;
 }
+
+#emptylist{
+    margin-top:20%;
+    height:50%;
+    width:100%;
+}
+
+
+form{
+    text-align:center;
+}
