@@ -225,7 +225,7 @@ def recent_search():
     bookDepartLen = len(bookList["depart"])
     bookDestLen = len(bookList["dest"])
 
-    if recentDepartLen != 0 and recentDestLen != 0:
+    if bookDepartLen != 0 and bookDestLen != 0:
         for checkRecent in range(0, recentDepartLen):
             for key, value in recentList["depart"][checkRecent].items():
                 for checkBook in range(0, bookDepartLen):
