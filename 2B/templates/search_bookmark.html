@@ -57,7 +57,7 @@
                 <input type="hidden" name = "sel" value='{{ sel }}'>
 
             <div class="bookmarklist">
-                {% if bool(recentDepList)  %}
+                {% if recentDepList|length != 0  %}
                 <table id = "bookmarktable">
 
                     {% for i in recentDepList %}
