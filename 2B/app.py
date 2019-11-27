@@ -37,6 +37,19 @@ def timeCheck():
     return int(nowTime)
 
 
+def getTerminalInfo():
+    req = requests.get('https://www.nubija.com/terminal/terminalState.do')
+    html = req.text
+    terminalInfo = []
+    soup = BeautifulSoup(html, 'html.parser')
+    stic = soup.find_all("a", {"href": re.compile("javascript:showMapInfoWindow.")})
+
+    for k in stic:
+        k = k.get("href").replace("javascript:showMapInfoWindow(", "").replace(");", "").replace("\'", "").split(", ")
+        terminalInfo.append([k[1], k[2]])
+    return terminalInfo
+
+
 app = Flask(__name__)
 IDkey = "jpfybhk69d"
 SecretKey = "RuIMY0ILxMIf6ZZCyA9BIb2syBOXqnJrVEYzP5GX"
@@ -205,7 +218,6 @@ def jse():
 @app.route('/weather')
 def Weather_page():
     weather = weatherInfo()
-    # print(weather)
     return render_template("weather.html", weather=weather["weather"], temp=weather["temp"])
 
 
@@ -224,7 +236,6 @@ def recent_search():
     recentDestLen = len(recentList["dest"])
     bookDepartLen = len(bookList["depart"])
     bookDestLen = len(bookList["dest"])
-    print(hiddenLat, hiddenLong)
     if bookDepartLen != 0 and bookDestLen != 0:
         for checkRecent in range(0, recentDepartLen):
             for key, value in recentList["depart"][checkRecent].items():
@@ -272,16 +283,8 @@ def nubijaTerminalSelect():
     y = float(request.form['selX'])
     x = float(request.form['selY'])
     distList = dict()
-    req = requests.get('https://www.nubija.com/terminal/terminalState.do')
-    html = req.text
-    terminalInfo = []
+    terminalInfo = getTerminalInfo()
     selectResult = []
-    soup = BeautifulSoup(html, 'html.parser')
-    stic = soup.find_all("a", {"href": re.compile("javascript:showMapInfoWindow.")})
-
-    for k in stic:
-        k = k.get("href").replace("javascript:showMapInfoWindow(", "").replace(");", "").replace("\'", "").split(", ")
-        terminalInfo.append([k[1], k[2]])
 
     with open('static/terminalInfo.json', 'r', encoding='UTF8') as json_nubiloc:
         json_locdata = json.load(json_nubiloc)
@@ -337,7 +340,6 @@ def search_text():
 @app.route('/naviNubija', methods=['GET'])
 def navi_nubija():
     route = eval(request.cookies.get('routeinfo'))
-    print(route)
     for key, value in route["depart"].items():
         name1 = key
         x1 = value["x"]
@@ -363,7 +365,6 @@ def navi_nubija():
         tem = []
         icons = []
         js = res.json()
-        print(js)
         if js['code'] == 0:
             guide = js["route"]["traoptimal"][0]["guide"]
             # print(js)
