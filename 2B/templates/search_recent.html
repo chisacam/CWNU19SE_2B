@@ -35,6 +35,8 @@
                 </td>
                 <td class="tabt" id="BookmarkTab">
                     <form action="searchBookmark" method="POST">
+                            <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                            <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
                         <input type="hidden" name = "sel" value="{{ sel }}">
                         <input type="submit" id = "bookmarkbutton" value="북마크">
                     </form>
