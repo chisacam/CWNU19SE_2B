@@ -13,8 +13,8 @@ function bmStateSet(event) {
 
   var className = event.className;
 
-  if(document.getElementsByClassName(className).src == "/static/icon/star_empty.svg") {
-    document.getElementsByClassName(className).src = "/static/icon/gold_star.svg";
+  if (document.getElementsByClassName(className).src == "/static/icon/star_empty.svg") {
+    document.getElementsByClassName(className).src = "/static/icon/star_gold.svg";
   }
   else {
     document.getElementsByClassName(className).src = "/static/icon/star_empty.svg";
@@ -22,30 +22,34 @@ function bmStateSet(event) {
 }
 
 function setLocationAsBM(event) {
-    var temp = document.getElementsByClassName(event.className);
-        document.getElementById('selectedName').value = temp[0].value;
-        document.getElementById('selectedX').value = temp[1].value;
-        document.getElementById('selectedY').value = temp[2].value;
+  var temp = document.getElementsByClassName(event.className);
+  document.getElementById('selectedName').value = temp[0].value;
+  document.getElementById('selectedX').value = temp[1].value;
+  document.getElementById('selectedY').value = temp[2].value;
 }
 
 function setLocationAsR(event) {
-    var temp = document.getElementsByClassName(event.className);
-    document.getElementById('selectedName').value = temp[2].value;
-    document.getElementById('selectedX').value = temp[4].value;
-    document.getElementById('selectedY').value = temp[3].value;
+  var temp = document.getElementsByClassName(event.className);
+  document.getElementById('selectedName').value = temp[2].value;
+  document.getElementById('selectedX').value = temp[4].value;
+  document.getElementById('selectedY').value = temp[3].value;
 }
 
 // 웹페이지를 벗어날 때 별표시를 한 것 체크 
-window.addEventListener("beforeunload", () => {
-  // isBook == false, star == gold_star 인 것을 골라내서 북마크에 추가
-  for (var i = 0; i < 5; i++) {
-    /*
-      
-    */
-  }
+bookmarkRecord(isBookList){
+  window.addEventListener("beforeunload", () => {
+    for (var i = 0; i < 5; i++) {
+      // isBook == false, star == gold_star 인 것을 골라내서 북마크에 추가
+      if (isBookList[i] == false && document.getElementsByClassName('starbutton cl' + i).src == "/static/icon/star_gold.svg") {
+        // 북마크 추가
+        
+      }
+      // isBook == true, start == start_empty 인 것을 골라내서 북마크에서 삭제 
+      else if (isBookList[i] == true && document.getElementsByClassName('starbutton cl' + i).src == "/static/icon/star_empty.svg") {
+        // 북마크 제거
 
-  // isBook == true, start == start_empty 인 것을 골라내서 북마크에서 삭제
-  for (var i = 0; i < 5; i++) {
-
+      }
+    }
   }
-});
+}
+
