@@ -216,15 +216,15 @@ def recent_search():
     else:
         isServiceTime = True
     sel = request.form['sel']
-    #hiddenuserLat = request.form['hiddenuserLat']
-    #hiddenuserLong = request.form['hiddenuserLong']
+    hiddenLat = request.form['hiddenLat']
+    hiddenLong = request.form['hiddenLong']
     recentList = eval(request.cookies.get('recentlist'))
     bookList = eval(request.cookies.get('booklist'))
     recentDepartLen = len(recentList["depart"])
     recentDestLen = len(recentList["dest"])
     bookDepartLen = len(bookList["depart"])
     bookDestLen = len(bookList["dest"])
-    # print(hiddenuserLat, hiddenuserLong)
+    print(hiddenLat, hiddenLong)
     if bookDepartLen != 0 and bookDestLen != 0:
         for checkRecent in range(0, recentDepartLen):
             for key, value in recentList["depart"][checkRecent].items():
@@ -244,26 +244,26 @@ def recent_search():
 
     if sel in 'depart':  # 출발지
         return render_template("search_recent.html", resultList=recentList["depart"], sel=sel,
-                               isServiceTime=isServiceTime)# , hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
+                               isServiceTime=isServiceTime, hiddenLong=hiddenLong, hiddenLat=hiddenLat)
 
     if sel in 'dest':  # 목적지
         return render_template("search_recent.html", resultList=recentList["dest"], sel=sel,
-                               isServiceTime=isServiceTime)# , hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
+                               isServiceTime=isServiceTime, hiddenLong=hiddenLong, hiddenLat=hiddenLat)
 
 
 @app.route('/searchBookmark', methods=['POST'])
 def recent_bookmark():
     sel = request.form['sel']
-    """hiddenuserLat = request.form['hiddenuserLat']
-    hiddenuserLong = request.form['hiddenuserLong']"""
+    hiddenLat = request.form['hiddenLat']
+    hiddenLong = request.form['hiddenLong']
     bookList = eval(request.cookies.get('booklist'))
     if sel in 'depart':  # 출발지
-        return render_template("search_bookmark.html", resultList=bookList["depart"], sel=sel)#,
-                               #hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
+        return render_template("search_bookmark.html", resultList=bookList["depart"], sel=sel,
+                               hiddenLong=hiddenLong, hiddenLat=hiddenLat)
 
     if sel in 'dest':  # 목적지
-        return render_template("search_bookmark.html", resultList=bookList["dest"], sel=sel)#,
-                               #hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
+        return render_template("search_bookmark.html", resultList=bookList["dest"], sel=sel,
+                               hiddenLong=hiddenLong, hiddenuserLat=hiddenLat)
 
 
 @app.route('/nubijaSelect', methods=['POST'])
@@ -314,8 +314,8 @@ def nubijaTerminalSelect():
 def search_text():
     sel = request.form['sel']
     name = request.form['seartext']
-    x = str(128.6818020) # request.form['selX']
-    y = str(35.2279269) # request.form['selY']
+    x = request.form['hiddenLong']
+    y = request.form['hiddenLat']
     params = {'query': name, "coordinate": x + "," + y}
     headers = {"X-NCP-APIGW-API-KEY-ID": IDkey, "X-NCP-APIGW-API-KEY": SecretKey}
     base_search_addr = "https://naveropenapi.apigw.ntruss.com/map-place/v1/search"
@@ -479,7 +479,8 @@ def navi_nubija():
             return resp
         else:
             temp2 = json.dumps(defaultRoute, ensure_ascii=False)
-            resp = make_response(render_template("navigation_nubija.html", tem=[["네이버API에러"], ["길찾기실패"]], icons=[iconaddr + "else.svg"]))
+            resp = make_response(render_template("navigation_nubija.html", tem=[["네이버API에러"], ["길찾기실패"]],
+                                                 icons=[iconaddr + "else.svg"], start=name1, end=name2))
             resp.set_cookie("routeinfo", temp2)
             return resp
     else:
