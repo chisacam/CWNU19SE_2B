@@ -296,7 +296,7 @@ def nubijaTerminalSelect():
             json_nubidata = json.load(json_nubiname)
             check = 0
             for j in range(0, 278):
-                if terminalInfo[int(rankTemp[int(j)][0])][0] != 0 and terminalInfo[int(rankTemp[int(j)][0])][1] != 0:
+                if terminalInfo[int(rankTemp[int(j)][0])][0] != 0 or terminalInfo[int(rankTemp[int(j)][0])][1] != 0:
 
                     check = check + 1
                     selectResult.append({
