@@ -98,94 +98,95 @@ def main_Page():
         resp.set_cookie('routeinfo', startend)
         return resp
     else:
-        print(recentList)
-        print(request.cookies.get('routeinfo'))
         return render_template("index.html", weather=main_weather["weather"])
 
 
 @app.route('/main', methods=['POST', 'GET'])
 def result_Page():
     main_weather = weatherInfo()
-    sel = request.form["sel"]
-    name = request.form["selname"]
-    x = request.form["selX"]
-    y = request.form["selY"]
-    chch = request.form["checkchange"]
+    if request.method == "POST":
+        sel = request.form["sel"]
+        name = request.form["selname"]
+        x = request.form["selX"]
+        y = request.form["selY"]
+        chch = request.form["checkchange"]
 
-    startEndCheck = eval(request.cookies.get('routeinfo'))
+        startEndCheck = eval(request.cookies.get('routeinfo'))
 
-    if sel in 'depart':
-        startEndCheck["depart"] = {
-            name: {
-                "x": x,
-                "y": y
+        if sel in 'depart':
+            startEndCheck["depart"] = {
+                name: {
+                    "x": x,
+                    "y": y
+                }
             }
-        }
-    if sel in 'dest':  # 'dest':
-        startEndCheck["dest"] = {
-            name: {
-                "x": x,
-                "y": y
+        if sel in 'dest':  # 'dest':
+            startEndCheck["dest"] = {
+                name: {
+                    "x": x,
+                    "y": y
+                }
             }
-        }
 
-    if startEndCheck["depart"]:
-        if startEndCheck["dest"]:
-            saveRoute = json.dumps(startEndCheck, ensure_ascii=False)
-            resp = make_response(redirect(url_for('navi_nubija')))
-            resp.set_cookie('routeinfo', saveRoute)
-            return resp
+        if startEndCheck["depart"]:
+            if startEndCheck["dest"]:
+                saveRoute = json.dumps(startEndCheck, ensure_ascii=False)
+                resp = make_response(redirect(url_for('navi_nubija')))
+                resp.set_cookie('routeinfo', saveRoute)
+                return resp
 
-    if chch is not None:
-        isInDepart = False
-        isInDest = False
-        bookmarkCheck = eval(request.cookies.get('booklist'))
-        departLen = len(bookmarkCheck["depart"])
-        destLen = len(bookmarkCheck["dest"])
-        if chch is True and sel in 'depart':
-            if departLen == 0:
-                bookmarkCheck["depart"].append({
-                    name: {
-                        "x": x,
-                        "y": y
-                    }
-                })
-            else:
-                for check in range(0, departLen):
-                    if name in bookmarkCheck["depart"][check]:
-                        del bookmarkCheck["depart"][check]
-                        isInDepart = True
-                if isInDepart is False:
+        if chch is not None:
+            isInDepart = False
+            isInDest = False
+            bookmarkCheck = eval(request.cookies.get('booklist'))
+            departLen = len(bookmarkCheck["depart"])
+            destLen = len(bookmarkCheck["dest"])
+            if chch is True and sel in 'depart':
+                if departLen == 0:
                     bookmarkCheck["depart"].append({
                         name: {
                             "x": x,
                             "y": y
                         }
                     })
-        if chch is True and sel in 'dest':
-            if destLen == 0:
-                bookmarkCheck["dest"].append({
-                    name: {
-                        "x": x,
-                        "y": y
-                    }
-                })
-            else:
-                for check in range(0, destLen):
-                    if name in bookmarkCheck["dest"][check]:
-                        del bookmarkCheck["dest"][check]
-                        isInDest = True
-                if isInDest is False:
+                else:
+                    for check in range(0, departLen):
+                        if name in bookmarkCheck["depart"][check]:
+                            del bookmarkCheck["depart"][check]
+                            isInDepart = True
+                    if isInDepart is False:
+                        bookmarkCheck["depart"].append({
+                            name: {
+                                "x": x,
+                                "y": y
+                            }
+                        })
+            if chch is True and sel in 'dest':
+                if destLen == 0:
                     bookmarkCheck["dest"].append({
                         name: {
                             "x": x,
                             "y": y
                         }
                     })
-    saveRoute = json.dumps(startEndCheck, ensure_ascii=False)
-    resp = make_response(render_template("index.html", weather=main_weather["weather"]))
-    resp.set_cookie('routeinfo', saveRoute)
-    return resp
+                else:
+                    for check in range(0, destLen):
+                        if name in bookmarkCheck["dest"][check]:
+                            del bookmarkCheck["dest"][check]
+                            isInDest = True
+                    if isInDest is False:
+                        bookmarkCheck["dest"].append({
+                            name: {
+                                "x": x,
+                                "y": y
+                            }
+                        })
+        saveRoute = json.dumps(startEndCheck, ensure_ascii=False)
+        resp = make_response(render_template("index.html", weather=main_weather["weather"]))
+        resp.set_cookie('routeinfo', saveRoute)
+        return resp
+    else:
+        return render_template("index.html", weather=main_weather["weather"])
 
 
 @app.route('/js')
@@ -214,6 +215,29 @@ def recent_search():
         isServiceTime = True
     sel = request.form['sel']
     recentList = eval(request.cookies.get('recentlist'))
+    bookList = eval(request.cookies.get('booklist'))
+    recentDepartLen = len(recentList["depart"])
+    recentDestLen = len(recentList["dest"])
+    bookDepartLen = len(bookList["depart"])
+    bookDestLen = len(bookList["dest"])
+    print(recentDepartLen)
+    if recentDepartLen != 0 and recentDestLen != 0:
+        for checkRecent in range(0, recentDepartLen):
+            key, value = recentList["depart"][checkRecent].items()
+            for checkBook in range(0, bookDepartLen):
+                if bookList["depart"][checkBook][key]:
+                    recentList["depart"][checkRecent][key]["isBook"] = "Yes"
+                else:
+                    recentList["depart"][checkRecent][key]["isBook"] = "Nope"
+
+        for checkRecent in range(0, recentDestLen):
+            key, value = recentList["dest"][checkRecent].items()
+            for checkBook in range(0, bookDestLen):
+                if bookList["dest"][checkBook][key]:
+                    recentList["dest"][checkRecent][key]["isBook"] = "Yes"
+                else:
+                    recentList["dest"][checkRecent][key]["isBook"] = "Nope"
+
     if sel in 'depart':  # 출발지
         return render_template("search_recent.html", recentDepList=recentList["depart"], sel=sel,
                                isServiceTime=isServiceTime)
@@ -236,7 +260,7 @@ def recent_bookmark():
 
 @app.route('/nubijaSelect', methods=['POST'])
 def nubijaTerminalSelect():
-    name = request.form['selname']
+    sel = request.form['sel']
     x = float(request.form['selX'])
     y = float(request.form['selY'])
     distList = dict()
@@ -273,16 +297,16 @@ def nubijaTerminalSelect():
                     })
                     if check is 3:
                         break
-            print(selectResult)
-    return render_template('Nubija_terminal_select.html', selectResult=selectResult)
+            # print(selectResult)
+    return render_template('Nubija_terminal_select.html', selectResult=selectResult, sel=sel)
 
 
 @app.route('/searchText', methods=['POST'])
 def search_text():
     sel = request.form['sel']
     name = request.form['seartext']
-    x = str(128.6818020)  # request.form['x']
-    y = str(35.2279269)  # request.form['y']
+    x = request.form['x']
+    y = request.form['y']
     params = {'query': name, "coordinate": x + "," + y}
     headers = {"X-NCP-APIGW-API-KEY-ID": IDkey, "X-NCP-APIGW-API-KEY": SecretKey}
     base_search_addr = "https://naveropenapi.apigw.ntruss.com/map-place/v1/search"
@@ -304,12 +328,12 @@ def search_text():
 @app.route('/naviNubija', methods=['GET'])
 def navi_nubija():
     route = eval(request.cookies.get('routeinfo'))
-    name1 = "창원시청"
-    x1 = str(127.1)
-    y1 = str(37.3)
-    name2 = "창원대학교"
-    x2 = str(127.1054328)
-    y2 = str(37.3595963)
+    name1, value1 = route["depart"].items()
+    x1 = value1["x"]
+    y1 = value1["y"]
+    name2, value2 = route["dest"].items()
+    x2 = value2["x"]
+    y2 = value2["y"]
     params = {'start': x1 + "," + y1, "goal": x2 + "," + y2}
     headers = {"X-NCP-APIGW-API-KEY-ID": IDkey, "X-NCP-APIGW-API-KEY": SecretKey}
     base_search_addr = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving"
