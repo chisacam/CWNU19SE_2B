@@ -98,6 +98,7 @@ def main_Page():
         resp.set_cookie('routeinfo', startend)
         return resp
     else:
+        print(recentList)
         return render_template("index.html", weather=main_weather["weather"])
 
 
@@ -106,10 +107,10 @@ def result_Page():
     main_weather = weatherInfo()
     if request.method == "POST":
 
-        sel =  request.form["sel"]
-        name =request.form["selname"]
-        x =  request.form["selX"]
-        y = request.form["selY"]
+        sel = request.form["sel"]
+        name = request.form["selname"]
+        x = request.form["selY"]
+        y = request.form["selX"]
         chch = "test" # request.form["checkchange"]
 
         startEndCheck = eval(request.cookies.get('routeinfo'))
@@ -128,7 +129,7 @@ def result_Page():
                     "y": y
                 }
             }
-        print(startEndCheck)
+
         if startEndCheck["depart"]:
             if startEndCheck["dest"]:
                 saveRoute = json.dumps(startEndCheck, ensure_ascii=False)
@@ -183,7 +184,7 @@ def result_Page():
                             }
                         })
         saveRoute = json.dumps(startEndCheck, ensure_ascii=False)
-        resp = make_response(render_template("index.html", weather=main_weather["weather"]))
+        resp = make_response(render_template("index.html", weather=main_weather["weather"], name=name))
         resp.set_cookie('routeinfo', saveRoute)
         return resp
     else:
@@ -336,12 +337,14 @@ def search_text():
 @app.route('/naviNubija', methods=['GET'])
 def navi_nubija():
     route = eval(request.cookies.get('routeinfo'))
-    name1, value1 = route["depart"].items()
-    x1 = value1["x"]
-    y1 = value1["y"]
-    name2, value2 = route["dest"].items()
-    x2 = value2["x"]
-    y2 = value2["y"]
+    for key, value in route["depart"].items():
+        name1 = key
+        x1 = value["x"]
+        y1 = value["y"]
+    for key, value in route["dest"].items():
+        name2 = key
+        x2 = value["x"]
+        y2 = value["y"]
     params = {'start': x1 + "," + y1, "goal": x2 + "," + y2}
     headers = {"X-NCP-APIGW-API-KEY-ID": IDkey, "X-NCP-APIGW-API-KEY": SecretKey}
     base_search_addr = "https://naveropenapi.apigw.ntruss.com/map-direction/v1/driving"
