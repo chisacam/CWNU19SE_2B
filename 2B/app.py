@@ -215,8 +215,8 @@ def recent_search():
     else:
         isServiceTime = True
     sel = request.form['sel']
-    hiddenuserLat = request.form['hiddenuserLat']
-    hiddenuserLong = request.form['hiddenuserLong']
+    """hiddenuserLat = request.form['hiddenuserLat']
+    hiddenuserLong = request.form['hiddenuserLong']"""
     recentList = eval(request.cookies.get('recentlist'))
     bookList = eval(request.cookies.get('booklist'))
     recentDepartLen = len(recentList["depart"])
@@ -244,11 +244,11 @@ def recent_search():
 
     if sel in 'depart':  # 출발지
         return render_template("search_recent.html", recentDepList=recentList["depart"], sel=sel,
-                               isServiceTime=isServiceTime, hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
+                               isServiceTime=isServiceTime)# , hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
     if sel in 'dest':  # 목적지
         return render_template("search_recent.html", recentDesList=recentList["dest"], sel=sel,
-                               isServiceTime=isServiceTime, hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
+                               isServiceTime=isServiceTime)# , hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
 
 @app.route('/searchBookmark', methods=['POST'])
