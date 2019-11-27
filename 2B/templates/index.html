@@ -47,12 +47,23 @@
             <table>
                 <tr>
                         <td>
-                                <button id="departureGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></button>
+                            <form action="/nubijaSelect", method="POST">
+                                <input type="submit" class = depLoc id="departureGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></inputbutton>
+                                <input type =hidden name = "name" class = depLoc>
+                                <input type = 'hidden' name="x" class = depLoc >
+                                <input type = 'hidden' name="y" class = depLoc>
+                                </form>
                             </td>
                 </tr>
                 <tr>
                         <td>
-                                <button id="destinationGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></button>
+                            <form action="/nubijaSelect", method="POST">
+                                <input type="submit" class = destLoc id="destinationGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></inputbutton>
+                                <input type =hidden name = "name" class = destLoc>
+                                <input type = 'hidden' name="x" class = destLoc >
+                                <input type = 'hidden' name="y" class = destLoc>
+                                </form>
+                            </td>
                             </td>
                 </tr>
             </table>
