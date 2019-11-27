@@ -26,9 +26,10 @@
         <table id="navilist">
             {% for i in selectResult %}
                 <form action="/main" method="POST" id="for{{ loop.index }}"></form>
-                <tr class="naviSample" onclick="document.getElementById('for{{ loop.index }}').submit()">
+                <tr class="naviSample">
                     <td class = "naviicon"><img class="icon" src="/static/icon/bus.svg"></td>
-                    <td class="navitxt">{{ i['name'] }}<br> 반납가능 : {{ i['info'][0] }}<br>대여가능 : {{ i['info'][1] }}</td>
+
+                    <td class="navitxt"><input type="submit" value="{{ i['name'] }}<br> 반납가능 : {{ i['info'][0] }}<br>대여가능 : {{ i['info'][1] }}"></td>
                         <input type="hidden" name = "sel" value='{{ sel }}'>
                         <input type="hidden" name = "selname" value="{{ i['name'] }}">
                         <input type="hidden" name = "selX" value="{{ i['loc'][0] }}">
