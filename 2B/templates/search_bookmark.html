@@ -57,10 +57,10 @@
                 <input type="hidden" name = "sel" value='{{ sel }}'>
 
             <div class="bookmarklist">
-                {% if recentDepList|length != 0  %}
+                {% if resultList|length != 0  %}
                 <table id = "bookmarktable">
 
-                    {% for i in recentDepList %}
+                    {% for i in resultList %}
                         <tr id="id{{ loop.index }}" class="placeframe cl{{loop.index }}">
                         <td class = "bookmarkstar">
                             <img id="starbutton" onclick="bmStateSet(this)" src="/static/icon/star_gold.svg">

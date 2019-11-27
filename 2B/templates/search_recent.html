@@ -44,10 +44,10 @@
                 <input type="hidden" name = 'selX' id = 'selectedX'>
                 <input type="hidden" name = 'selY' id="selectedY">
                 <input type="hidden" name = "sel" value='{{ sel }}'>
-                                        {% if recentDepList|length != 0 %}
+                                        {% if resultList|length != 0 %}
 
                 <table id = "recenttable">
-                    {% for i in recentDepList %}
+                    {% for i in resultList %}
                         <tr id="id{{ loop.index }}" class="placeframe cl{{loop.index }}">
                             <td class = "placeIconStyle">
                                 <img class="starbutton cl{{loop.index}}" src="/static/icon/star_empty.svg" onclick="">

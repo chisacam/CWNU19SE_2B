@@ -243,11 +243,11 @@ def recent_search():
                         recentList["dest"][checkRecent][key]["isBook"] = "Nope"
 
     if sel in 'depart':  # 출발지
-        return render_template("search_recent.html", recentDepList=recentList["depart"], sel=sel,
+        return render_template("search_recent.html", resultList=recentList["depart"], sel=sel,
                                isServiceTime=isServiceTime)# , hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
     if sel in 'dest':  # 목적지
-        return render_template("search_recent.html", recentDesList=recentList["dest"], sel=sel,
+        return render_template("search_recent.html", resultList=recentList["dest"], sel=sel,
                                isServiceTime=isServiceTime)# , hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
 
@@ -258,11 +258,11 @@ def recent_bookmark():
     hiddenuserLong = request.form['hiddenuserLong']"""
     bookList = eval(request.cookies.get('booklist'))
     if sel in 'depart':  # 출발지
-        return render_template("search_bookmark.html", recentDepList=bookList["depart"], sel=sel)#,
+        return render_template("search_bookmark.html", resultList=bookList["depart"], sel=sel)#,
                                #hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
     if sel in 'dest':  # 목적지
-        return render_template("search_bookmark.html", recentDesList=bookList["dest"], sel=sel)#,
+        return render_template("search_bookmark.html", resultList=bookList["dest"], sel=sel)#,
                                #hiddenuserLong=hiddenuserLong, hiddenuserLat=hiddenuserLat)
 
 
