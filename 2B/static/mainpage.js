@@ -135,8 +135,8 @@ function gpsData(target){
   // Get html's className
   var className = target.className;
   // and set location data
-  document.getElementsByClassName(className)[0].value = "현재 위치";
-  document.getElementsByClassName(className)[1].value = myLat;
-  document.getElementsByClassName(className)[2].value = myLong;  
+  document.getElementsByClassName(className)[1].value = "현재 위치";
+  document.getElementsByClassName(className)[2].value = myLat;
+  document.getElementsByClassName(className)[3].value = myLong;  
 }
 
