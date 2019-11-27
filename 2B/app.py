@@ -270,9 +270,8 @@ def recent_bookmark():
 @app.route('/nubijaSelect', methods=['POST'])
 def nubijaTerminalSelect():
     sel = request.form['sel']
-    x = float(request.form['selX'])
-    y = float(request.form['selY'])
-    print(sel, x, y)
+    y = float(request.form['selX'])
+    x = float(request.form['selY'])
     distList = dict()
     req = requests.get('https://www.nubija.com/terminal/terminalState.do')
     html = req.text
