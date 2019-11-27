@@ -32,8 +32,8 @@ function setLocationAsBM(event) {
 function setLocationAsR(event) {
     var temp = document.getElementsByClassName(event.className);
     document.getElementById('selectedName').value = temp[2].value;
-    document.getElementById('selectedX').value = temp[3].value;
-    document.getElementById('selectedY').value = temp[4].value;
+    document.getElementById('selectedX').value = temp[4].value;
+    document.getElementById('selectedY').value = temp[3].value;
 }
 
 // 웹페이지를 벗어날 때 별표시를 한 것 체크 
