@@ -22,18 +22,15 @@
             </td>
         </table>
     </div>
-    <div id="terminalType">
-        <table>
-                <td id="tabt_nub">
-                    <input type="button" id = "nubijabutton" disabled>
-                </td>
-                <td id="tabt_bus">
-                    <input type="button" id = "busbutton" onclick="location.href='busterminalSelect'">
-                </td>
-            </table>
-    </div>
-    <div id="map">
-        <h1>여기에 지도 나옴</h1>
+    <div id="navi">
+        <table id="navilist">
+            {% for i in selectResult %}
+                <tr class="naviSample">
+                    <td class = "naviicon"><img class="icon" src="/static/icon/bus.svg"></td>
+                    <td class="navitxt">{{ i['name'] }}<br> 반납가능 : {{ i['info'][0] }}<br>대여가능 : {{ i['info'][1] }}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </div>
 
 </body>
