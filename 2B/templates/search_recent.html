@@ -35,6 +35,8 @@
                 </td>
                 <td class="tabt" id="BookmarkTab">
                     <form action="searchBookmark" method="POST">
+                            <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                            <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
                         <input type="hidden" name = "sel" value="{{ sel }}">
                         <input type="submit" id = "bookmarkbutton" value="북마크">
                     </form>
@@ -71,8 +73,8 @@
 
                 </table>
                 {% else %}
-                    <img src="" id="emptylist">
-                    <h1 id="emtpytext">값이 존재하지 않습니다.</h1>
+                    <img src="/static/icon/warning.svg" id="emptylist">
+                    <p id="emtpytext">값이 존재하지 않습니다.</p>
                 {% endif %}
 
             </div>
