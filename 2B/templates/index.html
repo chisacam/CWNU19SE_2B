@@ -1,89 +1,92 @@
 <!DOCTYPE html>
-    <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="/static/css/mainpagecss.css">
-        <script type="text/javascript" src="/static/temp.js"></script>
-        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=766c51f119f8a0c2e82527a8d5f309d4"></script>
-        
-        <title>2B</title>
-    </head>
-    <body>
-        <div  id="search" class="search" >
-            <div id = 'swapsector'>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/css/mainpagecss.css">
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=766c51f119f8a0c2e82527a8d5f309d4"></script>
+    <title>2B</title>
+</head>
+
+<body>
+    <div id="search" class="search">
+        <div id='swapsector'>
             <table>
                 <tr>
-                        <td rowspan="2">
-                                <button id="swap" onclick="swaps()"><img src="/static/icon/arrow.svg"></button>
-                            </td>
+                    <td rowspan="2">
+                        <button id="swap" onclick="swaps()"><img src="/static/icon/arrow.svg"></button>
+                    </td>
                 </tr>
             </table>
         </div>
-        <div id = 'formsector'>
-            <form action="searchRecent", method="POST" >
-                    <input type="hidden" id = "sel" name = "sel" value="aa">
-            <table>
-                <tr>
+        <div id='formsector'>
+            <form action="searchRecent" , method="POST">
+                <input type="hidden" id="sel" name="sel" value="aa">
+                <table>
+                    <tr>
                         <td class="blank" id="depBlank">
-                                <input name="departure" type="submit" onclick="departclick()" id="departures" value="출발지">
-                                <input id = 'departLat' type="hidden" name="departureLat" value="00">
-                                <input id ='departLong' type="hidden" name = "departureLong" value="00">
-    
-                    </td>
-                </tr>
-                <tr>
+                            <input name="departure" type="submit" onclick="departclick()" id="departures" value="출발지">
+                            <input id='departLat' type="hidden" name="departureLat" value="00">
+                            <input id='departLong' type="hidden" name="departureLong" value="00">
+                        </td>
+                    </tr>
+                    <tr>
                         <td class="blank" id="desBlank">
-                                <input name="destination" type="submit" onclick="destclick()" id="destinations" value="도착지">
-                                <input id = 'destLat' type="hidden" name="destureLat" value="00">
-                                <input id = 'destLong' type="hidden" name = "destLong" value="00">
-                            </td>
-                </tr>
-
-            </table>
-                                                            <input id = 'hiddenuserLat' type="hidden" name="hiddenLat">
-                                <input id ='hiddenuserLong' type="hidden" name = "hiddenLong" >
-</form>
+                            <input name="destination" type="submit" onclick="destclick()" id="destinations" value="도착지">
+                            <input id='destLat' type="hidden" name="destureLat" value="00">
+                            <input id='destLong' type="hidden" name="destLong" value="00">
+                        </td>
+                    </tr>
+                </table>
+                <input id='hiddenuserLat' type="hidden" name="hiddenLat">
+                <input id='hiddenuserLong' type="hidden" name="hiddenLong">
+            </form>
         </div>
         <div id='gpstable'>
             <table>
                 <tr>
-                        <td>
-                            <form action="/nubijaSelect", method="POST">
-                                <input type="submit" class = depLoc id="departureGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></inputbutton>
-                                <input type =hidden name = "name" class = depLoc>
-                                <input type = 'hidden' name="x" class = depLoc >
-                                <input type = 'hidden' name="y" class = depLoc>
-                                </form>
-                            </td>
+                    <td>
+                        <form action="/nubijaSelect" , method="POST">
+                            <input type="submit" class="depLoc" id="departureGpsIcon" onclick="gpsData(this)"><img
+                                src="/static/icon/gps.svg"></inputbutton>
+                            <input type=hidden name="name" class="depLoc">
+                            <input type='hidden' name="x" class="depLoc">
+                            <input type='hidden' name="y" class="depLoc">
+                        </form>
+                    </td>
                 </tr>
                 <tr>
-                        <td>
-                            <form action="/nubijaSelect", method="POST">
-                                <input type="submit" class = destLoc id="destinationGpsIcon" onclick=""><img  src="/static/icon/gps.svg"></inputbutton>
-                                <input type =hidden name = "name" class = destLoc>
-                                <input type = 'hidden' name="x" class = destLoc >
-                                <input type = 'hidden' name="y" class = destLoc>
-                                </form>
-                            </td>
-                            </td>
+                    <td>
+                        <form action="/nubijaSelect" , method="POST">
+                            <input type="submit" class="destLoc" id="destinationGpsIcon" onclick="gpsData(this)"><img
+                                src="/static/icon/gps.svg"></inputbutton>
+                            <input type=hidden name="name" class="destLoc">
+                            <input type='hidden' name="x" class="destLoc">
+                            <input type='hidden' name="y" class="destLoc">
+                        </form>
+                    </td>
+                    </td>
                 </tr>
             </table>
-</div>
-
         </div>
 
-        <div id="contents">
-            <div id="maps"></div>
-            <div id="mapGps">
-                <button id="mapGpsButton" >
-                    <img id="mapGpsIcon" src="/static/icon/gps.svg">
-                </button>
-            </div>
-            <div id = "weather">
-                <button id="weatherbtn" onclick="location.href='weather'"><img id="weatherIcon" src={{ weather }}></button>
-            </div>
+    </div>
+
+    <div id="contents">
+        <div id="maps"></div>
+        <div id="mapGps">
+            <button id="mapGpsButton">
+                <img id="mapGpsIcon" src="/static/icon/gps.svg">
+            </button>
         </div>
-        <script type="text/javascript" src="/static/mainpage.js"></script>
-    </body>
+        <div id="weather">
+            <button id="weatherbtn" onclick="location.href='weather'"><img id="weatherIcon" src={{ weather }}></button>
+        </div>
+    </div>
+    <script type="text/javascript" src="/static/mainpage.js"></script>
+
+</body>
+
 </html>

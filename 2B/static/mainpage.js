@@ -123,3 +123,14 @@ function swaps() {
   document.getElementById("destLat").value = tempLat;
   document.getElementById("destLong").value = tempLong;
 };
+
+// 누비자 선택 화면으로 현재 위도/경도를 넘긴다
+function gpsData(target){
+  // Get html's className
+  var className = target.className;
+  // and set location data
+  document.getElementsByClassName(className)[0].value = "현재 위치";
+  document.getElementsByClassName(className)[1].value = myLat;
+  document.getElementsByClassName(className)[2].value = myLong;  
+}
+
