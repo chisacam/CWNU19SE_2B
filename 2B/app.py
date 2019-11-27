@@ -216,15 +216,15 @@ def recent_search():
     else:
         isServiceTime = True
     sel = request.form['sel']
-    hiddenuserLat = request.form['hiddenuserLat']
-    hiddenuserLong = request.form['hiddenuserLong']
+    #hiddenuserLat = request.form['hiddenuserLat']
+    #hiddenuserLong = request.form['hiddenuserLong']
     recentList = eval(request.cookies.get('recentlist'))
     bookList = eval(request.cookies.get('booklist'))
     recentDepartLen = len(recentList["depart"])
     recentDestLen = len(recentList["dest"])
     bookDepartLen = len(bookList["depart"])
     bookDestLen = len(bookList["dest"])
-    print(hiddenuserLat, hiddenuserLong)
+    # print(hiddenuserLat, hiddenuserLong)
     if bookDepartLen != 0 and bookDestLen != 0:
         for checkRecent in range(0, recentDepartLen):
             for key, value in recentList["depart"][checkRecent].items():
