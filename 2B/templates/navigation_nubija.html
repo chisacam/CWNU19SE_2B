@@ -32,22 +32,16 @@
         </table>
 
     </div>
-    <div id="terminalType">
-        <table>
-                <td id="tabt_nub">
-                    <input type="button" id = "nubijabutton" disabled>
-                </td>
-                <td id="tabt_bus">
-                    <input type="button" id = "busbutton" onclick="location.href='naviBus'">
-                </td>
-        </table>
-    </div>
     <div id="navi">
         <table id="navilist">
-            <tr class="naviSample" id="navisample">
-                <td class = "naviicon" id="iconc"><img src="/static/icon/turnleft.svg"></td>
-                <td id="navitxt">경로샘플</td>
+
+                                {% for i in tem %}
+            <tr class="naviSample">
+                <td class = "naviicon" id="iconc"><img src="{{ icons[loop.index] }}"></td>
+                <td id="navitxt">{{ i[0] }}</td>
             </tr>
+                                {% endfor %}
+
         </table>
     </div>
 </body>
