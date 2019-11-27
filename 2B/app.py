@@ -224,24 +224,23 @@ def recent_search():
     recentDestLen = len(recentList["dest"])
     bookDepartLen = len(bookList["depart"])
     bookDestLen = len(bookList["dest"])
-    """    
+
     if recentDepartLen != 0 and recentDestLen != 0:
         for checkRecent in range(0, recentDepartLen):
-            key, value = recentList["depart"][checkRecent].items()
-            for checkBook in range(0, bookDepartLen):
-                if bookList["depart"][checkBook][key]:
-                    recentList["depart"][checkRecent][key]["isBook"] = "Yes"
-                else:
-                    recentList["depart"][checkRecent][key]["isBook"] = "Nope"
+            for key, value in recentList["depart"][checkRecent].items():
+                for checkBook in range(0, bookDepartLen):
+                    if bookList["depart"][checkBook][key]:
+                        recentList["depart"][checkRecent][key]["isBook"] = "Yes"
+                    else:
+                        recentList["depart"][checkRecent][key]["isBook"] = "Nope"
 
         for checkRecent in range(0, recentDestLen):
-            key, value = recentList["dest"][checkRecent].items()
-            for checkBook in range(0, bookDestLen):
-                if bookList["dest"][checkBook][key]:
-                    recentList["dest"][checkRecent][key]["isBook"] = "Yes"
-                else:
-                    recentList["dest"][checkRecent][key]["isBook"] = "Nope"
-    """
+            for key, value in recentList["dest"][checkRecent].items():
+                for checkBook in range(0, bookDestLen):
+                    if bookList["dest"][checkBook][key]:
+                        recentList["dest"][checkRecent][key]["isBook"] = "Yes"
+                    else:
+                        recentList["dest"][checkRecent][key]["isBook"] = "Nope"
 
     if sel in 'depart':  # 출발지
         return render_template("search_recent.html", recentDepList=recentList["depart"], sel=sel,
