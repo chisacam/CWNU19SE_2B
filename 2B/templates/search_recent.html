@@ -56,7 +56,7 @@
                         {%  for k, v in i.items() %}
                         <tr id="id{{ loop.index }}" class="placeframe cl{{loop.index }}">
                             <td class = "placeIconStyle">
-                                <img class="starbutton cl{{loop.index}}" src="/static/icon/star_empty.svg" onclick="">
+                                <img class="starbutton cl{{loop.index}}" src="/static/icon/star_empty.svg" onclick="bmStateSet(this)">
                             </td>
                             <td class="placenamet">
                                 <input class="cl{{ loop.index }}" type="submit" onclick="setLocationAsR(this)" id="placename" value="{{ k }}">
@@ -82,5 +82,8 @@
 
         </div>
     </div>
+    <script>
+        window.addEventListener("beforeunload", bookmarkRecord({{ resultList }}));
+        </script> 
 </body>
 </html>
