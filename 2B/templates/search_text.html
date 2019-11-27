@@ -35,6 +35,8 @@
                 <input type="hidden" name = 'selX' id = 'selectedX'>
                 <input type="hidden" name = 'selY' id="selectedY">
                 <input type="hidden" name = "sel" value='{{ sel }}'>
+                            {% if result|length != 0 %}
+
                 <table class = "bookmarktable">
                                                 {% for i in result %}
                         <tr class="placeframe">
@@ -46,7 +48,11 @@
                         </tr>
                                                                                         {% endfor %}
                 </table>
+                                                            {% else %}
 
+                    <img src="" id="emptylist">
+                    <h1 id="emtpytext">값이 존재하지 않습니다.</h1>
+                {% endif %}
 
             </div>
                 </form>

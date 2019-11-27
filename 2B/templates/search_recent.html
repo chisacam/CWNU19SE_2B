@@ -44,6 +44,8 @@
                 <input type="hidden" name = 'selX' id = 'selectedX'>
                 <input type="hidden" name = 'selY' id="selectedY">
                 <input type="hidden" name = "sel" value='{{ sel }}'>
+                                        {% if recentDepList|length != 0 %}
+
                 <table id = "recenttable">
                     {% for i in recentDepList %}
                         <tr id="id{{ loop.index }}" class="placeframe cl{{loop.index }}">
@@ -62,6 +64,11 @@
                     {% endfor %}
 
                 </table>
+                            {% else %}
+                                <img src="" id="emptylist">
+                    <h1 id="emtpytext">값이 존재하지 않습니다.</h1>
+                {% endif %}
+
             </div>
                                                                         </form>
 
