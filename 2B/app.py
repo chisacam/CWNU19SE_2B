@@ -272,6 +272,7 @@ def nubijaTerminalSelect():
     sel = request.form['sel']
     x = float(request.form['selX'])
     y = float(request.form['selY'])
+    print(sel, x, y)
     distList = dict()
     req = requests.get('https://www.nubija.com/terminal/terminalState.do')
     html = req.text
