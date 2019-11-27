@@ -49,22 +49,25 @@
                 <tr>
                     <td>
                         <form action="/nubijaSelect" , method="POST">
-                            <input type="submit" class="depLoc" id="departureGpsIcon" onclick="gpsData(this)"><img
-                                src="/static/icon/gps.svg"></inputbutton>
+                            <input type="submit" class="depLoc" id="departureGpsIcon" onclick="gpsData(this)">
+                            <img src="/static/icon/gps.svg">
+                            <input type="hidden" name="sel" value="depart">
                             <input type=hidden name="name" class="depLoc">
-                            <input type='hidden' name="x" class="depLoc">
-                            <input type='hidden' name="y" class="depLoc">
+                            <input type='hidden' name="selX" class="depLoc">
+                            <input type='hidden' name="selY" class="depLoc">
                         </form>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <form action="/nubijaSelect" , method="POST">
-                            <input type="submit" class="destLoc" id="destinationGpsIcon" onclick="gpsData(this)"><img
-                                src="/static/icon/gps.svg"></inputbutton>
+                            <input type="submit" class="destLoc" id="destinationGpsIcon" onclick="gpsData(this)">
+                            <img src="/static/icon/gps.svg">
+                            <input type="hidden" name="sel" value="dest">
+
                             <input type=hidden name="name" class="destLoc">
-                            <input type='hidden' name="x" class="destLoc">
-                            <input type='hidden' name="y" class="destLoc">
+                            <input type='hidden' name="selX" class="destLoc">
+                            <input type='hidden' name="selY" class="destLoc">
                         </form>
                     </td>
                     </td>
