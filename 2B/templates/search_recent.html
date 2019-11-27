@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/css/search_recent.css">
+    <script type="text/javascript" src="/static/bookmarkSet.js"></script>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -44,33 +45,36 @@
                 <input type="hidden" name = 'selX' id = 'selectedX'>
                 <input type="hidden" name = 'selY' id="selectedY">
                 <input type="hidden" name = "sel" value='{{ sel }}'>
-                                        {% if resultList|length != 0 %}
+                {% if resultList|length != 0 %}
 
                 <table id = "recenttable">
                     {% for i in resultList %}
+                        {%  for k, v in i.items() %}
                         <tr id="id{{ loop.index }}" class="placeframe cl{{loop.index }}">
                             <td class = "placeIconStyle">
                                 <img class="starbutton cl{{loop.index}}" src="/static/icon/star_empty.svg" onclick="">
                             </td>
                             <td class="placenamet">
-                                <input class="cl{{ loop.index }}" type="submit" onclick="setLocationAsR(this)" id="placename" value="{{ i }}">
+                                <input class="cl{{ loop.index }}" type="submit" onclick="setLocationAsR(this)" id="placename" value="{{ k }}">
                             </td>
-                                <input type="hidden" class="cl{{loop.index }}" value="{{ i['X'] }}">
-                                <input type="hidden" class="cl{{loop.index }}" value="{{ i['Y'] }}">
+                                <input type="hidden" class="cl{{loop.index }}" value="{{ i[k]['x'] }}">
+                                <input type="hidden" class="cl{{loop.index }}" value="{{ i[k]['y'] }}">
                             <td class="deleteicon">
                                 <img class="deletebtn" src="/static/icon/x.svg" onclick="document.getElementById('id{{ loop.index }}').style.display= 'none'">
                             </td>
                         </tr>
+                                                {% endfor %}
+
                     {% endfor %}
 
                 </table>
-                            {% else %}
-                                <img src="" id="emptylist">
+                {% else %}
+                    <img src="" id="emptylist">
                     <h1 id="emtpytext">값이 존재하지 않습니다.</h1>
                 {% endif %}
 
             </div>
-                                                                        </form>
+                                        </form>
 
         </div>
     </div>
