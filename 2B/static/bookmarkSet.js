@@ -7,7 +7,7 @@
 */
 
 function bmStateSet(event) {
-  // 최근 검색에서 북마크를 누르면 
+  // 최근 검색 목록에서 북마크 켜기/끄기
   // document.getElementById('chch').value = "true";
   // event.src = "/static/icon/star_empty.svg"
 
@@ -28,7 +28,6 @@ function setLocationAsBM(event) {
         document.getElementById('selectedY').value = temp[2].value;
 }
 
-
 function setLocationAsR(event) {
     var temp = document.getElementsByClassName(event.className);
     document.getElementById('selectedName').value = temp[2].value;
@@ -38,8 +37,15 @@ function setLocationAsR(event) {
 
 // 웹페이지를 벗어날 때 별표시를 한 것 체크 
 window.addEventListener("beforeunload", () => {
-    // isBook == false, star == gold_star 인 것을 골라내서 북마크에 추가
-  for(var i=0;i<5;i++){
+  // isBook == false, star == gold_star 인 것을 골라내서 북마크에 추가
+  for (var i = 0; i < 5; i++) {
+    /*
+      
+    */
+  }
+
+  // isBook == true, start == start_empty 인 것을 골라내서 북마크에서 삭제
+  for (var i = 0; i < 5; i++) {
 
   }
 });
