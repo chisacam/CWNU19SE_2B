@@ -27,7 +27,8 @@
                 <table>
                     <tr>
                         <td class="blank" id="depBlank">
-                            <input name="departure" type="submit" onclick="departclick()" id="departures" value="{">
+                            {% if name is defined %}
+                            <input name="departure" type="submit" onclick="departclick()" id="departures" value="name">
                             <input id='departLat' type="hidden" name="departureLat" value="00">
                             <input id='departLong' type="hidden" name="departureLong" value="00">
                         </td>
