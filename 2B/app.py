@@ -124,7 +124,6 @@ def result_Page():
         name = request.form["selname"]
         x = request.form["selY"]
         y = request.form["selX"]
-        chch = None # request.form["checkchange"]
 
         startEndCheck = eval(request.cookies.get('routeinfo'))
         print(startEndCheck)
@@ -150,52 +149,6 @@ def result_Page():
                 resp.set_cookie('routeinfo', saveRoute)
                 return resp
 
-        if chch is not None:
-            isInDepart = False
-            isInDest = False
-            bookmarkCheck = eval(request.cookies.get('booklist'))
-            departLen = len(bookmarkCheck["depart"])
-            destLen = len(bookmarkCheck["dest"])
-            if chch is True and sel in 'depart':
-                if departLen == 0:
-                    bookmarkCheck["depart"].append({
-                        name: {
-                            "x": x,
-                            "y": y
-                        }
-                    })
-                else:
-                    for check in range(0, departLen):
-                        if name in bookmarkCheck["depart"][check]:
-                            del bookmarkCheck["depart"][check]
-                            isInDepart = True
-                    if isInDepart is False:
-                        bookmarkCheck["depart"].append({
-                            name: {
-                                "x": x,
-                                "y": y
-                            }
-                        })
-            if chch is True and sel in 'dest':
-                if destLen == 0:
-                    bookmarkCheck["dest"].append({
-                        name: {
-                            "x": x,
-                            "y": y
-                        }
-                    })
-                else:
-                    for check in range(0, destLen):
-                        if name in bookmarkCheck["dest"][check]:
-                            del bookmarkCheck["dest"][check]
-                            isInDest = True
-                    if isInDest is False:
-                        bookmarkCheck["dest"].append({
-                            name: {
-                                "x": x,
-                                "y": y
-                            }
-                        })
         saveRoute = json.dumps(startEndCheck, ensure_ascii=False)
         resp = make_response(render_template("index.html", weather=main_weather["weather"], name=name, sel=sel))
         resp.set_cookie('routeinfo', saveRoute)
@@ -347,6 +300,8 @@ def navi_nubija():
     x2 = ''
     y1 = ''
     y2 = ''
+    name1 = ''
+    name2 = ''
     for key, value in route["depart"].items():
         name1 = key
         x1 = value["x"]
@@ -481,7 +436,8 @@ def navi_nubija():
                         })
             temp = json.dumps(recentList, ensure_ascii=False)
             temp2 = json.dumps(defaultRoute, ensure_ascii=False)
-            resp = make_response(render_template("navigation_nubija.html", tem=tem, icons=icons))
+            resp = make_response(render_template("navigation_nubija.html", tem=tem, icons=icons,
+                                                 start=name1, end=name2))
             resp.set_cookie("routeinfo", temp2)
             resp.set_cookie("recentlist", temp)
             return resp
@@ -503,38 +459,82 @@ def manageBook():
     y = request.form['selY']
     hiddenLong = request.form['hiddenLong']
     hiddenLat = request.form['hiddenLat']
-
+    resp = make_response()
     bookList = eval(request.cookies.get('booklist'))
-    
+
+    isInDepart = False
+    isInDest = False
+    bookmarkCheck = eval(request.cookies.get('booklist'))
+    departLen = len(bookmarkCheck["depart"])
+    destLen = len(bookmarkCheck["dest"])
     if sel in 'depart':
-        # 대충 안에 있는지 검사하는 부분
-            # 대충 있으면 빼는 부분
-            # 대충 없으면 넣는 부분
-        resp = make_response(render_template('search_bookmark.html', resultList=bookList["depart"], sel=sel, hiddenLong=hiddenLong, hiddenLat=hiddenLat))
+        if departLen == 0:
+            bookmarkCheck["depart"].append({
+                name: {
+                    "x": x,
+                    "y": y
+                }
+            })
+        else:
+            for check in range(0, departLen):
+                if name in bookmarkCheck["depart"][check]:
+                    del bookmarkCheck["depart"][check]
+                    isInDepart = True
+            if isInDepart is False:
+                bookmarkCheck["depart"].append({
+                    name: {
+                        "x": x,
+                        "y": y
+                    }
+                })
+        resp = make_response(render_template('search_bookmark.html', resultList=bookList["depart"], sel=sel,
+                                             hiddenLong=hiddenLong, hiddenLat=hiddenLat))
     if sel in 'dest':
-        # 대충 위랑 같은데 dest가 대상인 부분
-        resp = make_response(render_template('search_bookmark.html', resultList=bookList["dest"], sel=sel, hiddenLong=hiddenLong, hiddenLat=hiddenLat))
-    
+        if destLen == 0:
+            bookmarkCheck["dest"].append({
+                name: {
+                    "x": x,
+                    "y": y
+                }
+            })
+        else:
+            for check in range(0, destLen):
+                if name in bookmarkCheck["dest"][check]:
+                    del bookmarkCheck["dest"][check]
+                    isInDest = True
+            if isInDest is False:
+                bookmarkCheck["dest"].append({
+                    name: {
+                        "x": x,
+                        "y": y
+                    }
+                })
+        resp = make_response(render_template('search_bookmark.html', resultList=bookList["dest"], sel=sel,
+                                             hiddenLong=hiddenLong, hiddenLat=hiddenLat))
+
     resultBook = json.dumps(bookList, ensure_ascii=False)
     resp.set_cookie('booklist', resultBook)
     return resp
 
+
 @app.route('/swap')
 def swap():
     route = eval(request.cookies.get('routeinfo'))
+    name = ''
     if route["depart"]:
         for name, loc in route["depart"].items():
             route["dest"][name] = loc
-        del route["depart"][name]
+            del route["depart"][name]
         resp = make_response(render_template('index.html', sel="dest", name=name))
     else:
         for name, loc in route["dest"].items():
             route["depart"][name] = loc
-        del route["dest"][name]
+            del route["dest"][name]
         resp = make_response(render_template('index.html', sel="depart", name=name))
     resultRoute = json.dumps(route, ensure_ascii=False)
     resp.set_cookie('routeinfo', resultRoute)
     return resp
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
