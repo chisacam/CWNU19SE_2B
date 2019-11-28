@@ -53,6 +53,9 @@
                         {% for i in result %}
                         <tr class="placeframe">
                             <td class="placenamet">
+
+                    <input type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                    <input type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
                                 <input class="cl{{ loop.index }}" type="submit" onclick="setLocationAsBM(this)"
                                     value="{{ i['name'] }}">
                                 <input type="hidden" class="cl{{loop.index }}" value="{{ i['x'] }}">
