@@ -14,8 +14,8 @@ function setLocationAsBM(event) {
 }
 
 function setLocationAsR(event) {
-  var temp = document.getElementsByClassName(event.className);
-  document.getElementById('selectedName').value = temp[2][1].value;
-  document.getElementById('selectedX').value = temp[4][1].value;
-  document.getElementById('selectedY').value = temp[3][1].value;
+  var temp = document.getElementsByClassName(event.classList[1]);
+  document.getElementById('selectedName').value = temp[2].value;
+  document.getElementById('selectedX').value = temp[4].value;
+  document.getElementById('selectedY').value = temp[3].value;
 }
