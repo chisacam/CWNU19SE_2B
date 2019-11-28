@@ -189,30 +189,37 @@ def recent_search():
     recentDestLen = len(recentList["dest"])
     bookDepartLen = len(bookList["depart"])
     bookDestLen = len(bookList["dest"])
-    if bookDepartLen != 0 and bookDestLen != 0:
+    print(recentList)
+    if bookDepartLen != 0:
         for checkRecent in range(0, recentDepartLen):
             for key, value in recentList["depart"][checkRecent].items():
                 for checkBook in range(0, bookDepartLen):
-                    if bookList["depart"][checkBook][key]:
+                    if key in bookList["depart"][checkBook]:
                         recentList["depart"][checkRecent][key]["isBook"] = "Yes"
                     else:
                         recentList["depart"][checkRecent][key]["isBook"] = "Nope"
-
+    if bookDestLen != 0:
         for checkRecent in range(0, recentDestLen):
             for key, value in recentList["dest"][checkRecent].items():
                 for checkBook in range(0, bookDestLen):
-                    if bookList["dest"][checkBook][key]:
+                    if key in bookList["dest"][checkBook]:
                         recentList["dest"][checkRecent][key]["isBook"] = "Yes"
                     else:
                         recentList["dest"][checkRecent][key]["isBook"] = "Nope"
 
     if sel in 'depart':  # 출발지
-        return render_template("search_recent.html", resultList=recentList["depart"], sel=sel,
-                               isServiceTime=isServiceTime, hiddenLong=hiddenLong, hiddenLat=hiddenLat)
+        setCookie = json.dumps(recentList, ensure_ascii=False)
+        resp = make_response(render_template("search_recent.html", resultList=recentList["depart"], sel=sel,
+                               isServiceTime=isServiceTime, hiddenLong=hiddenLong, hiddenLat=hiddenLat))
+        resp.set_cookie('recentlist', setCookie)
+        return resp
 
     if sel in 'dest':  # 목적지
-        return render_template("search_recent.html", resultList=recentList["dest"], sel=sel,
-                               isServiceTime=isServiceTime, hiddenLong=hiddenLong, hiddenLat=hiddenLat)
+        setCookie = json.dumps(recentList, ensure_ascii=False)
+        resp = make_response(render_template("search_recent.html", resultList=recentList["dest"], sel=sel,
+                                             isServiceTime=isServiceTime, hiddenLong=hiddenLong, hiddenLat=hiddenLat))
+        resp.set_cookie('recentlist', setCookie)
+        return resp
 
 
 @app.route('/searchBookmark', methods=['POST'])
@@ -455,18 +462,18 @@ def navi_nubija():
 def manageBook():
     sel = request.form['sel']
     name = request.form['selname']
-    x = request.form['selX']
-    y = request.form['selY']
-    hiddenLong = request.form['hiddenLong']
-    hiddenLat = request.form['hiddenLat']
+    y = request.form['selX']
+    x = request.form['selY']
+    hiddenLat = request.form['hiddenLong']
+    hiddenLong = request.form['hiddenLat']
     resp = make_response()
-    bookList = eval(request.cookies.get('booklist'))
-
+    print(sel, name, x, y, hiddenLat, hiddenLong)
     isInDepart = False
     isInDest = False
     bookmarkCheck = eval(request.cookies.get('booklist'))
     departLen = len(bookmarkCheck["depart"])
     destLen = len(bookmarkCheck["dest"])
+    print(bookmarkCheck)
     if sel in 'depart':
         if departLen == 0:
             bookmarkCheck["depart"].append({
@@ -487,7 +494,7 @@ def manageBook():
                         "y": y
                     }
                 })
-        resp = make_response(render_template('search_bookmark.html', resultList=bookList["depart"], sel=sel,
+        resp = make_response(render_template('search_bookmark.html', resultList=bookmarkCheck["depart"], sel=sel,
                                              hiddenLong=hiddenLong, hiddenLat=hiddenLat))
     if sel in 'dest':
         if destLen == 0:
@@ -509,10 +516,10 @@ def manageBook():
                         "y": y
                     }
                 })
-        resp = make_response(render_template('search_bookmark.html', resultList=bookList["dest"], sel=sel,
+        resp = make_response(render_template('search_bookmark.html', resultList=bookmarkCheck["dest"], sel=sel,
                                              hiddenLong=hiddenLong, hiddenLat=hiddenLat))
-
-    resultBook = json.dumps(bookList, ensure_ascii=False)
+    print(bookmarkCheck)
+    resultBook = json.dumps(bookmarkCheck, ensure_ascii=False)
     resp.set_cookie('booklist', resultBook)
     return resp
 
