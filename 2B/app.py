@@ -101,18 +101,19 @@ defaultRoute = {
 @app.route('/')
 def main_Page():
     main_weather = weatherInfo()
+    terminalInfo = getTerminalInfo()
     recentList = request.cookies.get('recentlist')
     if recentList is None:
         defaultJson = json.dumps(defaultCookie, ensure_ascii=False)
         startend = json.dumps(defaultRoute, ensure_ascii=False)
-        resp = make_response(render_template("index.html", weather=main_weather["weather"]))
+        resp = make_response(render_template("index.html", weather=main_weather["weather"], terminalInfo=terminalInfo))
         resp.set_cookie('recentlist', defaultJson)
         resp.set_cookie('booklist', defaultJson)
         resp.set_cookie('routeinfo', startend)
         return resp
     else:
-        print(recentList)
-        return render_template("index.html", weather=main_weather["weather"])
+
+        return render_template("index.html", weather=main_weather["weather"], terminalInfo=terminalInfo)
 
 
 @app.route('/main', methods=['POST', 'GET'])
@@ -126,7 +127,7 @@ def result_Page():
         y = request.form["selX"]
 
         startEndCheck = eval(request.cookies.get('routeinfo'))
-        print(startEndCheck)
+
         if sel in 'depart':
             startEndCheck["depart"] = {
                 name: {
@@ -176,7 +177,7 @@ def Weather_page():
 
 @app.route('/searchRecent', methods=['POST'])
 def recent_search():
-    if timeCheck() in [1, 2, 3, 4]:
+    if timeCheck() in [1, 2, 3]:
         isServiceTime = False
     else:
         isServiceTime = True
@@ -212,7 +213,7 @@ def recent_search():
     if sel in 'depart':  # 출발지
         setCookie = json.dumps(recentList, ensure_ascii=False)
         resp = make_response(render_template("search_recent.html", resultList=recentList["depart"], sel=sel,
-                               isServiceTime=isServiceTime, hiddenLong=hiddenLong, hiddenLat=hiddenLat))
+                                             isServiceTime=isServiceTime, hiddenLong=hiddenLong, hiddenLat=hiddenLat))
         resp.set_cookie('recentlist', setCookie)
         return resp
 
