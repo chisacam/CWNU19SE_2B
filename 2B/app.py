@@ -515,12 +515,12 @@ def manageBook():
 def swap():
     route = eval(request.cookies.get('routeinfo'))
     if route["depart"]:
-        for name, loc in route["depart"]:
+        for name, loc in route["depart"].items():
             route["dest"][name] = loc
         del route["depart"][name]
         resp = make_response(render_template('index.html', sel="dest", name=name))
     else:
-        for name, loc in route["dest"]:
+        for name, loc in route["dest"].items():
             route["depart"][name] = loc
         del route["dest"][name]
         resp = make_response(render_template('index.html', sel="depart", name=name))
