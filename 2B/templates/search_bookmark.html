@@ -52,28 +52,35 @@
                 </td>
             </table>
             <form action="/main" method="POST">
-                <input type="hidden" id="chch" name = 'checkchange' value="false">
                 <input type="hidden" name = 'selname' id = 'selectedName'>
                 <input type="hidden" name = 'selX' id = 'selectedX'>
                 <input type="hidden" name = 'selY' id="selectedY">
                 <input type="hidden" name = "sel" value='{{ sel }}'>
+                                                    <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                            <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
 
             <div class="bookmarklist">
                 {% if resultList|length != 0  %}
                 <table id = "bookmarktable">
-
                     {% for i in resultList %}
-                        <tr id="id{{ loop.index }}" class="placeframe cl{{loop.index }}">
-                        <td class = "bookmarkstar">
-                            <img id="starbutton" onclick="bmStateSet(this)" src="/static/icon/star_gold.svg">
-                        </td>
-                        <td id="placenamet">
-                            <input class="samplace" type="submit" id="placename" onclick="setLocationAsBM(this)" value="{{ i }}">
-                            <input type="hidden" class="cl{{loop.index }}" value="{{ i['X'] }}">
-                            <input type="hidden" class="cl{{loop.index }}" value="{{ i['Y'] }}">
-                        </td>
-                        <td class="nullspace"><img class="nullicon" src="/static/icon/navi/else.svg"></td>
+                        {% set loopidx = loop %}
+                        {%  for k, v in i.items() %}
+                        <tr id="id{{ loopidx.index }}" class="placeframe cl{{loopidx.index }}">
+
+
+                            <td class = "placeIconStyle">
+                                    <input type="image" src="/static/icon/star_gold.svg" class="starbutton cl{{loopidx.index}}" formaction="/manageBook" onclick="setLocationAsR(this)">
+
+                            </td>
+
+                            <td class="placenamet">
+                                <input class="placetxt cl{{ loopidx.index }}" type="submit" formaction="/main" onclick="setLocationAsR(this)" value="{{ k }}">
+                            </td>
+                                <input type="hidden" class="cl{{loopidx.index }}" value="{{ i[k]['x'] }}">
+                                <input type="hidden" class="cl{{loopidx.index }}" value="{{ i[k]['y'] }}">
                         </tr>
+                        {% endfor %}
+
                     {% endfor %}
 
                 </table>

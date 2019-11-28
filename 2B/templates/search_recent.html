@@ -48,8 +48,8 @@
                 <input type="hidden" name = 'selX' id = 'selectedX'>
                 <input type="hidden" name = 'selY' id="selectedY">
                 <input type="hidden" name = "sel" id="selectedValue" value='{{ sel }}'>
-                                        <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
-                            <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
+                <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
                 {% if resultList|length != 0 %}
 
                 <table id = "recenttable">
@@ -61,9 +61,9 @@
 
                             <td class = "placeIconStyle">
                                 {% if i[k]['isBook'] in 'Nope' %}
-                                <button class="starbutton cl{{loopidx.index}}" formaction="/manageBook" onclick="setLocationAsR(this)"><img src="/static/icon/star_empty.svg"></button>
+                                    <input type="image" src="/static/icon/star_empty.svg" class="starbutton cl{{loopidx.index}}" formaction="/manageBook" onclick="setLocationAsR(this)">
                                 {% else %}
-                                <button class="starbutton cl{{loopidx.index}}" formaction="/manageBook" onclick="setLocationAsR(this)"><img src="/static/icon/star_gold.svg"></button>
+                                    <input type="image" src="/static/icon/star_gold.svg" class="starbutton cl{{loopidx.index}}" formaction="/manageBook" onclick="setLocationAsR(this)">
                                 {% endif %}
                             </td>
 
