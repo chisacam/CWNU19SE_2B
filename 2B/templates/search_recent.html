@@ -60,7 +60,11 @@
 
 
                             <td class = "placeIconStyle">
+                                {% if i[k]['isBook'] in 'Nope' %}
                                 <button class="starbutton cl{{loopidx.index}}" formaction="/manageBook" onclick="setLocationAsR(this)"><img src="/static/icon/star_empty.svg"></button>
+                                {% else %}
+                                <button class="starbutton cl{{loopidx.index}}" formaction="/manageBook" onclick="setLocationAsR(this)"><img src="/static/icon/star_gold.svg"></button>
+                                {% endif %}
                             </td>
 
                             <td class="placenamet">
