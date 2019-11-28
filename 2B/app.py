@@ -196,6 +196,7 @@ def recent_search():
                 for checkBook in range(0, bookDepartLen):
                     if key in bookList["depart"][checkBook]:
                         recentList["depart"][checkRecent][key]["isBook"] = "Yes"
+                        break
                     else:
                         recentList["depart"][checkRecent][key]["isBook"] = "Nope"
     if bookDestLen != 0:
@@ -204,6 +205,7 @@ def recent_search():
                 for checkBook in range(0, bookDestLen):
                     if key in bookList["dest"][checkBook]:
                         recentList["dest"][checkRecent][key]["isBook"] = "Yes"
+                        break
                     else:
                         recentList["dest"][checkRecent][key]["isBook"] = "Nope"
 
