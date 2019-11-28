@@ -487,5 +487,46 @@ def navi_nubija():
         print(code)
 
 
+@app.route('/manageBook', methods=['POST'])
+def manageBook():
+    sel = request.form['sel']
+    name = request.form['selname']
+    x = request.form['selX']
+    y = request.form['selY']
+    hiddenLong = request.form['hiddenLong']
+    hiddenLat = request.form['hiddenLat']
+
+    bookList = eval(request.cookies.get('booklist'))
+    
+    if sel in 'depart':
+        # 대충 안에 있는지 검사하는 부분
+            # 대충 있으면 빼는 부분
+            # 대충 없으면 넣는 부분
+        resp = make_response(render_template('search_bookmark.html', resultList=bookList["depart"], sel=sel, hiddenLong=hiddenLong, hiddenLat=hiddenLat))
+    if sel in 'dest':
+        # 대충 위랑 같은데 dest가 대상인 부분
+        resp = make_response(render_template('search_bookmark.html', resultList=bookList["dest"], sel=sel, hiddenLong=hiddenLong, hiddenLat=hiddenLat))
+    
+    resultBook = json.dumps(bookList, ensure_ascii=False))
+    resp.set_cookie('booklist', resultBook)
+    return resp
+
+@app.route('/swap')
+def swap():
+    route = eval(request.cookies.get('routeinfo'))
+    if route["depart"]:
+        for name, loc in route["depart"]:
+            route["dest"][name] = loc
+        del route["depart"][name]
+        resp = make_response(render_template('index.html', sel="dest", name=name))
+    else:
+        for name, loc in route["dest"]:
+            route["depart"][name] = loc
+        del route["dest"][name]
+        resp = make_response(render_template('index.html', sel="depart", name=name))
+    resultRoute = json.dumps(route, ensure_ascii=False)
+    resp.set_cookie('routeinfo', resultRoute)
+    return resp
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
