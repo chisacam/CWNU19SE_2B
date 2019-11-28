@@ -36,19 +36,18 @@ function setLocationAsR(event) {
 }
 
 // 웹페이지를 벗어날 때 별표시를 한 것 체크 
-bookmarkRecord(isBookList){
-  window.addEventListener("beforeunload", () => {
-    for (var i = 0; i < 5; i++) {
-      // isBook == false, star == gold_star 인 것을 골라내서 북마크에 추가
-      if (isBookList[i] == false && document.getElementsByClassName('starbutton cl' + i).src == "/static/icon/star_gold.svg") {
-        // 북마크 추가
-        
-      }
-      // isBook == true, start == start_empty 인 것을 골라내서 북마크에서 삭제 
-      else if (isBookList[i] == true && document.getElementsByClassName('starbutton cl' + i).src == "/static/icon/star_empty.svg") {
-        // 북마크 제거
+function bookmarkRecord(isBookList) {
 
-      }
+  for (var i = 0; i < 5; i++) {
+    // isBook == false, star == gold_star 인 것을 골라내서 북마크에 추가
+    if (isBookList[i] == false && document.getElementsByClassName('starbutton cl' + i).src == "/static/icon/star_gold.svg") {
+      // 북마크 추가
+
+    }
+    // isBook == true, start == start_empty 인 것을 골라내서 북마크에서 삭제 
+    else if (isBookList[i] == true && document.getElementsByClassName('starbutton cl' + i).src == "/static/icon/star_empty.svg") {
+      // 북마크 제거
+
     }
   }
 }
