@@ -10,6 +10,12 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <body>
+{% if isServiceTime == False %}
+    <script>
+        alert("서비스 시간이 아닙니다.");
+        window.location.href = '/';
+    </script>
+{% endif %}
     <div id = "searchbar">
         <table>
             <td id="gpst">
