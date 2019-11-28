@@ -22,14 +22,15 @@
                     <input type=hidden name="name" class="depLoc">
                     <input type='hidden' name="selX" class="depLoc">
                     <input type='hidden' name="selY" class="depLoc">
+                    <input type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                    <input type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
                 </form>
             </td>
             <form action="searchText" method="POST">
                 <input type="hidden" name="sel" value='{{ sel }}'>
-                <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
-                <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
+                <input type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                <input type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
                 <td id="searcht">
-                    <input type="hidden" name="sel" value='{{ sel }}'>
 
                     <input id="searchtextbar" name='seartext' type="text">
                 </td>
@@ -48,7 +49,6 @@
                     <form action="searchRecent" method="POST">
                         <input type="hidden" name="sel" value='{{ sel }}'>
                         <input type="submit" id="recentbutton" value="최근기록">
-                        <input type="hidden" name="sel" value='{{ sel }}'>
                         <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
                         <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
 
