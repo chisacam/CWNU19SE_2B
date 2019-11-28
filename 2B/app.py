@@ -111,6 +111,7 @@ def main_Page():
         resp.set_cookie('routeinfo', startend)
         return resp
     else:
+        print(recentList)
         return render_template("index.html", weather=main_weather["weather"])
 
 
@@ -123,10 +124,10 @@ def result_Page():
         name = request.form["selname"]
         x = request.form["selY"]
         y = request.form["selX"]
-        chch = "test" # request.form["checkchange"]
+        chch = None # request.form["checkchange"]
 
         startEndCheck = eval(request.cookies.get('routeinfo'))
-
+        print(startEndCheck)
         if sel in 'depart':
             startEndCheck["depart"] = {
                 name: {
@@ -325,6 +326,8 @@ def search_text():
     code = res.status_code
 
     if code == 200:
+        test = res.json()
+        print(test)
         textResult = res.json()["places"]
         if sel in 'depart':  # 출발지
             return render_template("search_text.html", result=textResult, sel=sel)
@@ -339,6 +342,11 @@ def search_text():
 @app.route('/naviNubija', methods=['GET'])
 def navi_nubija():
     route = eval(request.cookies.get('routeinfo'))
+    print(route)
+    x1 = ''
+    x2 = ''
+    y1 = ''
+    y2 = ''
     for key, value in route["depart"].items():
         name1 = key
         x1 = value["x"]
@@ -507,7 +515,7 @@ def manageBook():
         # 대충 위랑 같은데 dest가 대상인 부분
         resp = make_response(render_template('search_bookmark.html', resultList=bookList["dest"], sel=sel, hiddenLong=hiddenLong, hiddenLat=hiddenLat))
     
-    resultBook = json.dumps(bookList, ensure_ascii=False))
+    resultBook = json.dumps(bookList, ensure_ascii=False)
     resp.set_cookie('booklist', resultBook)
     return resp
 
