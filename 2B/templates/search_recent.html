@@ -41,13 +41,15 @@
                     </form>
                 </td>
             </table>
-                                        <form action="/main" method="POST">
+            <form method="POST">
 
             <div class="recentlist">
                 <input type="hidden" name = 'selname' id = 'selectedName'>
                 <input type="hidden" name = 'selX' id = 'selectedX'>
                 <input type="hidden" name = 'selY' id="selectedY">
                 <input type="hidden" name = "sel" id="selectedValue" value='{{ sel }}'>
+                                        <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                            <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
                 {% if resultList|length != 0 %}
 
                 <table id = "recenttable">
@@ -55,14 +57,14 @@
                         {% set loopidx = loop %}
                         {%  for k, v in i.items() %}
                         <tr id="id{{ loopidx.index }}" class="placeframe cl{{loopidx.index }}">
-                            
-                          
+
+
                             <td class = "placeIconStyle">
-                                <img class="starbutton cl{{loopidx.index}}" src="/static/icon/star_empty.svg" onclick="">
+                                <button class="starbutton cl{{loopidx.index}}" formaction="/manageBook"><img src="/static/icon/star_empty.svg"></button>
                             </td>
-                          
+
                             <td class="placenamet">
-                                <input class="placetxt cl{{ loopidx.index }}" type="submit" onclick="setLocationAsR(this)" value="{{ k }}">
+                                <input class="placetxt cl{{ loopidx.index }}" type="submit" formaction="/main" onclick="setLocationAsR(this)" value="{{ k }}">
                             </td>
                                 <input type="hidden" class="cl{{loopidx.index }}" value="{{ i[k]['x'] }}">
                                 <input type="hidden" class="cl{{loopidx.index }}" value="{{ i[k]['y'] }}">
