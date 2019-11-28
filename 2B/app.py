@@ -279,6 +279,7 @@ def search_text():
     name = request.form['seartext']
     x = request.form['hiddenLong']
     y = request.form['hiddenLat']
+    print(sel, name, x, y)
     params = {'query': name, "coordinate": x + "," + y}
     headers = {"X-NCP-APIGW-API-KEY-ID": IDkey, "X-NCP-APIGW-API-KEY": SecretKey}
     base_search_addr = "https://naveropenapi.apigw.ntruss.com/map-place/v1/search"
@@ -290,10 +291,10 @@ def search_text():
         print(test)
         textResult = res.json()["places"]
         if sel in 'depart':  # 출발지
-            return render_template("search_text.html", result=textResult, sel=sel)
+            return render_template("search_text.html", result=textResult, sel=sel, hiddenLong=x, hiddenLat=y)
 
         if sel in 'dest':  # 목적지
-            return render_template("search_text.html", result=textResult, sel=sel)
+            return render_template("search_text.html", result=textResult, sel=sel, hiddenLong=x, hiddenLat=y)
 
     else:
         print(code)
