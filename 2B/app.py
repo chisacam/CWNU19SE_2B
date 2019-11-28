@@ -531,12 +531,12 @@ def swap():
     if route["depart"]:
         for name, loc in route["depart"].items():
             route["dest"][name] = loc
-            del route["depart"][name]
+        del route["depart"][name]
         resp = make_response(render_template('index.html', sel="dest", name=name))
     else:
         for name, loc in route["dest"].items():
             route["depart"][name] = loc
-            del route["dest"][name]
+        del route["dest"][name]
         resp = make_response(render_template('index.html', sel="depart", name=name))
     resultRoute = json.dumps(route, ensure_ascii=False)
     resp.set_cookie('routeinfo', resultRoute)
