@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/css/navigation_nubija.css">
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
+
 <body>
-    <div  id="search" class="search" >
-            <table>
+    <div id="search" class="search">
+        <table>
             <tr>
                 <td id="swapicon" rowspan="2">
                     <button id="swap" onclick="location.href='/'"><img src="/static/icon/arrow.svg"></button>
@@ -29,14 +31,15 @@
     <div id="navi">
         <table id="navilist">
 
-                                {% for i in tem %}
+            {% for i in tem %}
             <tr class="naviSample">
-                <td class = "naviicon"><img class="icon" src="{{ icons[loop.index0] }}"></td>
+                <td class="naviicon"><img class="icon" src="{{ icons[loop.index0] }}"></td>
                 <td class="navitxt">{{ i[0] }}</td>
             </tr>
-                                {% endfor %}
+            {% endfor %}
 
         </table>
     </div>
 </body>
+
 </html>

@@ -52,11 +52,11 @@ window.onload = () => {
   // Go Center as GPS
   var gpsButton = document.getElementById('mapGpsButton');
   gpsButton.addEventListener('click', () => {
-    if(navigator.geolocation){
+    if (navigator.geolocation) {
       var moveCen = new kakao.maps.LatLng(myLat, myLong);
       map.setCenter(moveCen);
     }
-    else{
+    else {
       alert('GPS의 사용여부를 확인해주세요!')
     }
   });
@@ -113,7 +113,7 @@ function departclick() {
 
 function destclick() {
   document.getElementById("sel").value = "dest";
-  
+
   document.getElementById('hiddenuserLat').value = myLat;
   document.getElementById('hiddenuserLong').value = myLong;
 };
@@ -131,7 +131,7 @@ function swaps() {
 };
 
 // 누비자 선택 화면으로 현재 위도/경도를 넘긴다
-function gpsData(target){
+function gpsData(target) {
   // Get html's className
   var className = target.className;
   // and set location data

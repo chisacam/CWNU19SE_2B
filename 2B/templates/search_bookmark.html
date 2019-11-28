@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/css/search_bookmark.css">
@@ -7,96 +8,101 @@
     <script type="text/javascript" src="/static/mainpage.js"></script>
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
+
 <body>
-<div id = "searchbar">
+    <div id="searchbar">
         <table>
 
             <td id="gpst">
                 <form action="/nubijaSelect" method="POST">
-                            <input type="submit" class="depLoc" id="gps" onclick="gpsData(this)" value=" ">
-                            <input type="hidden" name="sel" value="depart">
-                            <input type=hidden name="name" class="depLoc">
-                            <input type='hidden' name="selX" class="depLoc">
-                            <input type='hidden' name="selY" class="depLoc">
-                        </form>
+                    <input type="submit" class="depLoc" id="gps" onclick="gpsData(this)" value=" ">
+                    <input type="hidden" name="sel" value="depart">
+                    <input type=hidden name="name" class="depLoc">
+                    <input type='hidden' name="selX" class="depLoc">
+                    <input type='hidden' name="selY" class="depLoc">
+                </form>
             </td>
-                <form action="searchText" method="POST">
-                        <input type="hidden" name = "sel" value='{{ sel }}'>
+            <form action="searchText" method="POST">
+                <input type="hidden" name="sel" value='{{ sel }}'>
 
-            <td id="searcht">
-                    <input type="hidden" name = "sel" value='{{ sel }}'>
+                <td id="searcht">
+                    <input type="hidden" name="sel" value='{{ sel }}'>
 
-                <input id="searchtextbar" name = 'seartext' type="text">
-            </td>
-            <td id="searchBt">
-                <input id="searchbutton" type="submit" value=" ">
+                    <input id="searchtextbar" name='seartext' type="text">
+                </td>
+                <td id="searchBt">
+                    <input id="searchbutton" type="submit" value=" ">
             </form>
 
             </td>
         </table>
     </div>
-    <div id = "output">
-        <div id = "log">
+    <div id="output">
+        <div id="log">
 
             <table id="tab">
                 <td class="tabt" id="RecentTab">
                     <form action="searchRecent" method="POST">
-                        <input type="hidden" name = "sel" value='{{ sel }}'>
-                    <input type="submit" id = "recentbutton" value="최근기록">
-                                                <input type="hidden" name = "sel" value='{{ sel }}'>
-                                        <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
-                <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
+                        <input type="hidden" name="sel" value='{{ sel }}'>
+                        <input type="submit" id="recentbutton" value="최근기록">
+                        <input type="hidden" name="sel" value='{{ sel }}'>
+                        <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                        <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
 
                     </form>
                 </td>
                 <td class="tabt" id="BookmarkTab">
 
-                    <input type="button" id = "bookmarkbutton" value="북마크" disabled>
+                    <input type="button" id="bookmarkbutton" value="북마크" disabled>
                 </td>
             </table>
             <form action="/main" method="POST">
-                <input type="hidden" name = 'selname' id = 'selectedName'>
-                <input type="hidden" name = 'selX' id = 'selectedX'>
-                <input type="hidden" name = 'selY' id="selectedY">
-                <input type="hidden" name = "sel" value='{{ sel }}'>
-                                                    <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
-                            <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
+                <input type="hidden" name='selname' id='selectedName'>
+                <input type="hidden" name='selX' id='selectedX'>
+                <input type="hidden" name='selY' id="selectedY">
+                <input type="hidden" name="sel" value='{{ sel }}'>
+                <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
 
-            <div class="bookmarklist">
-                {% if resultList|length != 0  %}
-                <table id = "bookmarktable">
-                    {% for i in resultList %}
+                <div class="bookmarklist">
+                    {% if resultList|length != 0  %}
+                    <table id="bookmarktable">
+                        {% for i in resultList %}
                         {% set loopidx = loop %}
                         {%  for k, v in i.items() %}
                         <tr id="id{{ loopidx.index }}" class="placeframe cl{{loopidx.index }}">
 
 
-                            <td class = "placeIconStyle">
-                                    <input type="image" src="/static/icon/star_gold.svg" class="starbutton cl{{loopidx.index}}" formaction="/manageBook" onclick="setLocationAsR(this)">
+                            <td class="placeIconStyle">
+                                <input type="image" src="/static/icon/star_gold.svg"
+                                    class="starbutton cl{{loopidx.index}}" formaction="/manageBook"
+                                    onclick="setLocationAsR(this)">
 
                             </td>
 
                             <td class="placenamet">
-                                <input class="placetxt cl{{ loopidx.index }}" type="submit" formaction="/main" onclick="setLocationAsR(this)" value="{{ k }}">
+                                <input class="placetxt cl{{ loopidx.index }}" type="submit" formaction="/main"
+                                    onclick="setLocationAsR(this)" value="{{ k }}">
                             </td>
-                                <input type="hidden" class="cl{{loopidx.index }}" value="{{ i[k]['x'] }}">
-                                <input type="hidden" class="cl{{loopidx.index }}" value="{{ i[k]['y'] }}">
+                            <input type="hidden" class="cl{{loopidx.index }}" value="{{ i[k]['x'] }}">
+                            <input type="hidden" class="cl{{loopidx.index }}" value="{{ i[k]['y'] }}">
                         </tr>
                         {% endfor %}
 
-                    {% endfor %}
+                        {% endfor %}
 
-                </table>
-                {% else %}
+                    </table>
+                    {% else %}
                     <img src="/static/icon/warning.svg" id="emptylist">
                     <p id="emtpytext">값이 존재하지 않습니다.</p>
-                {% endif %}
+                    {% endif %}
 
-            </div>
-                </form>
+                </div>
+            </form>
         </div>
     </div>
 </body>
+
 </html>

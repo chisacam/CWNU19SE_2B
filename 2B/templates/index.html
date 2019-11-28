@@ -28,7 +28,8 @@
                     <tr>
                         <td class="blank" id="depBlank">
                             {% if sel == "depart" %}
-                            <input name="departure" type="submit" onclick="departclick()" id="departures" value="{{name}}">
+                            <input name="departure" type="submit" onclick="departclick()" id="departures"
+                                value="{{name}}">
                             {% else %}
                             <input name="departure" type="submit" onclick="departclick()" id="departures" value="출발지">
                             {% endif %}
@@ -39,10 +40,11 @@
                     </tr>
                     <tr>
                         <td class="blank" id="desBlank">
-                                                        {% if sel == "dest" %}
-                            <input name="destination" type="submit" onclick="destclick()" id="destinations" value="{{ name }}">
-                                                        {% else %}
-                                                        <input name="departure" type="submit" onclick="destclick()" id="destinations" value="도착지">
+                            {% if sel == "dest" %}
+                            <input name="destination" type="submit" onclick="destclick()" id="destinations"
+                                value="{{ name }}">
+                            {% else %}
+                            <input name="departure" type="submit" onclick="destclick()" id="destinations" value="도착지">
                             {% endif %}
 
                             <input id='destLat' type="hidden" name="destureLat" value="00">
@@ -70,7 +72,8 @@
                 <tr>
                     <td>
                         <form action="/nubijaSelect" method="POST">
-                            <input type="submit" class="destLoc" id="destinationGpsIcon" onclick="gpsData(this)" value=" ">
+                            <input type="submit" class="destLoc" id="destinationGpsIcon" onclick="gpsData(this)"
+                                value=" ">
                             <input type="hidden" name="sel" value="dest">
                             <input type=hidden name="name" class="destLoc">
                             <input type='hidden' name="selX" class="destLoc">

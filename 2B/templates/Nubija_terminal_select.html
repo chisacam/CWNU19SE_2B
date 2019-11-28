@@ -1,25 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/css/nubija_terminal_select.css">
-            <script type="text/javascript" src="/static/mainpage.js"></script>
+    <script type="text/javascript" src="/static/mainpage.js"></script>
 
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
+
 <body>
     <div id="searchbar">
         <table>
             <td>
-                            <form action="/nubijaSelect" method="POST">
-                            <input type="submit" class="depLoc" id="gps" onclick="gpsData(this)" value=" ">
-                            <input type="hidden" name="sel" value="depart">
-                            <input type=hidden name="name" class="depLoc">
-                            <input type='hidden' name="selX" class="depLoc">
-                            <input type='hidden' name="selY" class="depLoc">
-                        </form>
+                <form action="/nubijaSelect" method="POST">
+                    <input type="submit" class="depLoc" id="gps" onclick="gpsData(this)" value=" ">
+                    <input type="hidden" name="sel" value="depart">
+                    <input type=hidden name="name" class="depLoc">
+                    <input type='hidden' name="selX" class="depLoc">
+                    <input type='hidden' name="selY" class="depLoc">
+                </form>
             </td>
 
             <td id="searcht">
@@ -33,22 +35,24 @@
     <div id="navi">
         <table id="navilist">
             {% for i in selectResult %}
-                <tr class="naviSample">
-                    <td class = "naviicon"><img class="icon" src="/static/icon/bicycle.svg"></td>
+            <tr class="naviSample">
+                <td class="naviicon"><img class="icon" src="/static/icon/bicycle.svg"></td>
                 <form action="/main" method="POST">
                     <td class="navitxt">
                         <input type="submit" id="placename" value="{{ i['name'] }}">
-                        <input type="submit" id="nubijainfo" value="반납가능 : {{ i['info'][0] }} 대여가능 : {{ i['info'][1] }}">
-                        <input type="hidden" name = "sel" value='{{ sel }}'>
-                        <input type="hidden" name = "selname" value="{{ i['name'] }}">
-                        <input type="hidden" name = "selX" value="{{ i['loc'][0] }}">
-                        <input type="hidden" name = "selY" value="{{ i['loc'][1] }}">
+                        <input type="submit" id="nubijainfo"
+                            value="반납가능 : {{ i['info'][0] }} 대여가능 : {{ i['info'][1] }}">
+                        <input type="hidden" name="sel" value='{{ sel }}'>
+                        <input type="hidden" name="selname" value="{{ i['name'] }}">
+                        <input type="hidden" name="selX" value="{{ i['loc'][0] }}">
+                        <input type="hidden" name="selY" value="{{ i['loc'][1] }}">
                     </td>
                 </form>
-                </tr>
+            </tr>
             {% endfor %}
         </table>
     </div>
 
 </body>
+
 </html>
