@@ -6,21 +6,6 @@
     3. 검색기록에서 북마크로 등록할 때에는 넘겨주었던 인덱스를 참고하여 해당 데이터를 북마크에도 복사하여 저장한다.
 */
 
-function bmStateSet(event) {
-  // 최근 검색 목록에서 북마크 켜기/끄기
-  // document.getElementById('chch').value = "true";
-  // event.src = "/static/icon/star_empty.svg"
-
-  var className = event.className;
-
-  if (document.getElementsByClassName(className).src == "/static/icon/star_empty.svg") {
-    document.getElementsByClassName(className).src = "/static/icon/star_gold.svg";
-  }
-  else {
-    document.getElementsByClassName(className).src = "/static/icon/star_empty.svg";
-  }
-}
-
 function setLocationAsBM(event) {
   var temp = document.getElementsByClassName(event.className);
   document.getElementById('selectedName').value = temp[0].value;
@@ -34,21 +19,3 @@ function setLocationAsR(event) {
   document.getElementById('selectedX').value = temp[4].value;
   document.getElementById('selectedY').value = temp[3].value;
 }
-
-// 웹페이지를 벗어날 때 별표시를 한 것 체크 
-function bookmarkRecord(isBookList) {
-
-  for (var i = 0; i < 5; i++) {
-    // isBook == false, star == gold_star 인 것을 골라내서 북마크에 추가
-    if (isBookList[i] == false && document.getElementsByClassName('starbutton cl' + i).src == "/static/icon/star_gold.svg") {
-      // 북마크 추가
-
-    }
-    // isBook == true, start == start_empty 인 것을 골라내서 북마크에서 삭제 
-    else if (isBookList[i] == true && document.getElementsByClassName('starbutton cl' + i).src == "/static/icon/star_empty.svg") {
-      // 북마크 제거
-
-    }
-  }
-}
-

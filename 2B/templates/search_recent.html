@@ -47,16 +47,19 @@
                 <input type="hidden" name = 'selname' id = 'selectedName'>
                 <input type="hidden" name = 'selX' id = 'selectedX'>
                 <input type="hidden" name = 'selY' id="selectedY">
-                <input type="hidden" name = "sel" value='{{ sel }}'>
+                <input type="hidden" name = "sel" id="selectedValue" value='{{ sel }}'>
                 {% if resultList|length != 0 %}
 
                 <table id = "recenttable">
                     {% for i in resultList %}
                         {%  for k, v in i.items() %}
                         <tr id="id{{ loop.index }}" class="placeframe cl{{loop.index }}">
+                            
+                          
                             <td class = "placeIconStyle">
-                                <img class="starbutton cl{{loop.index}}" src="/static/icon/star_empty.svg" onclick="bmStateSet(this)">
+                                <img class="starbutton cl{{loop.index}}" src="/static/icon/star_empty.svg" onclick="">
                             </td>
+                          
                             <td class="placenamet">
                                 <input class="cl{{ loop.index }}" type="submit" onclick="setLocationAsR(this)" id="placename" value="{{ k }}">
                             </td>
