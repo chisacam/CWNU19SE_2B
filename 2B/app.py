@@ -475,6 +475,7 @@ def manageBook():
     departLen = len(bookmarkCheck["depart"])
     destLen = len(bookmarkCheck["dest"])
     print(bookmarkCheck)
+    print(departLen, destLen)
     if sel in 'depart':
         if departLen == 0:
             bookmarkCheck["depart"].append({
@@ -484,7 +485,7 @@ def manageBook():
                 }
             })
         else:
-            for check in range(0, departLen):
+            for check in range(0, len(bookmarkCheck["depart"]) - 1):
                 if name in bookmarkCheck["depart"][check]:
                     del bookmarkCheck["depart"][check]
                     isInDepart = True
@@ -506,7 +507,7 @@ def manageBook():
                 }
             })
         else:
-            for check in range(0, destLen):
+            for check in range(0, len(bookmarkCheck["dest"]) - 1):
                 if name in bookmarkCheck["dest"][check]:
                     del bookmarkCheck["dest"][check]
                     isInDest = True
