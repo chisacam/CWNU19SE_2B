@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="/static/css/search_text.css">
     <script type="text/javascript" src="/static/bookmarkSet.js"></script>
+        <script type="text/javascript" src="/static/mainpage.js"></script>
+
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -12,8 +14,13 @@
     <div id = "searchbar">
         <table>
             <td id="gpst">
-                <input id="gps" type="button">
-            </td>
+            <form action="/nubijaSelect" method="POST">
+                            <input type="submit" class="depLoc" id="gps" onclick="gpsData(this)" value=" ">
+                            <input type="hidden" name="sel" value="depart">
+                            <input type=hidden name="name" class="depLoc">
+                            <input type='hidden' name="selX" class="depLoc">
+                            <input type='hidden' name="selY" class="depLoc">
+                        </form>            </td>
             <form action="/searchText" method="POST">
                 <input type="hidden" name = "sel" value='{{ sel }}'>
             <td id="searcht">
