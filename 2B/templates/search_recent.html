@@ -52,24 +52,22 @@
 
                 <table id = "recenttable">
                     {% for i in resultList %}
+                        {% set loopidx = loop %}
                         {%  for k, v in i.items() %}
-                        <tr id="id{{ loop.index }}" class="placeframe cl{{loop.index }}">
+                        <tr id="id{{ loopidx.index }}" class="placeframe cl{{loopidx.index }}">
                             
                           
                             <td class = "placeIconStyle">
-                                <img class="starbutton cl{{loop.index}}" src="/static/icon/star_empty.svg" onclick="">
+                                <img class="starbutton cl{{loopidx.index}}" src="/static/icon/star_empty.svg" onclick="">
                             </td>
                           
                             <td class="placenamet">
-                                <input class="cl{{ loop.index }}" type="submit" onclick="setLocationAsR(this)" id="placename" value="{{ k }}">
+                                <input class="cl{{ loopidx.index }}" type="submit" onclick="setLocationAsR(this)" value="{{ k }}">
                             </td>
-                                <input type="hidden" class="cl{{loop.index }}" value="{{ i[k]['x'] }}">
-                                <input type="hidden" class="cl{{loop.index }}" value="{{ i[k]['y'] }}">
-                            <td class="deleteicon">
-                                <img class="deletebtn" src="/static/icon/x.svg" onclick="document.getElementById('id{{ loop.index }}').style.display= 'none'">
-                            </td>
+                                <input type="hidden" class="cl{{loopidx.index }}" value="{{ i[k]['x'] }}">
+                                <input type="hidden" class="cl{{loopidx.index }}" value="{{ i[k]['y'] }}">
                         </tr>
-                                                {% endfor %}
+                        {% endfor %}
 
                     {% endfor %}
 
