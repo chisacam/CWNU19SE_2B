@@ -106,36 +106,17 @@ table{
     background:white;
 }
 
-.deleteicon{
-    width:15%;
-    height:100%;
+.placenamet{
+    width: 85%;
     padding:0;
-    border:0;
-    margin:0;
-}
-
-.deletebtn{
-    width:80%;
-    height:80%;
-    border:0;
-}
-
-#placenamet{
-    width: 70%;
-    padding:0;
-}
-
-#placename{
-    width:90%;
-    height:60px;
     text-align: left;
+}
+
+.placetxt{
     background: transparent;
-    font-family: "nanumgothic";
     font-size: 14pt;
+    padding-left: 5%;
     border:0;
-    margin:0;
-    left:15%;
-    padding:0;
 }
 
 .placeIconStyle{
@@ -164,12 +145,6 @@ form{
 #searchBt{
     width:15%;
     height:100%;
-}
-
-#emptylist{
-    margin-top:20%;
-    height:50%;
-    width:100%;
 }
 
 
