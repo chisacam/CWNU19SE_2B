@@ -244,6 +244,8 @@ def nubijaTerminalSelect():
     sel = request.form['sel']
     y = float(request.form['selX'])
     x = float(request.form['selY'])
+    hiddenLat = request.form['hiddenLat']
+    hiddenLong = request.form['hiddenLong']
     distList = dict()
     terminalInfo = getTerminalInfo()
     selectResult = []
@@ -272,7 +274,8 @@ def nubijaTerminalSelect():
                     if check is 3:
                         break
 
-    return render_template('Nubija_terminal_select.html', selectResult=selectResult, sel=sel)
+    return render_template('Nubija_terminal_select.html', selectResult=selectResult, sel=sel, hiddenLat=hiddenLat,
+                           hiddenLong=hiddenLong)
 
 
 @app.route('/searchText', methods=['POST'])
