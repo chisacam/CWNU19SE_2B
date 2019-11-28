@@ -26,10 +26,11 @@
         <table id="navilist">
             {% for i in selectResult %}
                 <tr class="naviSample">
-                    <td class = "naviicon"><img class="icon" src="/static/icon/bus.svg"></td>
+                    <td class = "naviicon"><img class="icon" src="/static/icon/bicycle.svg"></td>
                 <form action="/main" method="POST">
                     <td class="navitxt">
-                        <input type="submit" value="{{ i['name'] }} 반납가능 : {{ i['info'][0] }}<br>대여가능 : {{ i['info'][1] }}">
+                        <input type="submit" id="placename" value="{{ i['name'] }}">
+                        <input type="submit" id="nubijainfo" value="반납가능 : {{ i['info'][0] }} 대여가능 : {{ i['info'][1] }}">
                         <input type="hidden" name = "sel" value='{{ sel }}'>
                         <input type="hidden" name = "selname" value="{{ i['name'] }}">
                         <input type="hidden" name = "selX" value="{{ i['loc'][0] }}">
