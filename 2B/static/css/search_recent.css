@@ -151,3 +151,9 @@ form{
 form{
     text-align:center;
 }
+
+#emptylist{
+    margin-top:20%;
+    height:50%;
+    width:100%;
+}
