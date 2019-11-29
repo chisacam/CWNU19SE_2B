@@ -55,9 +55,9 @@ td{
     height: 80%;
     background: #FFFFFF;
     border-radius: 10px;
+    border:0;
     text-align: left;
     font-size: 14pt;
-    font-family: "nanumgothic";
 }
 
 #desBlank, #depBlank{
