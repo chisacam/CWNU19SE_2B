@@ -30,14 +30,19 @@
     </div>
     <div id="navi">
         <table id="navilist">
-
+            {% if isError == True %}
+                <script>
+                        alert("에러가 발생했습니다.\n메인화면으로 되돌아갑니다.");
+                        window.location.href = '/';
+                </script>
+            {% else %}
             {% for i in tem %}
             <tr class="naviSample">
                 <td class="naviicon"><img class="icon" src="{{ icons[loop.index0] }}"></td>
                 <td class="navitxt">{{ i[0] }}</td>
             </tr>
             {% endfor %}
-
+            {% endif %}
         </table>
     </div>
 </body>
