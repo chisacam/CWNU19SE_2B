@@ -32,8 +32,7 @@
         <table id="navilist">
             {% if isError == True %}
                 <script>
-                    var errorInfo = {{errorInfo}}
-                    alert('${errorInfo} \n메인화면으로 되돌아갑니다.');
+                    alert('{{errorInfo}} \n메인화면으로 되돌아갑니다.');
                     window.location.href = '/';
                 </script>
             {% else %}
