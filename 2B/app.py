@@ -19,7 +19,7 @@ def weatherInfo():
     weather = weatherResult["weather"][0]["main"]
     temp = weatherResult["main"]["temp"] - 273
     icon = weatherResult["weather"][0]["icon"]
-    if icon in "50d":
+    if icon in ["50n", "50d"]:
         weather = '/static/icon/weather/mist.svg'
     else:
         weather = weather.lower()
