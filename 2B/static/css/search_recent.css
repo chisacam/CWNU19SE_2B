@@ -27,9 +27,9 @@ table{
     background: url("/static/icon/gps.svg");
     background-repeat:no-repeat;
     background-position: center;
-    background-size: contain;
-    width:50%;
-    height:50%;
+    background-size: 50%;
+    width:100%;
+    height:100%;
     border: 0;
 }
 
@@ -39,7 +39,6 @@ table{
     background: white;
     border-radius: 10px;
     border:0;
-    font-family: "nanumgothic";
     font-size: 14pt;
     text-align: left;
 }
@@ -67,7 +66,6 @@ table{
     border: 0px;
     padding:0;
     font-size:12pt;
-    font-family:"nanumgothic";
     background:white;
 }
 
@@ -79,7 +77,6 @@ table{
     border: 0px;
     padding:0;
     font-size:12pt;
-    font-family:"nanumgothic";
     background:#D0D0D0;
 }
 
@@ -149,6 +146,8 @@ form{
 
 
 form{
+    height: 100%;
+    width: 100%;
     text-align:center;
 }
 
