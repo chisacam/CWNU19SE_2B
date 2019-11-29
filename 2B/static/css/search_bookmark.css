@@ -79,7 +79,7 @@ table{
     background:white;
 }
 
-#placeframe{
+.placeframe{
     width:100%;
 }
 
@@ -95,21 +95,17 @@ table{
     margin:0;
 }
 
-#placenamet{
-    width:70%;
+.placenamet{
+    width:85%;
     padding:0;
+    text-align:left;
 }
 
-#placename{
-    width:90%;
-    height:60px;
-    text-align: left;
-    background: transparent;
-    font-size: 14pt;
+.placetxt{
+    background:transparent;
     border:0;
-    margin:0;
-    left:15%;
-    padding:0;
+    padding-left:5%;
+    font-size:14pt;
 }
 
 #bookmarktable{
