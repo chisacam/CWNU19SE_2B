@@ -81,10 +81,20 @@ defaultCookie = {
 """
 defaultRoute = {
     "depart": {
-
+        {
+            "창원시청":{
+                "X":"123.123",
+                "Y":"345.345"
+            }
+        }
     },
     "dest": {
-    
+        {
+            "창원대학교":{
+                "X":"342.423",
+                "Y":"123.523"
+            }
+        }
     }
 }
 """
@@ -458,14 +468,15 @@ def navi_nubija():
             temp = json.dumps(recentList, ensure_ascii=False)
             temp2 = json.dumps(defaultRoute, ensure_ascii=False)
             resp = make_response(render_template("navigation_nubija.html", tem=tem, icons=icons,
-                                                 start=name1, end=name2))
+                                                 start=name1, end=name2, isError=False))
             resp.set_cookie("routeinfo", temp2)
             resp.set_cookie("recentlist", temp)
             return resp
         else:
             temp2 = json.dumps(defaultRoute, ensure_ascii=False)
             resp = make_response(render_template("navigation_nubija.html", tem=[["네이버API에러"], ["길찾기실패"]],
-                                                 icons=[iconaddr + "else.svg"], start=name1, end=name2))
+                                                 icons=[iconaddr + "else.svg"], start=name1, end=name2,
+                                                 isError=True, errorInfo=js['message']))
             resp.set_cookie("routeinfo", temp2)
             return resp
     else:
