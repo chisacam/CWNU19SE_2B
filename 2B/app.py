@@ -199,6 +199,10 @@ def recent_search():
                         break
                     else:
                         recentList["depart"][checkRecent][key]["isBook"] = "Nope"
+    else:
+        for checkRecent in range(0, recentDepartLen):
+            for key, value in recentList["depart"][checkRecent].items():
+                recentList["depart"][checkRecent][key]["isBook"] = "Nope"
     if bookDestLen != 0:
         for checkRecent in range(0, recentDestLen):
             for key, value in recentList["dest"][checkRecent].items():
@@ -208,6 +212,10 @@ def recent_search():
                         break
                     else:
                         recentList["dest"][checkRecent][key]["isBook"] = "Nope"
+    else:
+        for checkRecent in range(0, recentDestLen):
+            for key, value in recentList["dest"][checkRecent].items():
+                recentList["dest"][checkRecent][key]["isBook"] = "Nope"
 
     if sel in 'depart':  # 출발지
         setCookie = json.dumps(recentList, ensure_ascii=False)
@@ -242,8 +250,8 @@ def recent_bookmark():
 @app.route('/nubijaSelect', methods=['POST'])
 def nubijaTerminalSelect():
     sel = request.form['sel']
-    y = float(request.form['selX'])
-    x = float(request.form['selY'])
+    x = float(request.form['selX'])
+    y = float(request.form['selY'])
     hiddenLat = request.form['hiddenLat']
     hiddenLong = request.form['hiddenLong']
     distList = dict()
@@ -254,7 +262,7 @@ def nubijaTerminalSelect():
         json_locdata = json.load(json_nubiloc)
 
         for i in json_locdata:
-            dist = math.pow((x - json_locdata[i][0]), 2) + math.pow((y - json_locdata[i][1]), 2)
+            dist = math.pow((y - json_locdata[i][0]), 2) + math.pow((x - json_locdata[i][1]), 2)
             distList[i] = math.sqrt(dist)
 
         rankTemp = sorted(distList.items(), key=lambda t: t[1])
@@ -470,8 +478,8 @@ def manageBook():
     name = request.form['selname']
     y = request.form['selX']
     x = request.form['selY']
-    hiddenLat = request.form['hiddenLong']
-    hiddenLong = request.form['hiddenLat']
+    hiddenLong = request.form['hiddenLong']
+    hiddenLat = request.form['hiddenLat']
     resp = make_response()
     print(sel, name, x, y, hiddenLat, hiddenLong)
     isInDepart = False
@@ -490,10 +498,16 @@ def manageBook():
                 }
             })
         else:
-            for check in range(0, len(bookmarkCheck["depart"]) - 1):
+            check = 0
+            while True:
                 if name in bookmarkCheck["depart"][check]:
                     del bookmarkCheck["depart"][check]
                     isInDepart = True
+                if check < len(bookmarkCheck["depart"]) - 1:
+                    check += 1
+                    continue
+                break
+
             if isInDepart is False:
                 bookmarkCheck["depart"].append({
                     name: {
@@ -512,10 +526,16 @@ def manageBook():
                 }
             })
         else:
-            for check in range(0, len(bookmarkCheck["dest"]) - 1):
+            check = 0
+            while True:
                 if name in bookmarkCheck["dest"][check]:
                     del bookmarkCheck["dest"][check]
                     isInDest = True
+                if check < len(bookmarkCheck["dest"]) - 1:
+                    check += 1
+                    continue
+                break
+
             if isInDest is False:
                 bookmarkCheck["dest"].append({
                     name: {
