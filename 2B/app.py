@@ -32,7 +32,8 @@ def weatherInfo():
 
 
 def timeCheck():
-    now = datetime.datetime.now()
+    KST = datetime.timezone(datetime.timedelta(hours=9))
+    now = datetime.datetime.now(KST)
     nowTime = now.strftime('%H')
     return int(nowTime)
 
