@@ -565,18 +565,25 @@ def manageBook():
 
 @app.route('/swap')
 def swap():
+    swap_weather = weatherInfo()
     route = eval(request.cookies.get('routeinfo'))
     name = ''
+    isError = False
     if route["depart"]:
         for name, loc in route["depart"].items():
             route["dest"][name] = loc
         del route["depart"][name]
-        resp = make_response(render_template('index.html', sel="dest", name=name))
-    else:
+        resp = make_response(render_template('index.html', sel="dest", name=name, weather=swap_weather["weather"],
+                                             isError=isError))
+    elif route["dest"]:
         for name, loc in route["dest"].items():
             route["depart"][name] = loc
         del route["dest"][name]
-        resp = make_response(render_template('index.html', sel="depart", name=name))
+        resp = make_response(render_template('index.html', sel="depart", name=name, weather=swap_weather["weather"],
+                                             isError=isError))
+    else:
+        resp = make_response(render_template('index.html', isError=isError))
+        isError = True
     resultRoute = json.dumps(route, ensure_ascii=False)
     resp.set_cookie('routeinfo', resultRoute)
     return resp
