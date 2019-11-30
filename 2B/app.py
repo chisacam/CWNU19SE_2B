@@ -201,7 +201,7 @@ def recent_search():
     recentDestLen = len(recentList["dest"])
     bookDepartLen = len(bookList["depart"])
     bookDestLen = len(bookList["dest"])
-    print(recentList)
+    #print(recentList)
     if bookDepartLen != 0:
         for checkRecent in range(0, recentDepartLen):
             for key, value in recentList["depart"][checkRecent].items():
@@ -304,7 +304,7 @@ def search_text():
     name = request.form['seartext']
     x = request.form['hiddenLong']
     y = request.form['hiddenLat']
-    print(sel, name, x, y)
+    #print(sel, name, x, y)
     params = {'query': name, "coordinate": x + "," + y}
     headers = {"X-NCP-APIGW-API-KEY-ID": IDkey, "X-NCP-APIGW-API-KEY": SecretKey}
     base_search_addr = "https://naveropenapi.apigw.ntruss.com/map-place/v1/search"
@@ -313,7 +313,7 @@ def search_text():
 
     if code == 200:
         test = res.json()
-        print(test)
+        #print(test)
         textResult = res.json()["places"]
         if sel in 'depart':  # 출발지
             return render_template("search_text.html", result=textResult, sel=sel, hiddenLong=x, hiddenLat=y)
@@ -328,7 +328,7 @@ def search_text():
 @app.route('/naviNubija', methods=['GET'])
 def navi_nubija():
     route = eval(request.cookies.get('routeinfo'))
-    print(route)
+    #print(route)
     x1 = ''
     x2 = ''
     y1 = ''
@@ -494,14 +494,14 @@ def manageBook():
     hiddenLong = request.form['hiddenLong']
     hiddenLat = request.form['hiddenLat']
     resp = make_response()
-    print(sel, name, x, y, hiddenLat, hiddenLong)
+    #print(sel, name, x, y, hiddenLat, hiddenLong)
     isInDepart = False
     isInDest = False
     bookmarkCheck = eval(request.cookies.get('booklist'))
     departLen = len(bookmarkCheck["depart"])
     destLen = len(bookmarkCheck["dest"])
-    print(bookmarkCheck)
-    print(departLen, destLen)
+    #print(bookmarkCheck)
+    #print(departLen, destLen)
     if sel in 'depart':
         if departLen == 0:
             bookmarkCheck["depart"].append({
@@ -558,7 +558,7 @@ def manageBook():
                 })
         resp = make_response(render_template('search_bookmark.html', resultList=bookmarkCheck["dest"], sel=sel,
                                              hiddenLong=hiddenLong, hiddenLat=hiddenLat))
-    print(bookmarkCheck)
+    #print(bookmarkCheck)
     resultBook = json.dumps(bookmarkCheck, ensure_ascii=False)
     resp.set_cookie('booklist', resultBook)
     return resp
