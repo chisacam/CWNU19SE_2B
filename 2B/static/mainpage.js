@@ -111,6 +111,7 @@ function departclick() {
   document.getElementById('hiddenuserLong').value = myLong;
 };
 
+
 function destclick() {
   document.getElementById("sel").value = "dest";
 
@@ -138,5 +139,7 @@ function gpsData(target) {
   document.getElementsByClassName(className)[1].value = "현재 위치";
   document.getElementsByClassName(className)[3].value = myLat;
   document.getElementsByClassName(className)[2].value = myLong;
+  document.getElementsByClassName(className)[4].value = myLat;
+  document.getElementsByClassName(className)[5].value = myLong;
 }
 
