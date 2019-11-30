@@ -582,8 +582,9 @@ def swap():
         resp = make_response(render_template('index.html', sel="depart", name=name, weather=swap_weather["weather"],
                                              isError=isError))
     else:
-        resp = make_response(render_template('index.html', isError=isError))
         isError = True
+        resp = make_response(render_template('index.html', isError=isError))
+
     resultRoute = json.dumps(route, ensure_ascii=False)
     resp.set_cookie('routeinfo', resultRoute)
     return resp
