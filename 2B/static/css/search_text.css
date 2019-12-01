@@ -8,6 +8,7 @@ body, #log, #output{
 }
 
 body{
+    margin:0;
     background: #E5E5E5;
 }
 
