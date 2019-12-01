@@ -316,10 +316,10 @@ def search_text():
         #print(test)
         textResult = res.json()["places"]
         if sel in 'depart':  # 출발지
-            return render_template("search_text.html", result=textResult, sel=sel, hiddenLong=x, hiddenLat=y)
+            return render_template("search_text.html", result=textResult, sel=sel, name=name, hiddenLong=x, hiddenLat=y)
 
         if sel in 'dest':  # 목적지
-            return render_template("search_text.html", result=textResult, sel=sel, hiddenLong=x, hiddenLat=y)
+            return render_template("search_text.html", result=textResult, sel=sel, name=name, hiddenLong=x, hiddenLat=y)
 
     else:
         print(code)
