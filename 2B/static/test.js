@@ -65,7 +65,6 @@ window.onload = () => {
       j = JSON.parse(i);
       namedataJson = JSON.parse(j['namedata']);
       geodataJson = JSON.parse(j['geodata']);
-      var infos = {{ terminalInfo|safe }}
       var positions = new Array();
       var title_latlng = new Object();
 

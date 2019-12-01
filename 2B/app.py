@@ -9,7 +9,7 @@ from flask import make_response
 import requests
 import re
 import datetime
-#from OpenSSL import SSL
+from OpenSSL import SSL
 
 
 def weatherInfo():
@@ -590,6 +590,9 @@ def swap():
     resp.set_cookie('routeinfo', resultRoute)
     return resp
 
-#contextSSL = ('server.crt','server.key')
+
+contextSSL = ('server.crt', 'server.key')
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', debug=True, ssl_context=contextSSL)
