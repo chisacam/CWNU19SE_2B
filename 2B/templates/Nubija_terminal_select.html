@@ -16,11 +16,14 @@
         <table>
             <td>
                 <form action="/nubijaSelect" method="POST">
-                    <input type="submit" class="depLoc" id="gps" onclick="gpsData(this)" value=" ">
+                    <input type="submit" class="depLoc" id="gps" value=" ">
                     <input type="hidden" name="sel" value="{{ sel }}">
                     <input type=hidden name="name" class="depLoc">
-                    <input type='hidden' name="selX" class="depLoc">
-                    <input type='hidden' name="selY" class="depLoc">
+                    <input type='hidden' name="selX" value="{{ hiddenLat }}" class="depLoc">
+                    <input type='hidden' name="selY" value="{{ hiddenLong }}" class="depLoc">
+
+                    <input type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                    <input type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
                 </form>
             </td>
             <form action="searchText" method="POST">

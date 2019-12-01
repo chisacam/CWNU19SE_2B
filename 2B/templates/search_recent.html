@@ -22,22 +22,21 @@
         <table>
             <td id="gpst">
                 <form action="/nubijaSelect" method="POST">
-                    <input type="submit" class="depLoc" id="gps" onclick="gpsData(this)" value=" ">
+                    <input type="submit" class="depLoc" id="gps" value=" ">
                     <input type="hidden" name="sel" value='{{ sel }}'>
                     <input type=hidden name="name" class="depLoc">
-                    <input type='hidden' name="selX" class="depLoc">
-                    <input type='hidden' name="selY" class="depLoc">
-
-                    <input type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
-                    <input type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
+                    <input type='hidden' name="selX" value="{{ hiddenLat }}" class="depLoc">
+                    <input type='hidden' name="selY" value="{{ hiddenLong }}" class="depLoc">
+                    <input class="depLoc" type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                    <input class="depLoc" type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
                 </form>
             </td>
             <form action="/searchText" method="POST">
                 <td id="searcht">
                     <input type="hidden" name="sel" value='{{ sel }}'>
                     <input id="searchtextbar" name="seartext" type="text">
-                    <input id='hiddenuserLat' type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
-                    <input id='hiddenuserLong' type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
+                    <input type="hidden" name="hiddenLat" value="{{ hiddenLat }}">
+                    <input type="hidden" name="hiddenLong" value="{{ hiddenLong }}">
                 </td>
                 <td id="searchBt">
                     <input id="searchbutton" type="submit" value=" ">
