@@ -18,9 +18,15 @@ table{
     text-align:center;
 }
 
-#gpst, #searchBt{
+#searchBt{
     width:15%;
     height:100%;
+}
+
+#gpst{
+    width:15%;
+    height:100%;
+    text-align:center;
 }
 
 #gps{
@@ -29,7 +35,7 @@ table{
     background-position: center;
     background-size: contain;
     width:50%;
-    height:50%;
+    height:100%;
     border: 0;
 }
 
@@ -94,4 +100,21 @@ input{
     background:transparent;
     border:0;
     font-size:14pt;
+}
+
+#emptylist{
+    margin-top:20%;
+    height:50%;
+    width:100%;
+}
+
+#emptytext{
+    font-size:14pt;
+
+}
+
+form{
+    height: 100%;
+    width: 100%;
+    text-align:center;
 }
