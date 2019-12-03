@@ -587,7 +587,7 @@ def swap():
                                              isError=isError))
     else:
         isError = True
-        resp = make_response(render_template('index.html', isError=isError))
+        resp = make_response(render_template('index.html', isError=isError, weather=swap_weather["weather"]))
 
     resultRoute = json.dumps(route, ensure_ascii=False)
     resp.set_cookie('routeinfo', resultRoute)
