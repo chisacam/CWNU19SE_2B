@@ -52,6 +52,13 @@ def getTerminalInfo():
     return terminalInfo
 
 
+def checkServiceTime():
+    if timeCheck() in [1, 2, 3]:
+        return False
+    else:
+        return True
+
+
 app = Flask(__name__)
 IDkey = "jpfybhk69d"
 SecretKey = "RuIMY0ILxMIf6ZZCyA9BIb2syBOXqnJrVEYzP5GX"
@@ -188,10 +195,6 @@ def Weather_page():
 
 @app.route('/searchRecent', methods=['POST'])
 def recent_search():
-    if timeCheck() in [1, 2, 3]:
-        isServiceTime = False
-    else:
-        isServiceTime = True
     sel = request.form['sel']
     hiddenLat = request.form['hiddenLat']
     hiddenLong = request.form['hiddenLong']
@@ -232,14 +235,14 @@ def recent_search():
     if sel in 'depart':  # 출발지
         setCookie = json.dumps(recentList, ensure_ascii=False)
         resp = make_response(render_template("search_recent.html", resultList=recentList["depart"], sel=sel,
-                                             isServiceTime=isServiceTime, hiddenLong=hiddenLong, hiddenLat=hiddenLat))
+                                             isServiceTime=checkServiceTime(), hiddenLong=hiddenLong, hiddenLat=hiddenLat))
         resp.set_cookie('recentlist', setCookie)
         return resp
 
     if sel in 'dest':  # 목적지
         setCookie = json.dumps(recentList, ensure_ascii=False)
         resp = make_response(render_template("search_recent.html", resultList=recentList["dest"], sel=sel,
-                                             isServiceTime=isServiceTime, hiddenLong=hiddenLong, hiddenLat=hiddenLat))
+                                             isServiceTime=checkServiceTime(), hiddenLong=hiddenLong, hiddenLat=hiddenLat))
         resp.set_cookie('recentlist', setCookie)
         return resp
 
@@ -295,7 +298,7 @@ def nubijaTerminalSelect():
                         break
 
     return render_template('Nubija_terminal_select.html', selectResult=selectResult, sel=sel, hiddenLat=hiddenLat,
-                           hiddenLong=hiddenLong)
+                           hiddenLong=hiddenLong, isServiceTime=checkServiceTime())
 
 
 @app.route('/searchText', methods=['POST'])
